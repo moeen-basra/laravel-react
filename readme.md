@@ -27,4 +27,4 @@ make sure you installed webpack as global npm package if not you can use the com
 TODO:
 
 - [ ] Add Redux
-- [ ] Add API to communicate with laravel api
+- [ ] Add API to communicate with laravel
