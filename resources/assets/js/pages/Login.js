@@ -6,7 +6,7 @@ class Login extends Component {
         return <div className="row">
             <div className="col-md-8 col-md-offset-2">
                 <div className="panel panel-default">
-                    <div className="panel-heading">Login</div>
+                    <div className="panel-heading">Login > not functional</div>
                     <div className="panel-body">
                         <form className="form-horizontal" role="form">
                             <div className="form-group">
