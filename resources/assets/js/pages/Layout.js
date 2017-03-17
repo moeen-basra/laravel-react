@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 // import { Link } from "react-router"
 
 //import components
-import Navigation from "../includes/Navigation"
+import Navigation from "../includes/navigation/Navigation"
 
 class Layout extends Component {
     render(){
