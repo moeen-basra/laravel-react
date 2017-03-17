@@ -12,7 +12,10 @@
 Please follow the guide.
 
 1. `git clone`
-2. `composer update`
+2. `update the .env file along with database connection`
+3. `composer install && composer update`
+4. `php artisan migrate`
+5. `php artisan db:seed`
 3. `npm install`
 
 open two terminal windows
