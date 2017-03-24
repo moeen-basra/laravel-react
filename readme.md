@@ -16,18 +16,24 @@ Please follow the guide.
 3. `composer install && composer update`
 4. `php artisan migrate`
 5. `php artisan db:seed`
-3. `npm install`
+6. `npm install`
 
-open two terminal windows
+open two terminal window
 
-on 1st windows `php artisian serve` and on 2nd window `webpack --watch`
+on 1st terminal use following command to mix and watch the assets
 
-make sure you installed webpack as global npm package if not you can use the command below
+`npm run watch-poll`
 
-`npm install -g webpack`
+on 2nd terminal use following command to run server
+
+`php artisan serve`
+
+for complete list of instruction follow the link below
+[Laravel Mix](https://laravel.com/docs/5.4/mix#running-mix)
 
 
 TODO:
 
+- [x] Add API to communicate with laravel.
+- [ ] Add Passport for authentication.
 - [ ] Add Redux
-- [ ] Add API to communicate with laravel
