@@ -1,7 +1,7 @@
 //import libs
 import React, {Component} from 'react';
 import axios from 'axios';
-import Actions from './Actions';
+import ArticleRow from './ArticleRow';
 
 class Articles extends Component {
 
@@ -52,13 +52,7 @@ class Articles extends Component {
             <tbody>
             {articles.data.map((article, index) => {
                 return (
-                    <tr key={`article-${index}`}>
-                        <td>{counter++}</td>
-                        <td>{article.title.substr(0, 30)}</td>
-                        <td>{article.slug.substr(0, 30)}</td>
-                        <td>{article.content.substr(0, 25)}</td>
-                        <Actions article={article} doRemove={this.doRemove} />
-                    </tr>
+                    <ArticleRow key={`article-${index}`} article={article} index={index} doRemove={this.doRemove} />
                 )
             })}
             </tbody>

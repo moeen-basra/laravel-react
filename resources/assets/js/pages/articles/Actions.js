@@ -11,10 +11,6 @@ class Actions extends Component {
         window.location.href = `/articles/${id}/edit`;
     }
 
-    remove(id) {
-
-    }
-
     render() {
         const {article, doRemove} = this.props;
 
