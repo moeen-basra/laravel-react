@@ -8,7 +8,7 @@ import Register from '../pages/Register'
 import Login from '../pages/Login'
 import Home from '../pages/Home'
 import Users from '../pages/users/Users'
-import Articles from '../pages/Articles'
+import Articles from '../pages/articles/Articles'
 
 const Routes = (
     <Router history={browserHistory}>

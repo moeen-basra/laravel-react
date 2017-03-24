@@ -20,3 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/users', function() {
     return \App\User::all();
 });
+
+Route::get('/articles', function() {
+    return \App\Article::paginate(50);
+});

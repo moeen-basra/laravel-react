@@ -16,6 +16,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "flux": "^3.1.2",
     "history": "^4.6.0",
+    "loadash": "0.0.1",
     "moment": "^2.17.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
@@ -30,7 +31,7 @@
     "history": "^4.6.0"
   },
   "scripts": {
-    "watch": "npm webpack",
+    "watch": "webpack --watch",
     "dev": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
