@@ -14,8 +14,13 @@
 Route::get('/', function () {
     return view('index');
 });
+
 Route::get('/{slug}', function () {
     return view('index');
+});
+
+Route::get('/articles/{id}/edit', function ($id) {
+    return view('index', compact('id'));
 });
 
 //Auth::routes();

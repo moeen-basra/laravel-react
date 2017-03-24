@@ -31,6 +31,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{url('')}}/js/bundle.js?v={{ rand(1000, 50000000) }}"></script>
+<script src="{{url('')}}/js/app.js?v={{ rand(1000, 50000000) }}"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 
 class Actions extends Component {
 
@@ -16,9 +17,9 @@ class Actions extends Component {
 
         return (
             <div className="btn-group">
-                <a href="#" onClick={e => Actions.edit(article.id) } className="btn btn-primary btn-sm">
+                <Link to={`/articles/${article.id}/edit`} className="btn btn-primary btn-sm">
                     <i className="glyphicon glyphicon-pencil" /> Edit
-                </a>
+                </Link>
                 <a href="#" onClick={e => doRemove(e, article.id) } className="btn btn-danger btn-sm">
                     <i className="glyphicon glyphicon-trash" /> Trash
                 </a>

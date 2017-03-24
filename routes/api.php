@@ -17,16 +17,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', function() {
+Route::get('/users', function () {
     return \App\User::all();
 });
 
-Route::get('/articles', function() {
+Route::get('/articles', function () {
     return \App\Article::paginate(50);
 });
 
-Route::delete('/articles/{id}', function($id) {
-    $article = \App\Article::find($id);
+Route::get('/articles/{id}', function ($id) {
+    return \App\Article::findOrFail($id);
+});
+
+Route::delete('/articles/{id}', function ($id) {
+    $article = \App\Article::findOrFail($id);
+
     $article->delete();
+
     return response('Article Deleted.', 200);
 });

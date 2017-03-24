@@ -1,7 +1,9 @@
+composer.lock
 /node_modules
 /public/storage
 /public/hot
-/public/js/bundle.js
+/public/js/
+/public/css/
 /storage/*.key
 /vendor
 /.idea
