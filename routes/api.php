@@ -24,3 +24,9 @@ Route::get('/users', function() {
 Route::get('/articles', function() {
     return \App\Article::paginate(50);
 });
+
+Route::delete('/articles/{id}', function($id) {
+    $article = \App\Article::find($id);
+    $article->delete();
+    return response('Article Deleted.', 200);
+});

@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import ArticleRow from './ArticleRow';
 import Paginator from '../common/Paginator';
+import _ from 'underscore';
 
 class Articles extends Component {
 
@@ -13,8 +14,10 @@ class Articles extends Component {
             articles: {
                 data: []
             },
-            counter: 1
-        }
+        };
+
+        this.pageChange = this.pageChange.bind(this);
+        this.doRemove = this.doRemove.bind(this);
     }
 
     componentDidMount() {
@@ -27,6 +30,16 @@ class Articles extends Component {
             })
     }
 
+    pageChange(url) {
+        axios.get(url)
+            .then(response => {
+                this.setArticles(response.data);
+            })
+            .catch(error => {
+
+            });
+    }
+
     setArticles(articles) {
         this.setState({articles})
     }
@@ -34,18 +47,32 @@ class Articles extends Component {
     doRemove(e, id) {
         e.preventDefault();
 
-        console.log(`Trying to remove ==> ${id}`);
+        axios.delete(`/api/articles/${id}`)
+            .then(response => {
+                this.updateDeleted(id);
+            })
+            .catch(error => {
+
+            });
     }
 
-    pageChange(url){
-        console.log('changing page :: ', url);
+    updateDeleted(id){
+        const {articles} = this.state;
+
+        articles.data = articles.data.filter((article) => {
+            return article.id !== id;
+        });
+
+        this.setArticles(articles);
     }
 
     renderArticles() {
-        let {articles, counter} = this.state;
+        let {articles} = this.state;
 
         return (
             <div>
+                <Paginator prev_page_url={articles.prev_page_url} next_page_url={articles.next_page_url}
+                           pageChange={this.pageChange}/>
                 <table className="table table-striped">
                     <thead>
                     <tr>
@@ -59,13 +86,13 @@ class Articles extends Component {
                     <tbody>
                     {articles.data.map((article, index) => {
                         return (
-                            <ArticleRow key={`article-${index}`} article={article} index={index}
-                                        doRemove={this.doRemove}/>
+                            <ArticleRow key={`article-${index}`} article={article} doRemove={this.doRemove}/>
                         )
                     })}
                     </tbody>
                 </table>
-                <Paginator prev_page_url={articles.prev_page_url} next_page_url={articles.next_page_url} pageChange={this.pageChange}/>
+                <Paginator prev_page_url={articles.prev_page_url} next_page_url={articles.next_page_url}
+                           pageChange={this.pageChange}/>
             </div>)
     }
 
