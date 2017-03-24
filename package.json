@@ -24,5 +24,11 @@
     "redux-thunk": "^2.2.0"
   },
   "author": "Moeen Basra",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "draft-js": "^0.10.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  }
 }

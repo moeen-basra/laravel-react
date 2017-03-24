@@ -29,6 +29,17 @@ Route::get('/articles/{id}', function ($id) {
     return \App\Article::findOrFail($id);
 });
 
+Route::put('/articles/{id}', function ($id, Request $request) {
+    $article = \App\Article::findOrFail($id);
+
+    $article->title = $request->get('title');
+    $article->slug = $request->get('slug');
+    $article->content = $request->get('content');
+    $article->save();
+
+    return response('Article Updated!', 200);
+});
+
 Route::delete('/articles/{id}', function ($id) {
     $article = \App\Article::findOrFail($id);
 
