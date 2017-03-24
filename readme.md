@@ -18,9 +18,15 @@ Please follow the guide.
 5. `php artisan db:seed`
 6. `npm install`
 
-open terminal window
+open two terminal window
+
+on 1st terminal use following command to mix and watch the assets
 
 `npm run watch-poll`
+
+on 2nd terminal use following command to run server
+
+`php artisan serve`
 
 for complete list of instruction follow the link below
 [Laravel Mix](https://laravel.com/docs/5.4/mix#running-mix)
