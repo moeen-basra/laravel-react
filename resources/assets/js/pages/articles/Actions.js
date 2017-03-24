@@ -16,8 +16,12 @@ class Actions extends Component {
 
         return (
             <div className="btn-group">
-                <a href="#{{article.id}}" onClick={e => Actions.edit(article.id) } className="btn btn-primary btn-sm">Edit</a>
-                <a href="#{{article.id}}" onClick={e => doRemove(e, article.id) } className="btn btn-danger btn-sm">Trash</a>
+                <a href="#{{article.id}}" onClick={e => Actions.edit(article.id) } className="btn btn-primary btn-sm">
+                    Edit
+                </a>
+                <a href="#{{article.id}}" onClick={e => doRemove(e, article.id) } className="btn btn-danger btn-sm">
+                    Trash
+                </a>
             </div>
         );
     }

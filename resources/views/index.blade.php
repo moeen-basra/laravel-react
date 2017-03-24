@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel 5.4 with React') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}?v={{ rand(1000, 50000000) }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>

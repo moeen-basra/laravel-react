@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ArticleRow from './ArticleRow';
+import Paginator from '../common/Paginator';
 
 class Articles extends Component {
 
@@ -30,33 +31,42 @@ class Articles extends Component {
         this.setState({articles})
     }
 
-    doRemove(e, id){
+    doRemove(e, id) {
         e.preventDefault();
 
         console.log(`Trying to remove ==> ${id}`);
     }
 
+    pageChange(url){
+        console.log('changing page :: ', url);
+    }
+
     renderArticles() {
         let {articles, counter} = this.state;
 
-        return <table className="table table-striped">
-            <thead>
-            <tr>
-                <th>S No</th>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>Content</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {articles.data.map((article, index) => {
-                return (
-                    <ArticleRow key={`article-${index}`} article={article} index={index} doRemove={this.doRemove} />
-                )
-            })}
-            </tbody>
-        </table>
+        return (
+            <div>
+                <table className="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>S No</th>
+                        <th>Title</th>
+                        <th>Slug</th>
+                        <th>Content</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {articles.data.map((article, index) => {
+                        return (
+                            <ArticleRow key={`article-${index}`} article={article} index={index}
+                                        doRemove={this.doRemove}/>
+                        )
+                    })}
+                    </tbody>
+                </table>
+                <Paginator prev_page_url={articles.prev_page_url} next_page_url={articles.next_page_url} pageChange={this.pageChange}/>
+            </div>)
     }
 
     render() {
