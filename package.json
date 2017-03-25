@@ -10,9 +10,12 @@
   },
   "devDependencies": {
     "axios": "^0.15.3",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-react": "^6.23.0",
     "bootstrap-sass": "^3.3.7",
+    "classnames": "^2.2.5",
     "cross-env": "^3.2.3",
+    "draft-js": "^0.10.0",
     "jquery": "^3.1.1",
     "laravel-mix": "^0.8.3",
     "lodash": "^4.17.4",
@@ -24,11 +27,5 @@
     "redux-thunk": "^2.2.0"
   },
   "author": "Moeen Basra",
-  "license": "ISC",
-  "dependencies": {
-    "babel-polyfill": "^6.23.0",
-    "draft-js": "^0.10.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
-  }
+  "license": "ISC"
 }

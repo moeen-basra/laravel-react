@@ -3,7 +3,7 @@ import React from 'react'
 import {Router, Route, IndexRoute, browserHistory} from 'react-router'
 
 import Layout from '../pages/Layout';
-import Register from '../pages/Register'
+import Register from '../pages/register'
 import Login from '../pages/Login'
 import Home from '../pages/Home'
 import Users from '../pages/users/Users'

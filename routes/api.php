@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,24 +15,26 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::post('/auth/register', 'Auth\RegisterController@register');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::get('/users', function () {
-    return \App\User::all();
+    return User::all();
 });
 
 Route::get('/articles', function () {
-    return \App\Article::paginate(50);
+    return Article::paginate(50);
 });
 
 Route::get('/articles/{id}', function ($id) {
-    return \App\Article::findOrFail($id);
+    return Article::findOrFail($id);
 });
 
 Route::put('/articles/{id}', function ($id, Request $request) {
-    $article = \App\Article::findOrFail($id);
+    $article = Article::findOrFail($id);
 
     $article->title = $request->get('title');
     $article->slug = $request->get('slug');
@@ -41,7 +45,7 @@ Route::put('/articles/{id}', function ($id, Request $request) {
 });
 
 Route::delete('/articles/{id}', function ($id) {
-    $article = \App\Article::findOrFail($id);
+    $article = Article::findOrFail($id);
 
     $article->delete();
 
