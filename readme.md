@@ -38,5 +38,5 @@ TODO:
 - [ ] Implement user register
 - [ ] Implement user login
 - [ ] Implement users crud
-- [ ] Implement articles crud
+- [x] Implement articles crud
 - [ ] Add Redux
