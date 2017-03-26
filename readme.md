@@ -34,6 +34,9 @@ for complete list of instruction follow the link below
 
 TODO:
 
-- [x] Add API to communicate with laravel.
-- [ ] Add Passport for authentication.
+- [ ] Add Passport for authentication
+- [ ] Implement user register
+- [ ] Implement user login
+- [ ] Implement users crud
+- [ ] Implement articles crud
 - [ ] Add Redux
