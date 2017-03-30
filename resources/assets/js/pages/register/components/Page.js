@@ -36,11 +36,18 @@ class Page extends Component {
     onSubmit(e) {
         e.preventDefault()
 
+        this.setState({
+            errors: {},
+            hasError: false,
+        })
+
         const { user } = this.state
 
         axios.post('/api/auth/register', user)
             .then(res => {
-                console.log(res)
+                if (res.response.status === 201) {
+
+                }
             })
             .catch(err => {
                 if (err.response.status === 422) {
