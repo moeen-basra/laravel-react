@@ -18,7 +18,8 @@ class Page extends Component {
                 password_confirmation: '',
             },
             errors: {},
-            hasError: false
+            hasError: false,
+            message: null,
         }
 
         this.onChange = this.onChange.bind(this)
@@ -36,17 +37,17 @@ class Page extends Component {
     onSubmit(e) {
         e.preventDefault()
 
-        this.setState({
-            errors: {},
-            hasError: false,
-        })
-
+        this.resetErrors()
+        this.resetMessage()
+        
         const { user } = this.state
 
         axios.post('/api/auth/register', user)
             .then(res => {
-                if (res.response.status === 201) {
-
+                if (res.status === 201) {
+                    this.setState({ message: 'Your account has been created successfully' })
+                } else {
+                    return res;
                 }
             })
             .catch(err => {
@@ -55,6 +56,17 @@ class Page extends Component {
                     this.setState({ errors, hasError: true })
                 }
             })
+    }
+    
+    resetErrors() {
+        this.setState({
+            errors: {},
+            hasError: false,
+        })
+    }
+    
+    resetMessage() {
+        this.setState({ message: null })
     }
 
     renderErrors() {
@@ -72,14 +84,30 @@ class Page extends Component {
             </div>
         )
     }
+    
+    renderMessage() {
+        const { message } = this.state
+        
+        if (message) {
+            return (
+                <div className="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <p><strong>Success!</strong> { message }</p>
+                </div>
+            )
+        }
+    }
 
     render() {
         return <div className="row">
             <div className="col-md-8 col-md-offset-2">
                 <div className="panel panel-default">
-                    <div className="panel-heading">Register > not functional</div>
+                    <div className="panel-heading">Register</div>
                     <div className="panel-body">
                         {this.renderErrors()}
+                        {this.renderMessage()}
                         <Form {...this.state} onChange={this.onChange} onSubmit={this.onSubmit} />
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 const displayName = 'Register From'
 
@@ -79,6 +80,7 @@ const Form = ({ name, email, password, password_confirmation, onChange, onSubmit
                 <button type="submit" className="btn btn-primary">
                     Register
                 </button>
+                <Link to="/login" className="btn btn-link" >Go back to Login</Link>
             </div>
         </div>
     </form>)
