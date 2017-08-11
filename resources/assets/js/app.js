@@ -19,7 +19,7 @@ import { render } from "react-dom"
 /**
  * Loading React routes from routes.
  */
-import Routes from './routes/routes'
+import Routes from './routes'
 
 render(
     Routes,

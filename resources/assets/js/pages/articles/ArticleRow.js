@@ -8,7 +8,7 @@ const ArticleRow = (props) => {
             <td>{props.article.title.substr(0, 25)}</td>
             <td>{props.article.slug.substr(0, 25)}</td>
             <td>{props.article.content.substr(0, 25)}</td>
-            <Actions article={props.article} doRemove={props.doRemove} />
+            <td><Actions article={props.article} doRemove={props.doRemove} /></td>
         </tr>
 
     )

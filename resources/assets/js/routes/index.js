@@ -1,7 +1,7 @@
 // import libs
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import history from 'history'
+import createBrowserHistory from 'history/createBrowserHistory'
 
 // import components
 import Layout from '../pages/Layout'
@@ -12,15 +12,17 @@ import Users from '../pages/users/Users'
 import Articles from '../pages/articles/Articles'
 import EditArticle from '../pages/articles/EditArticle'
 
+const history = createBrowserHistory()
+
 const Routes = (
   <Router history={history}>
     <Layout>
-      <Route path="/" component={Home} />
-      <Route path="/users" component={Users} />
-      <Route path="/articles" component={Articles} />
-      <Route path="/articles/:id/edit" component={EditArticle} />
-      <Route path="/register" component={Register} />
-      <Route path="/login" component={Login} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/users" component={Users} />
+      <Route exact path="/articles" component={Articles} />
+      <Route exact path="/articles/:id/edit" component={EditArticle} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/login" component={Login} />
     </Layout>
   </Router>
 )

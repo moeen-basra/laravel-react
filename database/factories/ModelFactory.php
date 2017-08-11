@@ -26,7 +26,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Article::class, function (Faker\Generator $faker) {
 
-    $title = $faker->sentence(rand(10, 20));
+    $title = $faker->title;
 
     return [
         'title' => $title,
