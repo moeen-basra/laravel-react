@@ -1,25 +1,24 @@
-import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import React from 'react'
+import PropTypes from 'proptypes'
+import { NavLink } from 'react-router-dom'
 
 const propTypes = {
-    path: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
 }
 
 const contextTypes = {
-    router: PropTypes.object,
+  router: PropTypes.object,
 }
 
-const NavLink = ({ path, children }, { router }) => {
-    let isActive = router.isActive(path, true),
-        className = isActive ? "active" : "";
-    return <li className={className}>
-        <Link to={path}>
-            {children}
-        </Link>
-    </li>
+const Link = ({ path, children }, { router }) => {
+  return <li >
+    <NavLink to={path}>
+      {children}
+    </NavLink>
+  </li>
 }
 
-NavLink.propTypes = propTypes
-NavLink.contextTypes = contextTypes
+Link.propTypes = propTypes
+Link.contextTypes = contextTypes
 
-export default NavLink
+export default Link

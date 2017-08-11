@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import ArticleRow from './ArticleRow';
 import Paginator from '../common/Paginator';
-import _ from 'underscore';
 
 class Articles extends Component {
 
