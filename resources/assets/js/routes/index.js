@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import createBrowserHistory from 'history/createBrowserHistory'
 
 // import components
+import PrivateRoute from './Private'
+// import PublicRoute from './Public'
+
 import Layout from '../pages/Layout'
 import Register from '../pages/register'
 import Login from '../pages/Login'
@@ -18,9 +21,9 @@ const Routes = (
   <Router history={history}>
     <Layout>
       <Route exact path="/" component={Home} />
-      <Route exact path="/users" component={Users} />
-      <Route exact path="/articles" component={Articles} />
-      <Route exact path="/articles/:id/edit" component={EditArticle} />
+      <PrivateRoute exact path="/users" component={Users} />
+      <PrivateRoute exact path="/articles" component={Articles} />
+      <PrivateRoute exact path="/articles/:id/edit" component={EditArticle} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
     </Layout>

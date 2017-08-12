@@ -1,0 +1,22 @@
+{
+    "presets": [
+        "react",
+        "stage-0",
+        [
+            "env",
+            {
+                "targets": {
+                    "browsers": [
+                        "last 2 versions",
+                        "safari >= 7"
+                    ]
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "babel-plugin-transform-class-properties"
+        ]
+    ]
+}
