@@ -20,7 +20,7 @@ class Articles extends Component {
   }
   
   componentDidMount() {
-    axios.get('/api/articles')
+    axios.get('/articles')
       .then(response => {
         this.setArticles(response.data)
       })
@@ -31,10 +31,10 @@ class Articles extends Component {
   
   pageChange(url) {
     axios.get(url)
-      .then(response => {
-        this.setArticles(response.data)
+      .then(res => {
+        this.setArticles(res.data)
       })
-      .catch(error => {
+      .catch(() => {
       
       })
   }
@@ -47,10 +47,10 @@ class Articles extends Component {
     e.preventDefault()
     
     axios.delete(`/api/articles/${id}`)
-      .then(response => {
+      .then(() => {
         this.updateDeleted(id)
       })
-      .catch(error => {
+      .catch(() => {
       
       })
   }

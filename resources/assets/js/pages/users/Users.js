@@ -15,7 +15,7 @@ class Users extends Component {
   }
   
   componentDidMount() {
-    axios.get('/api/users')
+    axios.get('/users')
       .then((res) => {
         this.setUsers(res.data)
       })

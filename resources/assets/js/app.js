@@ -15,13 +15,16 @@ require('./bootstrap');
 
 import React from "react"
 import { render } from "react-dom"
-
-/**
- * Loading React routes from routes.
- */
+import { Provider } from 'react-redux'
+import store from './store'
 import Routes from './routes'
 
-render(
-    Routes,
+import { check } from './store/actions'
+
+store.dispatch(check())
+
+render((<Provider store={store}>
+    <Routes/>
+  </Provider>),
     document.getElementById('app')
 )

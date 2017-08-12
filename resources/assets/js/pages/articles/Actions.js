@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 class Actions extends Component {
+  static propTypes = {
+    article: PropTypes.object.isRequired,
+    doRemove: PropTypes.func.isRequired,
+  }
   
   constructor(props) {
     super(props)

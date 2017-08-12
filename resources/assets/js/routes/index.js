@@ -17,7 +17,7 @@ import EditArticle from '../pages/articles/EditArticle'
 
 const history = createBrowserHistory()
 
-const Routes = (
+const Routes = () => (
   <Router history={history}>
     <Layout>
       <Route exact path="/" component={Home} />

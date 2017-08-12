@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const propTypes = {
   path: PropTypes.string.isRequired,
+  children: PropTypes.any,
 }
 
 const contextTypes = {
@@ -11,7 +12,8 @@ const contextTypes = {
 }
 
 const Link = ({ path, children }, { router }) => {
-  return <li >
+  const className = path === router.route.location.pathname ? 'active' : ''
+  return <li className={className}>
     <NavLink to={path}>
       {children}
     </NavLink>
