@@ -2,7 +2,25 @@
 import React, { Component } from 'react'
 
 class Login extends Component {
+  
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      email: '',
+      password: '',
+    }
+    
+    this.handleChange = this.handleChange.bind(this)
+  }
+  
+  handleChange(name, value) {
+    this.setState({ [name]: value })
+  }
+  
   render() {
+    const { email, password } = this.state
+    
     return <div className="row">
       <div className="col-md-8 col-md-offset-2">
         <div className="panel panel-default">
@@ -17,9 +35,10 @@ class Login extends Component {
                          type="email"
                          className="form-control"
                          name="email"
-                         value=""
-                         required autoFocus />
-                
+                         value={email}
+                         onChange={e => this.handleChange(e.target.name, e.target.value)}
+                         required
+                         autoFocus />
                 </div>
               </div>
               
@@ -27,8 +46,13 @@ class Login extends Component {
                 <label htmlFor="password" className="col-md-4 control-label">Password</label>
                 
                 <div className="col-md-6">
-                  <input id="password" type="password" className="form-control"
-                         name="password" required="" />
+                  <input id="password"
+                         type="password"
+                         className="form-control"
+                         name="password"
+                         value={password}
+                         onChange={e => this.handleChange(e.target.name, e.target.value)}
+                         required />
                 
                 </div>
               </div>
