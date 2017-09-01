@@ -1,22 +1,32 @@
 //import libs
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 //import components
-import Navigation from '../includes/navigation/Navigation'
+import PublicHeader from '../includes/navigation/PublicHeader'
+import PrivateHeader from '../includes/navigation/PrivateHeader'
 
 class Layout extends Component {
+  static propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    location: PropTypes.object.isRequired,
+    children: PropTypes.node.isRequired,
+  }
+  
   render() {
-    const { location } = this.props
+    const { isAuthenticated, location, children } = this.props
     const containerStyle = {
       marginTop: '60px',
     }
+    
     return (
       <div>
-        <Navigation location={location} />
+        {(isAuthenticated) ? <PrivateHeader location={location} /> : <PublicHeader location={location} />}
         <div className="container" style={containerStyle}>
           <div className="row">
             <div className="col-lg-12">
-              {this.props.children}
+              {children}
             </div>
           </div>
         </div>
@@ -25,4 +35,10 @@ class Layout extends Component {
   }
 }
 
-export default Layout
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.app.isAuthenticated,
+  }
+}
+
+export default connect(mapStateToProps)(Layout)

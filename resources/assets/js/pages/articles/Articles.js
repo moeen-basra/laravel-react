@@ -20,7 +20,7 @@ class Articles extends Component {
   }
   
   componentDidMount() {
-    axios.get('/articles')
+    axios.get('/api/articles')
       .then(response => {
         this.setArticles(response.data)
       })
@@ -31,8 +31,8 @@ class Articles extends Component {
   
   pageChange(url) {
     axios.get(url)
-      .then(res => {
-        this.setArticles(res.data)
+      .then(response => {
+        this.setArticles(response.data)
       })
       .catch(() => {
       

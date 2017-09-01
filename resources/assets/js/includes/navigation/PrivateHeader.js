@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import NavLink from './NavLink'
 
-class Navigation extends Component {
+class PrivateHeader extends Component {
   constructor() {
     super()
     this.state = {
@@ -41,10 +41,6 @@ class Navigation extends Component {
             </ul>
             
             <ul className="nav navbar-nav navbar-right">
-              
-              <NavLink path="/login">Login</NavLink>
-              <NavLink path="/register">Register</NavLink>
-              
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
                    aria-expanded="false">
@@ -65,4 +61,4 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation
+export default PrivateHeader
