@@ -18,15 +18,39 @@ Please follow the guide.
 5. `php artisan db:seed`
 6. `npm install`
 
-open two terminal window
+open a terminal window and install the passport using following command
 
-on 1st terminal use following command to mix and watch the assets
+ ```
+ php artisan passport:install
+ ```
+ 
+copy the keys for personal and password grants in .env file
 
-`npm run watch-poll`
+```
+PERSONAL_CLIENT_ID=1
 
-on 2nd terminal use following command to run server
+PERSONAL_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-`php artisan serve`
+PASSWORD_CLIENT_ID=2
+
+PASSWORD_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+set the APP_URL in .env file (e.g)
+
+```
+APP_URL=http://localhost:8000
+```
+
+then run the following command on terminal to compile the assets
+
+`npm run watch` or `npm run watch-poll`
+
+on 2nd terminal window use following command to run server
+
+```
+php artisan serve
+```
 
 for complete list of instruction follow the link below
 [Laravel Mix](https://laravel.com/docs/5.4/mix#running-mix)
@@ -34,9 +58,9 @@ for complete list of instruction follow the link below
 
 TODO:
 
-- [ ] Add Passport for authentication
+- [x] Add Redux
+- [x] Add Passport for authentication
+- [x] Implement user login
 - [ ] Implement user register
-- [ ] Implement user login
 - [ ] Implement users crud
-- [x] Implement articles crud
-- [ ] Add Redux
+- [ ] Implement articles crud

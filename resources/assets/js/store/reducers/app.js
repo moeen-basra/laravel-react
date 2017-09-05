@@ -28,10 +28,10 @@ const reducer = (state = initialState, { type, payload = null }) => {
 };
 
 function login(state, payload) {
-  state.isAuthenticated = true;
+  const newState = Object.assign({}, state, { isAuthenticated: true })
   localStorage.setItem('access_token', payload);
   HTTP.defaults.headers.common['Authorization'] = `Bearer ${payload}`;
-  return state;
+  return newState;
 }
 
 function checkAuth(state) {

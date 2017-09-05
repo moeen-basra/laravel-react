@@ -16,6 +16,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "bootstrap-sass": "^3.3.7",
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
     "classnames": "^2.2.5",
     "cross-env": "^5.0.5",
     "draft-js": "^0.10.1",
