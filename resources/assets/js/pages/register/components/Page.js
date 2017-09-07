@@ -1,12 +1,15 @@
 //import libs
 import React, { Component } from 'react'
-import _ from 'lodash'
-import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import Http from '../../../utils/Http'
 
-//import components
-import Form from './_Form'
 
 class Page extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  }
+  
   constructor(props) {
     super(props)
     
@@ -26,7 +29,7 @@ class Page extends Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
   
-  onChange({ name, value }) {
+  onChange(name, value) {
     const { user } = this.state
     
     user[name] = value
@@ -41,11 +44,12 @@ class Page extends Component {
     this.resetMessage()
     
     const { user } = this.state
-    
-    axios.post('/api/auth/register', user)
+  
+    Http.post('/auth/register', user)
       .then(res => {
         if (res.status === 201) {
           this.setState({ message: 'Your account has been created successfully' })
+          this.props.history.push('/login')
         } else {
           return res
         }
@@ -58,61 +62,59 @@ class Page extends Component {
       })
   }
   
-  resetErrors() {
-    this.setState({
-      errors: {},
-      hasError: false,
-    })
+  componentDidMount() {
+    $('body').attr('style', 'background-color: #eee')
   }
   
-  resetMessage() {
-    this.setState({ message: null })
-  }
-  
-  renderErrors() {
-    const { errors, hasError } = this.state
-    
-    if (!hasError) return null
-    return (
-      <div className="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        {_.map(_.forOwn(this.state.errors), (error, field) => (
-          <p key={`error-${field}`}><strong>{field}</strong> {_.head(error)}</p>
-        ))}
-      </div>
-    )
-  }
-  
-  renderMessage() {
-    const { message } = this.state
-    
-    if (message) {
-      return (
-        <div className="alert alert-success alert-dismissible" role="alert">
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <p><strong>Success!</strong> {message}</p>
-        </div>
-      )
-    }
+  componentWillUnmount() {
+    $('body').removeAttr('style')
   }
   
   render() {
-    return <div className="row">
-      <div className="col-md-8 col-md-offset-2">
-        <div className="panel panel-default">
-          <div className="panel-heading">Register</div>
-          <div className="panel-body">
-            {this.renderErrors()}
-            {this.renderMessage()}
-            <Form {...this.state} onChange={this.onChange} onSubmit={this.onSubmit} />
-          </div>
-        </div>
-      </div>
-    </div>
+    const { name, email, password, password_confirmation } = this.state
+    
+    return <form className="form-signin" onSubmit={this.onSubmit}>
+      <h2 className="form-signin-heading">Signup</h2>
+      <label htmlFor="name" className="sr-only">Name</label>
+      <input id="name"
+             type="text"
+             className="form-control"
+             name="name"
+             placeholder="Full Name"
+             value={name}
+             onChange={e => this.onChange(e.target.name, e.target.value)}
+             required
+             autoFocus />
+      <label htmlFor="email" className="sr-only">E-Mail Address</label>
+      <input id="email"
+             type="email"
+             className="form-control"
+             name="email"
+             placeholder="Email address"
+             value={email}
+             onChange={e => this.onChange(e.target.name, e.target.value)}
+             required />
+      <label htmlFor="password" className="sr-only">Password</label>
+      <input id="password"
+             type="password"
+             className="form-control"
+             name="password"
+             placeholder="Password"
+             value={password}
+             onChange={e => this.onChange(e.target.name, e.target.value)}
+             required />
+      <label htmlFor="password_confirmation" className="sr-only">Confirm Password</label>
+      <input id="password_confirmation"
+             type="password"
+             className="form-control"
+             name="password_confirmation"
+             placeholder="Confirmed Password"
+             value={password_confirmation}
+             onChange={e => this.onChange(e.target.name, e.target.value)}
+             required />
+      <button className="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign up</button>
+      <Link to="/login" className="btn btn-link">Back to Login</Link>
+    </form>
   }
 }
 

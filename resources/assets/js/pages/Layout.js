@@ -24,11 +24,7 @@ class Layout extends Component {
       <div>
         {(isAuthenticated) ? <PrivateHeader location={location} /> : <PublicHeader location={location} />}
         <div className="container" style={containerStyle}>
-          <div className="row">
-            <div className="col-lg-12">
-              {children}
-            </div>
-          </div>
+          {children}
         </div>
       </div>
     )

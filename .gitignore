@@ -1,9 +1,5 @@
 composer.lock
 /node_modules
-/public/storage
-/public/hot
-/public/js/
-/public/css/
 /storage/*.key
 /vendor
 /.idea
@@ -11,3 +7,9 @@ Homestead.json
 Homestead.yaml
 .env
 _ide_helper.php
+
+/public/storage
+/public/hot
+/public/js/
+/public/css/
+/public/fonts/

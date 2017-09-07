@@ -1,8 +1,9 @@
 //import libs
 import React, { Component } from 'react'
+import $ from 'jquery'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Http from '../utils/Http'
 import { login } from '../store/actions/index'
 
@@ -21,6 +22,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      remember: false,
     }
     
     this.handleChange = this.handleChange.bind(this)
@@ -34,7 +36,7 @@ class Login extends Component {
   handleSubmit(e) {
     e.preventDefault()
     const { email, password } = this.state
-  
+    
     Http.post('/auth/login', { email, password })
       .then(res => {
         this.props.loginUser(res.data.access_token)
@@ -44,81 +46,60 @@ class Login extends Component {
       })
   }
   
+  componentDidMount() {
+    $('body').attr('style', 'background-color: #eee')
+  }
+  
+  componentWillUnmount() {
+    $('body').removeAttr('style')
+  }
+  
   render() {
-    const { email, password } = this.state
+    const { email, password, remember } = this.state
     
     if (this.props.isAuthenticated) {
-      return <Redirect to="/home"/>
+      return <Redirect to="/home" />
     }
     
-    return <div className="row">
-      <div className="col-md-8 col-md-offset-2">
-        <div className="panel panel-default">
-          <div className="panel-heading">Login</div>
-          <div className="panel-body">
-            <form className="form-horizontal" role="form" onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="email" className="col-md-4 control-label">E-Mail Address</label>
-                
-                <div className="col-md-6">
-                  <input id="email"
-                         type="email"
-                         className="form-control"
-                         name="email"
-                         value={email}
-                         onChange={e => this.handleChange(e.target.name, e.target.value)}
-                         required
-                         autoFocus />
-                </div>
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="password" className="col-md-4 control-label">Password</label>
-                
-                <div className="col-md-6">
-                  <input id="password"
-                         type="password"
-                         className="form-control"
-                         name="password"
-                         value={password}
-                         onChange={e => this.handleChange(e.target.name, e.target.value)}
-                         required />
-                
-                </div>
-              </div>
-              
-              <div className="form-group">
-                <div className="col-md-6 col-md-offset-4">
-                  <div className="checkbox">
-                    <label>
-                      <input type="checkbox" name="remember" /> Remember Me
-                    </label>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="form-group">
-                <div className="col-md-8 col-md-offset-4">
-                  <button type="submit" className="btn btn-primary">
-                    Login
-                  </button>
-                  
-                  <a className="btn btn-link" href="http://127.0.0.1:8000/password/reset">
-                    Forgot Your Password?
-                  </a>
-                </div>
-              </div>
-            </form>
-          </div>
+    return <div className="container">
+      <form className="form-signin" onSubmit={this.handleSubmit}>
+        <h2 className="form-signin-heading">Please sign in</h2>
+        <label htmlFor="email" className="sr-only">E-Mail Address</label>
+        <input id="email"
+               type="email"
+               className="form-control"
+               name="email"
+               placeholder="Email address"
+               value={email}
+               onChange={e => this.handleChange(e.target.name, e.target.value)}
+               required
+               autoFocus />
+        <label htmlFor="password" className="sr-only">Password</label>
+        <input id="password"
+               type="password"
+               className="form-control"
+               name="password"
+               placeholder="Password"
+               value={password}
+               onChange={e => this.handleChange(e.target.name, e.target.value)}
+               required />
+        <div className="checkbox mt-3">
+          <label>
+            <input type="checkbox"
+                   name="remember"
+                   onChange={e => this.handleChange(e.target.name, !remember)} /> Remember me
+          </label>
         </div>
-      </div>
+        <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <p>Not a member? <Link to='/register'>Signup here</Link></p>
+      </form>
     </div>
   }
 }
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.app.isAuthenticated
+    isAuthenticated: state.app.isAuthenticated,
   }
 }
 
@@ -126,7 +107,7 @@ const mapDispatchToProps = dispatch => {
   return {
     loginUser: payload => {
       dispatch(login(payload))
-    }
+    },
   }
 }
 

@@ -20,10 +20,10 @@ import EditArticle from '../pages/articles/EditArticle'
 const Routes = () => (
   <Router>
     <Switch>
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
       <Layout>
         <Route exact path="/" component={Home} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/users" component={Users} />
         <PrivateRoute exact path="/articles" component={Articles} />
         <PrivateRoute exact path="/articles/:id/edit" component={EditArticle} />

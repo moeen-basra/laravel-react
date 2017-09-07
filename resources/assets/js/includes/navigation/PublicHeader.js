@@ -20,31 +20,29 @@ class PublicHeader extends Component {
     const navClass = this.state.collapsed ? 'collapse' : ''
     
     return (
-      <div className="navbar navbar-default navbar-fixed-top">
-        <div className="container">
-          <div className="navbar-header">
-            <Link to="/" className="navbar-brand">My React App</Link>
-            <button className="navbar-toggle" type="button" onClick={this.toggleCollapse.bind(this)}>
-              <span className="sr-only">Toggle Navigation</span>
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-              <span className="icon-bar" />
-            </button>
-          </div>
-          
-          <div className={`navbar-collapse ${navClass}`} id="app-navbar-collapse">
-            <ul className="nav navbar-nav">
-              <NavLink path="/">Home</NavLink>
-            </ul>
-            
-            <ul className="nav navbar-nav navbar-right">
-              
-              <NavLink path="/login">Login</NavLink>
-              <NavLink path="/register">Register</NavLink>
-            </ul>
-          </div>
+      <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <Link to="/" className="navbar-brand">My React App</Link>
+        <button className="navbar-toggler d-lg-none"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+                onClick={this.toggleCollapse.bind(this)}>
+          <span className="navbar-toggler-icon"></span>
+        </button>
+    
+        <div className={`navbar-collapse ${navClass}`} id="navbarsExampleDefault">
+          <ul className="navbar-nav mr-auto">
+            <NavLink path="/">Home</NavLink>
+          </ul>
+          <ul className="navbar-nav">
+            <NavLink path="/login">Login</NavLink>
+            <NavLink path="/register">Register</NavLink>
+          </ul>
         </div>
-      </div>
+      </nav>
     )
   }
 }
