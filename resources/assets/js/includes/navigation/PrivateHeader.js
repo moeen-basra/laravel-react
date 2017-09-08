@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { authLogout } from '../../store/actions/index'
 import { Link } from 'react-router-dom'
-import { Collapse, Navbar, NavbarToggler, Nav, NavDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap';
 import NavItem from './NavItem'
 
 class PrivateHeader extends Component {
+  static propTypes = {
+    logout: PropTypes.func.isRequired,
+  }
+  
   constructor() {
     super()
     this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.toggleDropDown = this.toggleDropDown.bind(this);
+    this.logout = this.logout.bind(this);
     this.state = {
       collapsed: true,
-      dropdownOpen: false
     }
   }
   
@@ -21,10 +26,8 @@ class PrivateHeader extends Component {
     });
   }
   
-  toggleDropDown() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
+  logout() {
+    this.props.logout()
   }
   
   render() {
@@ -40,11 +43,19 @@ class PrivateHeader extends Component {
           </Nav>
         </Collapse>
         <Nav navbar>
-          <NavItem path="/logout">Logout</NavItem>
+          <li className="nav-item">
+            <a className="nav-link" href="#" onClick={this.logout}>Logout</a>
+          </li>
         </Nav>
       </Navbar>
     )
   }
 }
 
-export default PrivateHeader
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(authLogout())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PrivateHeader)

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import Http from '../utils/Http'
-import { login } from '../store/actions/index'
+import { authLogin } from '../store/actions/index'
 
 class Login extends Component {
   
@@ -106,7 +106,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loginUser: payload => {
-      dispatch(login(payload))
+      dispatch(authLogin(payload))
     },
   }
 }

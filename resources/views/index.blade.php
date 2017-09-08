@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel 5.4 with React') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}?v={{ rand(1000, 50000000) }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <style type="text/css">
         body{
             margin-bottom: 60px;
@@ -30,6 +30,8 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{url('')}}/js/app.js?v={{ rand(1000, 50000000) }}"></script>
+<script src="{{mix('/js/manifest.js')}}"></script>
+<script src="{{mix('/js/vendor.js')}}"></script>
+<script src="{{mix('/js/app.js')}}"></script>
 </body>
 </html>

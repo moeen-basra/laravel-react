@@ -1,10 +1,10 @@
 import HTTP from '../../utils/Http';
 import {
-  CHECK,
-  LOGIN,
-  LOGOUT,
-  REFRESH_TOKEN,
-  RESET_PASSWORD,
+  AUTH_CHECK,
+  AUTH_LOGIN,
+  AUTH_LOGOUT,
+  AUTH_REFRESH_TOKEN,
+  AUTH_RESET_PASSWORD,
 } from '../action-types';
 
 const initialState = {
@@ -13,14 +13,14 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload = null }) => {
   switch(type) {
-    case REFRESH_TOKEN:
-    case LOGIN:
+    case AUTH_REFRESH_TOKEN:
+    case AUTH_LOGIN:
       return login(state, payload);
-    case CHECK:
+    case AUTH_CHECK:
       return checkAuth(state);
-    case LOGOUT:
+    case AUTH_LOGOUT:
       return logout(state);
-    case RESET_PASSWORD:
+    case AUTH_RESET_PASSWORD:
       return resetPassword(state);
     default:
       return state;
@@ -28,23 +28,33 @@ const reducer = (state = initialState, { type, payload = null }) => {
 };
 
 function login(state, payload) {
-  const newState = Object.assign({}, state, { isAuthenticated: true })
   localStorage.setItem('access_token', payload);
   HTTP.defaults.headers.common['Authorization'] = `Bearer ${payload}`;
-  return newState;
+  
+  state = Object.assign({}, state, { isAuthenticated: true })
+  
+  return state
 }
 
 function checkAuth(state) {
-  state.isAuthenticated = !!localStorage.getItem('access_token');
+  state = Object.assign({}, state, {
+    isAuthenticated: !!localStorage.getItem('access_token')
+  })
+  
   if (state.isAuthenticated) {
     HTTP.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
   }
+  
   return state;
 }
 
 function logout(state) {
-  localStorage.removeItem('access_token');
-  state.isAuthenticated = false;
+  localStorage.removeItem('access_token')
+  
+  state = Object.assign({}, state, {
+    isAuthenticated: false
+  })
+  
   return state;
 }
 

@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap.js');
+require('./bootstrap');
 
 /**
  * Next, we will create a fresh React application instance and attach it to
@@ -19,9 +19,9 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Routes from './routes'
 
-import { check } from './store/actions'
+import { authCheck } from './store/actions'
 
-store.dispatch(check())
+store.dispatch(authCheck())
 
 render((<Provider store={store}>
     <Routes/>
