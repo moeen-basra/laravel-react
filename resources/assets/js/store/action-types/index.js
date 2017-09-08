@@ -1,9 +1,10 @@
 // auth action types
-export const AUTH_CHECK = 'AUTH_CHECK';
-export const AUTH_LOGIN = 'AUTH_LOGIN';
-export const AUTH_LOGOUT = 'AUTH_LOGOUT';
-export const AUTH_REFRESH_TOKEN = 'AUTH_REFRESH_TOKEN';
-export const AUTH_RESET_PASSWORD = 'AUTH_RESET_PASSWORD';
+export const AUTH_CHECK = 'AUTH_CHECK'
+export const AUTH_LOGIN = 'AUTH_LOGIN'
+export const AUTH_LOGOUT = 'AUTH_LOGOUT'
+export const AUTH_REFRESH_TOKEN = 'AUTH_REFRESH_TOKEN'
+export const AUTH_RESET_PASSWORD = 'AUTH_RESET_PASSWORD'
+export const AUTH_SET_USER = 'AUTH_SET_USER'
 
 // auth action types
 export const USER_LIST = 'USER_LIST'
@@ -23,6 +24,7 @@ export default {
   AUTH_LOGOUT,
   AUTH_REFRESH_TOKEN,
   AUTH_RESET_PASSWORD,
+  AUTH_SET_USER,
   
   USER_LIST,
   USER_ADD,
@@ -33,4 +35,4 @@ export default {
   ARTICLE_ADD,
   ARTICLE_UPDATE,
   ARTICLE_REMOVE,
-};
+}

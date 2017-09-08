@@ -39,7 +39,7 @@ class Navigation extends Component {
   
   render() {
     return (
-      <Navbar color="danger" className="navbar navbar-expand-lg fixed-top navbar-dark bg-danger">
+      <Navbar color="danger" className="navbar navbar-expand-md fixed-top navbar-dark bg-danger">
         <Link to="/" className="navbar-brand">My React App</Link>
         <NavbarToggler className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
         {
@@ -54,7 +54,7 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.app.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated
   }
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import axios from 'axios'
 import store from '../store'
-import { logout } from '../store/actions'
+import { authLogout } from '../store/actions/auth'
 
 const version = 'v1'
 const API_URL = (process.env.NODE_ENV === 'test') ? process.env.BASE_URL || (`http://localhost:${process.env.PORT}/api/${version}/`) : `/api/${version}`;
@@ -14,9 +14,9 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 axios.interceptors.response.use(
   response => response,
   (error) => {
-    if (error.response.status === 401) {
-      store.dispatch(logout())
-    }
+    // if (error.response.status === 401) {
+    //   store.dispatch(authLogout())
+    // }
     return Promise.reject(error);
   });
 

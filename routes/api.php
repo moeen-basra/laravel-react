@@ -18,37 +18,39 @@ use App\Article;
 Route::post('/auth/register', 'Auth\RegisterController@register');
 Route::post('/auth/login', 'Api\Auth\LoginController@login');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::get('/users', function () {
-    return User::all();
-});
+    Route::get('/users', function () {
+        return User::all();
+    });
 
-Route::get('/articles', function () {
-    return Article::paginate(50);
-});
+    Route::get('/articles', function () {
+        return Article::paginate(50);
+    });
 
-Route::get('/articles/{id}', function ($id) {
-    return Article::findOrFail($id);
-});
+    Route::get('/articles/{id}', function ($id) {
+        return Article::findOrFail($id);
+    });
 
-Route::put('/articles/{id}', function ($id, Request $request) {
-    $article = Article::findOrFail($id);
+    Route::put('/articles/{id}', function ($id, Request $request) {
+        $article = Article::findOrFail($id);
 
-    $article->title = $request->get('title');
-    $article->slug = $request->get('slug');
-    $article->content = $request->get('content');
-    $article->save();
+        $article->title = $request->get('title');
+        $article->slug = $request->get('slug');
+        $article->content = $request->get('content');
+        $article->save();
 
-    return response('Article Updated!', 200);
-});
+        return response('Article Updated!', 200);
+    });
 
-Route::delete('/articles/{id}', function ($id) {
-    $article = Article::findOrFail($id);
+    Route::delete('/articles/{id}', function ($id) {
+        $article = Article::findOrFail($id);
 
-    $article->delete();
+        $article->delete();
 
-    return response('Article Deleted.', 200);
+        return response('Article Deleted.', 200);
+    });
 });

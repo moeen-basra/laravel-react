@@ -1,21 +1,55 @@
 //import libs
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Navigation from './includes/navigation'
+import { connect } from 'react-redux'
+import { fetchUser } from './store/services/auth'
 
-const propTypes = {
-  children: PropTypes.node.isRequired,
-}
+// import components
+import Navigation from './includes/navigation'
 
 const containerStyle = {
   marginTop: '60px',
 }
 
-const Main = ({children}) => (<div className="container" style={containerStyle}>
-  <Navigation/>
-  {children}
-</div>)
+class Main extends Component {
+  static displayName = 'MainContainer'
+  static propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired,
+    children: PropTypes.node.isRequired,
+    dispatch: PropTypes.func.isRequired,
+  }
+  
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      //
+    }
+  }
+  
+  componentWillMount() {
+    const { isAuthenticated, user } = this.props
+    
+    if (isAuthenticated && !user.email.length) {
+      this.props.dispatch(fetchUser())
+    }
+    
+  }
+  
+  render() {
+    return <div className="container" style={containerStyle}>
+      <Navigation/>
+      {this.props.children}
+    </div>
+  }
+}
 
-Main.propTypes = propTypes
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
+  }
+}
 
-export default Main
+export default connect(mapStateToProps)(Main)
