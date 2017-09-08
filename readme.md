@@ -42,15 +42,22 @@ set the APP_URL in .env file (e.g)
 APP_URL=http://localhost:8000
 ```
 
-then run the following command on terminal to compile the assets
-
-`npm run watch` or `npm run watch-poll`
-
-on 2nd terminal window use following command to run server
+Either create a local dev url and map the link in webpack.mix.js file or open an other terminal window and copy paste the following command
 
 ```
 php artisan serve
 ```
+
+then run the following command on terminal to compile the assets
+
+```
+npm run dev
+```
+
+or if you would like to compile assets on runtime then copy paste following command in terminal 
+
+`npm run watch` or `npm run watch-poll`
+
 
 for complete list of instruction follow the link below
 [Laravel Mix](https://laravel.com/docs/5.4/mix#running-mix)
@@ -60,7 +67,11 @@ TODO:
 
 - [x] Add Redux
 - [x] Add Passport for authentication
-- [x] Implement user login
-- [ ] Implement user register
-- [ ] Implement users crud
-- [ ] Implement articles crud
+- [x] User Login
+- [x] User Register
+- [x] Reset Password
+- [ ] Users Crud
+- [ ] Articles Crud
+- [ ] Form validation Client and Server
+- [ ] Tests
+- [ ] Upgrade to Laravel 5.5 and React 16
