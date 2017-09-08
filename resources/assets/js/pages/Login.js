@@ -58,7 +58,7 @@ class Login extends Component {
     const { email, password, remember } = this.state
     
     if (this.props.isAuthenticated) {
-      return <Redirect to="/home" />
+      return <Redirect to="/" />
     }
     
     return <div className="container">

@@ -1,7 +1,7 @@
 //import libs
 import React, { Component } from 'react'
-import axios from 'axios'
 import moment from 'moment'
+import Http from '../../utils/Http'
 
 class Users extends Component {
   
@@ -15,7 +15,7 @@ class Users extends Component {
   }
   
   componentDidMount() {
-    axios.get('/users')
+    Http.get('/users')
       .then((res) => {
         this.setUsers(res.data)
       })

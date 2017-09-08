@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap.js');
 
 /**
  * Next, we will create a fresh React application instance and attach it to

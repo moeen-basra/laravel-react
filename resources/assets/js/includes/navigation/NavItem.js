@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
+import { NavItem } from 'reactstrap'
 
 const propTypes = {
   path: PropTypes.string.isRequired,
@@ -13,11 +14,11 @@ const contextTypes = {
 
 const Link = ({ path, children }, { router }) => {
   const className = path === router.route.location.pathname ? 'active' : ''
-  return <li className={`nav-item ${className}`}>
+  return <NavItem className={className}>
     <NavLink to={path} className="nav-link">
       {children}
     </NavLink>
-  </li>
+  </NavItem>
 }
 
 Link.propTypes = propTypes

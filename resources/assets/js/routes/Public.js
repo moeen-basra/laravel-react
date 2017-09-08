@@ -1,28 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route, Redirect } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Layout from '../pages/Layout'
 import PrivateHeader from '../includes/navigation/PrivateHeader'
+import PublicHeader from '../includes/navigation/PublicHeader'
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
+const PublicRoutes = ({ component: Component, isAuthenticated, ...rest }) => {
   return <Route {...rest} render={props => (
     isAuthenticated ? (
       <Layout>
         <PrivateHeader />
-          <Component {...props}/>
+        <Component {...props}/>
       </Layout>
     ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
+      <Layout>
+        <PublicHeader />
+        <Component {...props}/>
+      </Layout>
     )
   )}/>
-
 }
 
-PrivateRoute.propTypes = {
+PublicRoutes.propTypes = {
   component: PropTypes.func.isRequired,
   location: PropTypes.object,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -35,4 +35,4 @@ function mapStateToProps(store) {
   };
 }
 
-export default connect(mapStateToProps)(PrivateRoute)
+export default connect(mapStateToProps)(PublicRoutes)

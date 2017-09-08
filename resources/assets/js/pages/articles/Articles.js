@@ -1,36 +1,25 @@
 //import libs
 import React, { Component } from 'react'
-import axios from 'axios'
+import PropTypes from 'prop-types'
+import Http from '../../utils/Http'
 import ArticleRow from './ArticleRow'
 import Paginator from '../common/Paginator'
 
 class Articles extends Component {
   
+  static propTypes = {
+    articles: PropTypes.object.isRequired,
+  }
+  
   constructor(props) {
     super(props)
-    
-    this.state = {
-      articles: {
-        data: [],
-      },
-    }
     
     this.pageChange = this.pageChange.bind(this)
     this.doRemove = this.doRemove.bind(this)
   }
   
-  componentDidMount() {
-    axios.get('/api/articles')
-      .then(response => {
-        this.setArticles(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  }
-  
   pageChange(url) {
-    axios.get(url)
+    Http.get(url)
       .then(response => {
         this.setArticles(response.data)
       })
@@ -39,14 +28,10 @@ class Articles extends Component {
       })
   }
   
-  setArticles(articles) {
-    this.setState({ articles })
-  }
-  
   doRemove(e, id) {
     e.preventDefault()
-    
-    axios.delete(`/api/articles/${id}`)
+  
+    Http.delete(`/articles/${id}`)
       .then(() => {
         this.updateDeleted(id)
       })
@@ -56,7 +41,7 @@ class Articles extends Component {
   }
   
   updateDeleted(id) {
-    const { articles } = this.state
+    const { articles } = this.props
     
     articles.data = articles.data.filter((article) => {
       return article.id !== id
@@ -72,7 +57,7 @@ class Articles extends Component {
   }
   
   render() {
-    const { articles } = this.state
+    const { articles } = this.props
     return (
       <div>
         <div className="row">

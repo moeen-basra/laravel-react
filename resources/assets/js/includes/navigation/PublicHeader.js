@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import NavLink from './NavLink'
+import NavItem from './NavItem'
 
 class PublicHeader extends Component {
   constructor() {
@@ -35,11 +35,11 @@ class PublicHeader extends Component {
     
         <div className={`navbar-collapse ${navClass}`} id="navbarsExampleDefault">
           <ul className="navbar-nav mr-auto">
-            <NavLink path="/">Home</NavLink>
+            <NavItem path="/">Home</NavItem>
           </ul>
           <ul className="navbar-nav">
-            <NavLink path="/login">Login</NavLink>
-            <NavLink path="/register">Register</NavLink>
+            <NavItem path="/login">Login</NavItem>
+            <NavItem path="/register">Register</NavItem>
           </ul>
         </div>
       </nav>
