@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { authLogout } from '../../store/actions/index'
+import { authLogout } from '../../store/actions/auth'
 import { Link } from 'react-router-dom'
 import { Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap';
 import NavItem from './NavItem'

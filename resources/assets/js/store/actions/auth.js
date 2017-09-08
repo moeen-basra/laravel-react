@@ -7,53 +7,50 @@
  */
 
 import {
-  user,
+  AUTH_CHECK,
+  AUTH_LOGIN,
+  AUTH_LOGOUT,
+  AUTH_REFRESH_TOKEN,
+  AUTH_RESET_PASSWORD,
 } from '../action-types';
 
-const {
-  CHECK,
-  LOGIN,
-  LOGOUT,
-  REFRESH_TOKEN,
-  RESET_PASSWORD
-} = user
 
-export function check() {
+export function authCheck() {
   return {
-    type: CHECK,
+    type: AUTH_CHECK,
   }
 }
 
-export function login(payload) {
+export function authLogin(payload) {
   return {
-    type: LOGIN,
+    type: AUTH_LOGIN,
     payload,
   };
 }
 
-export function logout() {
+export function authLogout() {
   return {
-    type: LOGOUT,
+    type: AUTH_LOGOUT,
   }
 }
 
-export function refreshToken(payload) {
+export function authRefreshToken(payload) {
   return {
-    type: REFRESH_TOKEN,
+    type: AUTH_REFRESH_TOKEN,
     payload
   }
 }
 
-export function resetPassword() {
+export function authResetPassword() {
   return {
-    type: RESET_PASSWORD,
+    type: AUTH_RESET_PASSWORD,
   }
 }
 
 export default {
-  check,
-  login,
-  logout,
-  refreshToken,
-  resetPassword,
+  authCheck,
+  authLogin,
+  authLogout,
+  authRefreshToken,
+  authResetPassword,
 };

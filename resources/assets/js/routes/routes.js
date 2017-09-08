@@ -1,5 +1,5 @@
 import Register from '../pages/register'
-import Login from '../pages/Login'
+import Login from '../pages/login'
 import Home from '../pages/Home'
 import Users from '../pages/users/Users'
 import Articles from '../pages/articles'

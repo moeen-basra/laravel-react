@@ -6,51 +6,10 @@
  * auth module.
  */
 
-import {
-  AUTH_CHECK,
-  AUTH_LOGIN,
-  AUTH_LOGOUT,
-  AUTH_REFRESH_TOKEN,
-  AUTH_RESET_PASSWORD,
-} from '../action-types';
-
-
-export function authCheck() {
-  return {
-    type: AUTH_CHECK,
-  }
-}
-
-export function authLogin(payload) {
-  return {
-    type: AUTH_LOGIN,
-    payload,
-  };
-}
-
-export function authLogout() {
-  return {
-    type: AUTH_LOGOUT,
-  }
-}
-
-export function authRefreshToken(payload) {
-  return {
-    type: AUTH_REFRESH_TOKEN,
-    payload
-  }
-}
-
-export function authResetPassword() {
-  return {
-    type: AUTH_RESET_PASSWORD,
-  }
-}
+import authActions from './auth'
+import userActions from './user'
 
 export default {
-  authCheck,
-  authLogin,
-  authLogout,
-  authRefreshToken,
-  authResetPassword,
-};
+  authActions,
+  userActions
+}

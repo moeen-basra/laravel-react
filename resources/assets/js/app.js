@@ -19,7 +19,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import Routes from './routes'
 
-import { authCheck } from './store/actions'
+import { authCheck } from './store/actions/auth'
 
 store.dispatch(authCheck())
 
