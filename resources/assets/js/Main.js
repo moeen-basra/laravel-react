@@ -1,6 +1,7 @@
 //import libs
 import React from 'react'
 import PropTypes from 'prop-types'
+import Navigation from './includes/navigation'
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -10,10 +11,11 @@ const containerStyle = {
   marginTop: '60px',
 }
 
-const Layout = ({children}) => (<div className="container" style={containerStyle}>
+const Main = ({children}) => (<div className="container" style={containerStyle}>
+  <Navigation/>
   {children}
 </div>)
 
-Layout.propTypes = propTypes
+Main.propTypes = propTypes
 
-export default Layout
+export default Main

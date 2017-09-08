@@ -1,10 +1,11 @@
-//import libs
+// import libs
 import React, { Component } from 'react'
 import $ from 'jquery'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { authLogin } from '../../store/actions/auth'
+
+// import components
 import Page from './Page'
 
 class Login extends Component {
@@ -13,7 +14,7 @@ class Login extends Component {
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
-    loginUser: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
   }
   
   componentDidMount() {
@@ -29,7 +30,7 @@ class Login extends Component {
       return <Redirect to="/" />
     }
     
-    return <Page loginUser={this.props.loginUser} />
+    return <Page dispatch={this.props.dispatch} />
   }
 }
 
@@ -39,12 +40,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loginUser: payload => {
-      dispatch(authLogin(payload))
-    },
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps)(Login)

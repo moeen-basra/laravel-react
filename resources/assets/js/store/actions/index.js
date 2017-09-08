@@ -6,10 +6,10 @@
  * auth module.
  */
 
-import authActions from './auth'
-import userActions from './user'
+import * as authActions from './auth'
+import * as userActions from './user'
 
-export default {
+export {
   authActions,
   userActions
 }

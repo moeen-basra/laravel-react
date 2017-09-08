@@ -2,16 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Layout from '../pages/Layout'
-import PrivateHeader from '../includes/navigation/PrivateHeader'
+import Main from '../Main'
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
   return <Route {...rest} render={props => (
     isAuthenticated ? (
-      <Layout>
-        <PrivateHeader />
-          <Component {...props}/>
-      </Layout>
+      <Main>
+        <Component {...props}/>
+      </Main>
     ) : (
       <Redirect to={{
         pathname: '/login',

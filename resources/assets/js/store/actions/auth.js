@@ -47,10 +47,10 @@ export function authResetPassword() {
   }
 }
 
-export default {
-  authCheck,
-  authLogin,
-  authLogout,
-  authRefreshToken,
-  authResetPassword,
-};
+// export default {
+//   authCheck,
+//   authLogin,
+//   authLogout,
+//   authRefreshToken,
+//   authResetPassword,
+// };

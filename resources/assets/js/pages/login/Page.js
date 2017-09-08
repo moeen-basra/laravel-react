@@ -1,7 +1,7 @@
 // import libs
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Http from '../../utils/Http'
+import { login } from '../../store/services/auth'
 
 // import components
 import Form from './components/Form'
@@ -10,7 +10,7 @@ const displayName = 'LoginPage'
 
 class Page extends Component {
   static propTypes = {
-    loginUser: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired
   }
   constructor(props) {
     super(props)
@@ -31,15 +31,9 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const { email, password } = this.state
+    const { email, password, remember } = this.state
     
-    Http.post('/auth/login', { email, password })
-      .then(res => {
-        this.props.loginUser(res.data.access_token)
-      })
-      .catch(e => {
-        console.error(e)
-      })
+    this.props.dispatch(login({ email, password, remember }))
   }
   
   render() {

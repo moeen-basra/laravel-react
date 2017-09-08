@@ -2,22 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Layout from '../pages/Layout'
-import PrivateHeader from '../includes/navigation/PrivateHeader'
-import PublicHeader from '../includes/navigation/PublicHeader'
+import Main from '../Main'
 
 const PublicRoutes = ({ component: Component, isAuthenticated, ...rest }) => {
   return <Route {...rest} render={props => (
     isAuthenticated ? (
-      <Layout>
-        <PrivateHeader />
+      <Main>
         <Component {...props}/>
-      </Layout>
+      </Main>
     ) : (
-      <Layout>
-        <PublicHeader />
+      <Main>
         <Component {...props}/>
-      </Layout>
+      </Main>
     )
   )}/>
 }
