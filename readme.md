@@ -70,7 +70,7 @@ TODO:
 - [x] User Login
 - [x] User Register
 - [x] Reset Password
-- [ ] Users Crud
+- [x] Users Crud
 - [ ] Articles Crud
 - [ ] Form validation Client and Server
 - [ ] Tests
