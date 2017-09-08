@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // import components
-import { Collapse } from 'reactstrap'
+import { Collapse, NavDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import NavItem from './NavItem'
 
 // define component name
@@ -11,12 +11,15 @@ const displayName = 'PrivateHeader'
 
 // validate properties
 const propTypes = {
+  user: PropTypes.object.isRequired,
   showNavigation: PropTypes.bool.isRequired,
+  showDropdown: PropTypes.bool.isRequired,
+  toggleDropdown: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
 }
 
 // initiate comppnent
-const PrivateHeader = ({ showNavigation, logout }) => (
+const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, logout }) => (
   <Collapse className="navbar-collapse" isOpen={showNavigation}>
     <ul className="navbar-nav mr-auto">
       <NavItem path="/">Home</NavItem>
@@ -25,9 +28,20 @@ const PrivateHeader = ({ showNavigation, logout }) => (
     </ul>
     
     <ul className="navbar-nav">
-      <li className="nav-item">
-        <a className="nav-link" href="#" onClick={e => logout(e)}>Logout</a>
-      </li>
+      <NavDropdown isOpen={showDropdown} toggle={toggleDropdown}>
+        <DropdownToggle nav caret>
+          { user.name }
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>
+            <span className="oi oi-person" title="logout" aria-hidden="true"/> Profile
+          </DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem onClick={e => logout(e)}>
+            <span className="oi oi-account-logout" title="logout" aria-hidden="true"/> Logout
+          </DropdownItem>
+        </DropdownMenu>
+      </NavDropdown>
     </ul>
   </Collapse>)
 

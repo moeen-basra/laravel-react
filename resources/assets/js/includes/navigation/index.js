@@ -13,22 +13,33 @@ import PublicHeader from './PublicHeader'
 class Navigation extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   }
   
-  constructor() {
-    super()
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.logout = this.logout.bind(this);
+  constructor(props) {
+    super(props)
+    
     this.state = {
       showNavigation: false,
+      showDropdown: false,
     }
+  
+    this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.logout = this.logout.bind(this);
   }
   
   toggleNavbar() {
     this.setState({
       showNavigation: !this.state.showNavigation,
     });
+  }
+  
+  toggleDropdown() {
+    this.setState({
+      showDropdown: !this.state.showDropdown,
+    })
   }
   
   logout(e) {
@@ -44,7 +55,11 @@ class Navigation extends Component {
         <NavbarToggler className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
         {
           this.props.isAuthenticated
-            ? <PrivateHeader showNavigation={this.state.showNavigation} logout={this.logout} />
+            ? <PrivateHeader user={this.props.user}
+                             showNavigation={this.state.showNavigation}
+                             toggleDropdown={this.toggleDropdown}
+                             showDropdown={this.state.showDropdown}
+                             logout={this.logout} />
             : <PublicHeader showNavigation={this.state.showNavigation} />
         }
       </Navbar>
@@ -54,7 +69,8 @@ class Navigation extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
   }
 }
 

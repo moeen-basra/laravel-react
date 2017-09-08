@@ -25,7 +25,9 @@ mix.react('resources/assets/js/app.js', 'public/js')
   .extract(['react'])
     .sass('resources/assets/sass/app.scss', 'public/css');
 
-if(!mix.config.inProduction) {
+if (mix.inProduction()) {
+  mix.version()
+} else {
   mix.sourceMaps()
   mix.browserSync({
     proxy: 'http://laravel-react.dev'
