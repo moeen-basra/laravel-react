@@ -9,11 +9,11 @@ import {
 } from '../action-types';
 
 const user = {
-  id: '',
-  name: '',
-  email: '',
-  created_at: '',
-  updated_at: '',
+  id: null,
+  name: null,
+  email: null,
+  created_at: null,
+  updated_at: null,
 }
 
 const initialState = {

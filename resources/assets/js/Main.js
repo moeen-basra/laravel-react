@@ -31,7 +31,7 @@ class Main extends Component {
   componentWillMount() {
     const { isAuthenticated, user } = this.props
     
-    if (isAuthenticated && !user.email.length) {
+    if (isAuthenticated && !user.id) {
       this.props.dispatch(fetchUser())
     }
     
