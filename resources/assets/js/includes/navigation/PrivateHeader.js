@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { authLogout } from '../../store/actions/auth'
 import { Link } from 'react-router-dom'
-import { Collapse, Navbar, NavbarToggler, Nav } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler } from 'reactstrap';
 import NavItem from './NavItem'
 
 class PrivateHeader extends Component {
@@ -26,7 +26,9 @@ class PrivateHeader extends Component {
     });
   }
   
-  logout() {
+  logout(e) {
+    e.preventDefault()
+    
     this.props.logout()
   }
   
@@ -36,17 +38,18 @@ class PrivateHeader extends Component {
         <Link to="/" className="navbar-brand">My React App</Link>
         <NavbarToggler className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
         <Collapse className="navbar-collapse" isOpen={!this.state.collapsed}>
-          <Nav navbar>
+          <ul className="navbar-nav mr-auto">
             <NavItem path="/">Home</NavItem>
             <NavItem path="/articles">Articles</NavItem>
             <NavItem path="/users">Users</NavItem>
-          </Nav>
+          </ul>
+  
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link" href="#" onClick={e => this.logout(e)}>Logout</a>
+            </li>
+          </ul>
         </Collapse>
-        <Nav navbar>
-          <li className="nav-item">
-            <a className="nav-link" href="#" onClick={this.logout}>Logout</a>
-          </li>
-        </Nav>
       </Navbar>
     )
   }
