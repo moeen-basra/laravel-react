@@ -12,23 +12,10 @@ export function login(credentials) {
   return dispatch => {
     Http.post('auth/login', credentials)
       .then(res => {
-        const data = Transformer.fetchCollection(res.data)
+        const data = Transformer.fetch(res.data)
         dispatch(authActions.authLogin(data.accessToken))
       })
       .catch()
-  }
-}
-
-export function fetchUser() {
-  return dispatch => {
-    return Http.get('user')
-      .then(res => {
-        const data = Transformer.fetchCollection(res.data)
-        dispatch(authActions.setUser(data))
-      })
-      .catch(err => {
-        console.log(err)
-      })
   }
 }
 

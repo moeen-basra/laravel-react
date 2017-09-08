@@ -2,6 +2,7 @@ import Register from '../pages/register'
 import Login from '../pages/login'
 import Home from '../pages/Home'
 import Users from '../pages/users/Users'
+import EditUser from '../pages/users/edit'
 import Articles from '../pages/articles'
 import EditArticle from '../pages/articles/EditArticle'
 
@@ -29,6 +30,12 @@ const routes = [
     exact: true,
     auth: true,
     component: Users,
+  },
+  {
+    path: '/users/:id/edit',
+    exact: true,
+    auth: true,
+    component: EditUser,
   },
   {
     path: '/articles',

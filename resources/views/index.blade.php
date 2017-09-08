@@ -12,11 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <style type="text/css">
-        body{
-            margin-bottom: 60px;
-        }
-    </style>
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([

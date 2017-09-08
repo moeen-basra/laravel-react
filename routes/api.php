@@ -19,10 +19,12 @@ use App\Article;
 Route::post('/auth/register', 'Auth\RegisterController@register');
 Route::post('/auth/login', 'Api\Auth\LoginController@login');
 
-Route::group(['middleware' => 'auth:api'], function() {
+Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::post('/users/{id}', 'UserController@update');
 
     Route::get('/users', function () {
         return User::all();
@@ -55,5 +57,5 @@ Route::group(['middleware' => 'auth:api'], function() {
         return response('Article Deleted.', 200);
     });
 
-    Route::delete('/auth/logout', 'Api\Auth\LoginController@logout');
+    Route::delete('/auth/logout', 'Auth\LoginController@logout');
 });

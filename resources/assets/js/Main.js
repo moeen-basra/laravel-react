@@ -2,13 +2,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchUser } from './store/services/auth'
+import { fetchUser } from './store/services/user'
 
 // import components
 import Navigation from './includes/navigation'
 
 const containerStyle = {
-  marginTop: '60px',
+  paddingTop: '3.5rem',
 }
 
 class Main extends Component {
@@ -37,10 +37,25 @@ class Main extends Component {
     
   }
   
-  render() {
-    return <div className="container" style={containerStyle}>
-      <Navigation/>
+  renderContent() {
+    if (this.props.isAuthenticated) {
+      return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+        {this.props.children}
+      </main>
+    }
+    return <main className="col-sm-12 ml-sm-auto pt-3" role="main">
       {this.props.children}
+    </main>
+  }
+  
+  render() {
+    return <div style={containerStyle}>
+      <Navigation/>
+      <div className="container-fluid">
+        <div className="row">
+          { this.renderContent() }
+        </div>
+      </div>
     </div>
   }
 }
@@ -48,7 +63,7 @@ class Main extends Component {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user,
+    user: state.user,
   }
 }
 

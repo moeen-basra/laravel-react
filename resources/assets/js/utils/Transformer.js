@@ -14,29 +14,34 @@ import _ from 'lodash';
 
 export default class Transformer {
   /**
-   * Method used to transform a fetched collection
+   * Method used to transform a fetched data
    *
-   * @param items The items to be transformed
-   * @returns {Object} The transformed items
+   * @param param
+   * @return {*}
    */
-  static fetchCollection(items) {
-    if (typeof items === 'object') {
-      return this.fetchObject(items);
+  static fetch(param) {
+    if (typeof param === 'object') {
+      return this.fetchObject(param);
     }
-    return this.fetch(items);
+    return this.fetchCollection(param);
   }
   
   /**
-   * Method used to transform a fetched data
+   * Method used to transform a fetched collection
    *
-   * @param param The fetched data
-   *
-   * @returns {Object} The transformed data
+   * @param param
+   * @return [Array]
    */
-  static fetch(param) {
+  static fetchCollection(param) {
     return param.map(item => this.fetch(item));
   }
   
+  /**
+   * Method used to transform a fetched object
+   *
+   * @param param
+   * @return {{}}
+   */
   static fetchObject(param) {
     const data = {};
     
@@ -47,29 +52,34 @@ export default class Transformer {
   }
   
   /**
-   * Method used to transform a collection to be send
+   * Method used to transform a send data
    *
-   * @param items The items to be transformed
-   * @returns {array} The transformed items
+   * @param param
+   * @return {*}
    */
-  static sendCollection(items) {
-    if (typeof items === 'object') {
-      return this.sendObject(items);
+  static send(param) {
+    if (typeof param === 'object') {
+      return this.sendObject(param);
     }
-    return this.send(items);
+    return this.sendCollection(param);
   }
   
   /**
-   * Method used to transform a send data
+   * Method used to transform a collection to be send
    *
-   * @param param The data to be send
-   *
-   * @returns {Object} The transformed data
+   * @param param
+   * @return [Array]
    */
-  static send(param) {
+  static sendCollection(param) {
     return param.map(item => this.send(item));
   }
   
+  /**
+   * Method used to transform a object to be send
+   *
+   * @param param
+   * @returns {{}}
+   */
   static sendObject(param) {
     const data = {};
     

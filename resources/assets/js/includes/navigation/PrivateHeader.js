@@ -1,6 +1,7 @@
 // import libs
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 // import components
 import { Collapse, NavDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
@@ -32,10 +33,10 @@ const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, log
         <DropdownToggle nav caret>
           { user.name }
         </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem>
+        <DropdownMenu className="dropdown-menu-right">
+          <Link className='dropdown-item' to={`/users/${user.id}/edit`}>
             <span className="oi oi-person" title="logout" aria-hidden="true"/> Profile
-          </DropdownItem>
+          </Link>
           <DropdownItem divider />
           <DropdownItem onClick={e => logout(e)}>
             <span className="oi oi-account-logout" title="logout" aria-hidden="true"/> Logout

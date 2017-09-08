@@ -7,18 +7,9 @@
  */
 
 import {
-  USER_ADD,
   USER_UPDATE,
-  USER_REMOVE,
-  USER_LIST,
+  USER_UNSET,
 } from '../action-types';
-
-export function userAdd(payload) {
-  return {
-    type: USER_ADD,
-    payload
-  }
-}
 
 export function userUpdate(payload) {
   return {
@@ -27,23 +18,9 @@ export function userUpdate(payload) {
   };
 }
 
-export function userRemove(payload) {
+export function unsetUser() {
   return {
-    type: USER_REMOVE,
-    payload
+    type: USER_UNSET,
   }
 }
 
-export function userList(payload) {
-  return {
-    type: USER_LIST,
-    payload
-  }
-}
-
-export default {
-  userAdd,
-  userUpdate,
-  userRemove,
-  userList,
-};

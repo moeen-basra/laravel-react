@@ -12,10 +12,9 @@ const contextTypes = {
   router: PropTypes.object,
 }
 
-const Link = ({ path, children }, { router }) => {
-  const className = path === router.route.location.pathname ? 'active' : ''
-  return <NavItem className={className}>
-    <NavLink to={path} className="nav-link">
+const Link = ({ path, children }) => {
+  return <NavItem>
+    <NavLink exact to={path} className="nav-link">
       {children}
     </NavLink>
   </NavItem>

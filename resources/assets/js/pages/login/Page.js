@@ -45,7 +45,13 @@ class Page extends Component {
       handleSubmit: this.handleSubmit,
     }
     
-    return <Form {...props} />
+    return <div className="container">
+      <div className="row justify-content-md-center">
+        <div className="col-12 col-sm-12">
+          <Form {...props} />
+        </div>
+      </div>
+    </div>
   }
 }
 

@@ -1,15 +1,29 @@
 import Http from '../../utils/Http'
-import userActions from '../actions'
+import Transformer from '../../utils/Transformer'
+import { userActions } from '../actions'
 
-export function fetch(dispatch) {
-  Http.get('user')
-    .then(res => {
-      console.log(res)
-      dispatch(userActions.userAdd(res.data))
-    })
-    .catch()
+export function fetchUser() {
+  return dispatch => {
+    return Http.get('user')
+      .then(res => {
+        const data = Transformer.fetch(res.data)
+        dispatch(userActions.userUpdate(data))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 }
 
-export default {
-  fetch,
+export function userUpdateRequest(param) {
+  return dispatch => {
+    const data = Transformer.send(param)
+    Http.post(`/users/${data.id}`, data)
+      .then((res) => {
+        dispatch(userActions.userUpdate(Transformer.fetch(res.data)))
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 }

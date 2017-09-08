@@ -5,7 +5,6 @@ import {
   AUTH_LOGOUT,
   AUTH_REFRESH_TOKEN,
   AUTH_RESET_PASSWORD,
-  AUTH_SET_USER,
 } from '../action-types';
 
 const user = {
@@ -18,7 +17,6 @@ const user = {
 
 const initialState = {
   isAuthenticated: false,
-  user,
 };
 
 const reducer = (state = initialState, { type, payload = null }) => {
@@ -32,8 +30,6 @@ const reducer = (state = initialState, { type, payload = null }) => {
       return logout(state);
     case AUTH_RESET_PASSWORD:
       return resetPassword(state);
-    case AUTH_SET_USER:
-      return setUser(state, payload)
     default:
       return state;
   }
@@ -44,14 +40,6 @@ function login(state, payload) {
   HTTP.defaults.headers.common['Authorization'] = `Bearer ${payload}`;
   
   state = Object.assign({}, state, { isAuthenticated: true })
-  
-  return state
-}
-
-function setUser(state, payload) {
-  state = Object.assign({}, state, {
-    user: payload
-  })
   
   return state
 }
