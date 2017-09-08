@@ -21,13 +21,13 @@ class Navigation extends Component {
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.logout = this.logout.bind(this);
     this.state = {
-      collapsed: true,
+      showNavigation: false,
     }
   }
   
   toggleNavbar() {
     this.setState({
-      collapsed: !this.state.collapsed,
+      showNavigation: !this.state.showNavigation,
     });
   }
   
@@ -44,8 +44,8 @@ class Navigation extends Component {
         <NavbarToggler className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
         {
           this.props.isAuthenticated
-            ? <PrivateHeader collapsed={this.state.collapsed} logout={this.logout} />
-            : <PublicHeader collapsed={this.state.collapsed} />
+            ? <PrivateHeader showNavigation={this.state.showNavigation} logout={this.logout} />
+            : <PublicHeader showNavigation={this.state.showNavigation} />
         }
       </Navbar>
     )

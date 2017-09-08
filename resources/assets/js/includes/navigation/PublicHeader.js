@@ -11,12 +11,12 @@ const displayName = 'PublicHeader'
 
 // validate properties
 const propTypes = {
-  collapsed: PropTypes.bool.isRequired,
+  showNavigation: PropTypes.bool.isRequired,
 }
 
 // initiate comppnent
-const PublicHeader = ({ collapsed }) => (
-  <Collapse className="navbar-collapse" isOpen={!collapsed}>
+const PublicHeader = ({ showNavigation }) => (
+  <Collapse className="navbar-collapse" isOpen={showNavigation}>
     <ul className="navbar-nav mr-auto">
       <NavItem path="/">Home</NavItem>
     </ul>

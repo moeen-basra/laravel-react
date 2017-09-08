@@ -11,13 +11,13 @@ const displayName = 'PrivateHeader'
 
 // validate properties
 const propTypes = {
-  collapsed: PropTypes.bool.isRequired,
+  showNavigation: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
 }
 
 // initiate comppnent
-const PrivateHeader = ({ collapsed, logout }) => (
-  <Collapse className="navbar-collapse" isOpen={!collapsed}>
+const PrivateHeader = ({ showNavigation, logout }) => (
+  <Collapse className="navbar-collapse" isOpen={showNavigation}>
     <ul className="navbar-nav mr-auto">
       <NavItem path="/">Home</NavItem>
       <NavItem path="/articles">Articles</NavItem>

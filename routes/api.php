@@ -54,4 +54,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 
         return response('Article Deleted.', 200);
     });
+
+    Route::delete('/auth/logout', 'Api\Auth\LoginController@logout');
 });

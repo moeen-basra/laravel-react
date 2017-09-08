@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
 
@@ -25,5 +26,20 @@ class LoginController extends Controller
         ]);
 
         return json_decode((string) $response->getBody(), true);
+    }
+
+    public function logout(Request $request)
+    {
+        $accessToken = $request->user()->token();
+
+        DB::table('oauth_refresh_tokens')
+            ->where('access_token_id', $accessToken->id)
+            ->update([
+                'revoked' => true
+            ]);
+
+        $accessToken->revoke();
+
+        return response()->json([], 201);
     }
 }

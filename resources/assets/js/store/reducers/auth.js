@@ -12,8 +12,8 @@ const user = {
   id: null,
   name: null,
   email: null,
-  created_at: null,
-  updated_at: null,
+  createdAt: null,
+  updatedAt: null,
 }
 
 const initialState = {
