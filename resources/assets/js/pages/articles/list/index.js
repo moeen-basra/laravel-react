@@ -35,8 +35,13 @@ class List extends Component {
 }
 
 const mapStateToProps = state => {
+  const {data, ...meta} = state.articles
+  
+  console.log(data)
+  
   return {
-    articles: state.articles.map((article) => new Article(article))
+    articles: data.map((article) => new Article(article)),
+    meta: Object.assign({}, meta)
   }
 }
 

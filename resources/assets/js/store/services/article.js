@@ -25,7 +25,7 @@ export function articleAddRequest(params) {
 
 export function articleUpdateRequest(params) {
   return dispatch => {
-    Http.post(`articles/${params.id}`, transformRequest(params))
+    Http.put(`articles/${params.id}`, transformRequest(params))
       .then((res) => {
         dispatch(articleActions.update(transformResponse(res.data)))
       })
@@ -49,9 +49,14 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest() {
+export function articleListRequest(pageNumber = 1) {
   return dispatch => {
-    Http.get('articles')
+    let url = 'articles'
+    if (pageNumber > 1) {
+      url = url + `?page=${pageNumber}`
+    }
+    
+    Http.get(url)
       .then((res) => {
         dispatch(articleActions.list(transformResponse(res.data)))
       })
@@ -66,7 +71,7 @@ export function articleRequest(id) {
   return dispatch => {
     Http.get(`articles/${id}/edit`)
       .then((res) => {
-        dispatch(articleActions.update(transformRequest(res.data)))
+        dispatch(articleActions.update(transformResponse(res.data)))
       })
       .catch((err) => {
         // TODO: handle err

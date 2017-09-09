@@ -12,4 +12,8 @@ class Article extends Model
     protected $table = 'articles';
 
     protected $dates = ['deleted_at', 'published_at'];
+
+    protected $casts = [
+        'published' => 'boolean'
+    ];
 }

@@ -20,7 +20,7 @@ class CreateArticleTable extends Migration
            $table->text('description');
            $table->text('content');
            $table->boolean('published');
-           $table->timestamp('published_at');
+           $table->timestamp('published_at')->nullable();
            $table->softDeletes();
            $table->timestamps();
         });

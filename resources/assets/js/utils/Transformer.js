@@ -20,10 +20,12 @@ export default class Transformer {
    * @return {*}
    */
   static fetch(param) {
-    if (Array.isArray(param)) {
-      return this.fetchCollection(param);
+    if (param && Array.isArray(param)) {
+      return Transformer.fetchCollection(param);
+    } else if (param && typeof param === 'object') {
+      return Transformer.fetchObject(param);
     }
-    return this.fetchObject(param);
+    return param
   }
   
   /**
@@ -33,7 +35,7 @@ export default class Transformer {
    * @return [Array]
    */
   static fetchCollection(param) {
-    return param.map(item => this.fetch(item));
+    return param.map(item => Transformer.fetch(item));
   }
   
   /**
@@ -46,7 +48,7 @@ export default class Transformer {
     const data = {};
     
     _.forOwn(param, (value, key) => {
-      data[_.camelCase(key)] = value;
+      data[_.camelCase(key)] = Transformer.fetch(value);
     });
     return data;
   }
@@ -58,10 +60,12 @@ export default class Transformer {
    * @return {*}
    */
   static send(param) {
-    if (Array.isArray(param)) {
-      return this.sendCollection(param);
+    if (param && Array.isArray(param)) {
+      return Transformer.sendCollection(param);
+    } else if (param && typeof param === 'object') {
+      return Transformer.sendObject(param);
     }
-    return this.sendObject(param);
+    return param
   }
   
   /**
@@ -71,7 +75,7 @@ export default class Transformer {
    * @return [Array]
    */
   static sendCollection(param) {
-    return param.map(item => this.send(item));
+    return param.map(item => Transformer.send(item));
   }
   
   /**
@@ -84,7 +88,7 @@ export default class Transformer {
     const data = {};
     
     _.forOwn(param, (value, key) => {
-      data[_.snakeCase(key)] = value;
+      data[_.snakeCase(key)] = Transformer.send(value);
     });
     return data;
   }

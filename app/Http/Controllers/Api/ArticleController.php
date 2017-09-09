@@ -9,7 +9,16 @@ use Illuminate\Http\Request;
 class ArticleController extends Controller
 {
     public function index() {
-        return Article::get();
+        return Article::select([
+            'id',
+            'slug',
+            'title',
+            'description',
+            'published',
+            'published_at',
+            'updated_at',
+            'created_at',
+        ])->latest()->paginate();
     }
 
     public function update(Request $request, $id)
@@ -18,12 +27,13 @@ class ArticleController extends Controller
 
         $article->slug = $request->get('slug');
         $article->title = $request->get('title');
-        $article->content = $request->get('content');
+        $article->description = $request->get('description');
+        $article->published = $request->get('published');
+        $article->published_at = $request->get('published_at');
+//        $article->content = $request->get('content');
 
         $article->save();
 
-        return response()->json([
-            'user' => $article
-        ], 201);
+        return response()->json($article, 201);
     }
 }

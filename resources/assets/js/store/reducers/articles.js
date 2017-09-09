@@ -6,12 +6,23 @@ import {
   ARTICLE_LIST,
 } from '../action-types'
 
-const initialState = []
+const initialState = {
+  currentPage: 0,
+  data: [],
+  from: 0,
+  lastPage: 0,
+  nextPageUrl: '',
+  path: '',
+  perPage: 0,
+  prevPageUrl: null,
+  to: 0,
+  total: 0,
+}
 
 const reducer = (state = initialState, { type, payload = null }) => {
-  switch (type) {
+  switch(type) {
     case ARTICLE_ADD:
-      return add(state, payload);
+      return add(state, payload)
     case ARTICLE_UPDATE:
       return update(state, payload)
     case ARTICLE_REMOVE:
@@ -24,26 +35,26 @@ const reducer = (state = initialState, { type, payload = null }) => {
 }
 
 function add(state, payload) {
-  state = [...state, payload]
-  return state
+  return state.data = [...state.data, payload]
 }
 
 function update(state, payload) {
-  const index = _.findIndex(state, { id: payload.id })
+  const data = state.data.map(obj => {
+    if (obj.id === payload.id) {
+      return { ...obj, ...payload }
+    }
+    return obj
+  })
   
-  state = state.splice(index, 1, payload)
-  return state
+  return Object.assign({}, state, { data })
 }
 
 function remove(state, id) {
-  const index = _.findIndex(state, { id })
-  
-  state = state.splice(index, 1)
-  return state
+  return state.data.filter(obj => obj.id !== id)
 }
 
 function list(state, payload) {
-  state = [...payload]
+  state = Object.assign({}, payload)
   
   return state
 }

@@ -24,11 +24,11 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
         return $request->user();
     });
 
-    Route::post('/users/{id}', 'UserController@update');
-
-    Route::get('/users', function () {
-        return User::all();
-    });
+//    Route::post('/users/{id}', 'UserController@update');
+//
+//    Route::get('/users', function () {
+//        return User::all();
+//    });
 
     Route::get('/articles', 'ArticleController@index');
 
@@ -36,16 +36,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
         return Article::findOrFail($id);
     });
 
-    Route::put('/articles/{id}', function ($id, Request $request) {
-        $article = Article::findOrFail($id);
-
-        $article->title = $request->get('title');
-        $article->slug = $request->get('slug');
-        $article->content = $request->get('content');
-        $article->save();
-
-        return response('Article Updated!', 200);
-    });
+    Route::put('/articles/{id}', 'ArticleController@update');
 
     Route::delete('/articles/{id}', function ($id) {
         $article = Article::findOrFail($id);

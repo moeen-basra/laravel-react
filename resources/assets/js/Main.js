@@ -37,23 +37,12 @@ class Main extends Component {
     
   }
   
-  renderContent() {
-    if (this.props.isAuthenticated) {
-      return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
-        {this.props.children}
-      </main>
-    }
-    return <main className="col-sm-12 ml-sm-auto pt-3" role="main">
-      {this.props.children}
-    </main>
-  }
-  
   render() {
     return <div style={containerStyle}>
       <Navigation/>
       <div className="container-fluid">
         <div className="row">
-          { this.renderContent() }
+          { this.props.children }
         </div>
       </div>
     </div>
