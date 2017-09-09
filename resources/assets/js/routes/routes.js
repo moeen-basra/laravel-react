@@ -3,7 +3,7 @@ import Login from '../pages/login'
 import Home from '../pages/Home'
 import Users from '../pages/users/Users'
 import EditUser from '../pages/users/edit'
-import Articles from '../pages/articles'
+import Articles from '../pages/articles/list'
 import EditArticle from '../pages/articles/EditArticle'
 
 const routes = [

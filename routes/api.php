@@ -30,9 +30,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
         return User::all();
     });
 
-    Route::get('/articles', function () {
-        return Article::paginate(50);
-    });
+    Route::get('/articles', 'ArticleController@index');
 
     Route::get('/articles/{id}', function ($id) {
         return Article::findOrFail($id);

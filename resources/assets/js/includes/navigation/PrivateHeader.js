@@ -25,7 +25,6 @@ const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, log
     <ul className="navbar-nav mr-auto">
       <NavItem path="/">Home</NavItem>
       <NavItem path="/articles">Articles</NavItem>
-      <NavItem path="/users">Users</NavItem>
     </ul>
     
     <ul className="navbar-nav">

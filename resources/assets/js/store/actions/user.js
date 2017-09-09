@@ -1,9 +1,9 @@
 /* ============
- * Actions for the auth module
+ * Actions for the user module
  * ============
  *
  * The actions that are available on the
- * auth module.
+ * user module.
  */
 
 import {

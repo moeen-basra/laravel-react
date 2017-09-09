@@ -18,6 +18,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'phone' => $faker->phoneNumber,
+        'bio' => $faker->sentence(10),
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
@@ -26,11 +28,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Article::class, function (Faker\Generator $faker) {
 
-    $title = $faker->title;
+    $title = $faker->sentence;
 
     return [
         'title' => $title,
         'slug' => str_slug($title),
-        'content' => implode(' ', $faker->paragraphs(5)),
+        'description' => $faker->sentence(15),
+        'content' => implode(' ', $faker->paragraphs(2)),
+        'published' => true,
+        'published_at' => \Carbon\Carbon::now(),
     ];
 });

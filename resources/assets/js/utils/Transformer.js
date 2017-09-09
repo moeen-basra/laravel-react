@@ -20,10 +20,10 @@ export default class Transformer {
    * @return {*}
    */
   static fetch(param) {
-    if (typeof param === 'object') {
-      return this.fetchObject(param);
+    if (Array.isArray(param)) {
+      return this.fetchCollection(param);
     }
-    return this.fetchCollection(param);
+    return this.fetchObject(param);
   }
   
   /**
@@ -58,10 +58,10 @@ export default class Transformer {
    * @return {*}
    */
   static send(param) {
-    if (typeof param === 'object') {
-      return this.sendObject(param);
+    if (Array.isArray(param)) {
+      return this.sendCollection(param);
     }
-    return this.sendCollection(param);
+    return this.sendObject(param);
   }
   
   /**

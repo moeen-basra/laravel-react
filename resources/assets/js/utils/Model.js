@@ -18,6 +18,7 @@ class Model {
   id
   createdAt
   updatedAt
+  deletedAt
   
   constructor(props) {
     this.initialize(props)
@@ -27,6 +28,7 @@ class Model {
     this.id = props.id && Number(props.id) || null
     this.createdAt = props.createdAt && moment(props.createdAt) || null
     this.updatedAt = props.updatedAt && moment(props.updatedAt) || null
+    this.deletedAt = props.deletedAt && moment(props.deletedAt) || null
   }
 }
 
