@@ -7,6 +7,7 @@ import { articleListRequest, articleUpdateRequest } from '../../../store/service
 // import components
 import ArticleRow from './components/ArticleRow'
 import Pagination from './components/Pagination'
+import { Link } from 'react-router-dom'
 
 class Page extends Component {
   static displayName = 'ArticlesPage'
@@ -76,7 +77,7 @@ class Page extends Component {
           <th>Created At</th>
           <th>Updated At</th>
           <th>Published At</th>
-          <th>Actions</th>
+          <th><Link to='/articles/create' className="btn btn-success">Add</Link></th>
         </tr>
         </thead>
         <tbody>

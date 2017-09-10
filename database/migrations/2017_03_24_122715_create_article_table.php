@@ -19,7 +19,7 @@ class CreateArticleTable extends Migration
            $table->string('slug');
            $table->text('description');
            $table->text('content');
-           $table->boolean('published');
+           $table->boolean('published')->default(false);
            $table->timestamp('published_at')->nullable();
            $table->softDeletes();
            $table->timestamps();

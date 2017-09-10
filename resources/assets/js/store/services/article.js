@@ -25,7 +25,7 @@ export function articleAddRequest(params) {
 
 export function articleUpdateRequest(params) {
   return dispatch => {
-    Http.put(`articles/${params.id}`, transformRequest(params))
+    Http.patch(`articles/${params.id}`, transformRequest(params))
       .then((res) => {
         dispatch(articleActions.update(transformResponse(res.data)))
       })

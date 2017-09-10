@@ -3,6 +3,7 @@ import Login from '../pages/login'
 import Home from '../pages/Home'
 import EditUser from '../pages/users/edit'
 import Articles from '../pages/articles/list'
+import AddArticle from '../pages/articles/add'
 import EditArticle from '../pages/articles/edit'
 
 const routes = [
@@ -35,6 +36,12 @@ const routes = [
     exact: true,
     auth: true,
     component: Articles,
+  },
+  {
+    path: '/articles/create',
+    exact: true,
+    auth: true,
+    component: AddArticle,
   },
   {
     path: '/articles/:id/edit',

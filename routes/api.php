@@ -25,26 +25,24 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
     });
 
     Route::patch('/users/{id}', 'UserController@update');
+
+    Route::resource('articles', 'ArticleController');
 //
-//    Route::get('/users', function () {
-//        return User::all();
+//    Route::get('/articles', 'ArticleController@index');
+//
+//    Route::get('/articles/{id}', function ($id) {
+//        return Article::findOrFail($id);
 //    });
-
-    Route::get('/articles', 'ArticleController@index');
-
-    Route::get('/articles/{id}', function ($id) {
-        return Article::findOrFail($id);
-    });
-
-    Route::put('/articles/{id}', 'ArticleController@update');
-
-    Route::delete('/articles/{id}', function ($id) {
-        $article = Article::findOrFail($id);
-
-        $article->delete();
-
-        return response('Article Deleted.', 200);
-    });
+//
+//    Route::put('/articles/{id}', 'ArticleController@update');
+//
+//    Route::delete('/articles/{id}', function ($id) {
+//        $article = Article::findOrFail($id);
+//
+//        $article->delete();
+//
+//        return response('Article Deleted.', 200);
+//    });
 
     Route::delete('/auth/logout', 'Auth\LoginController@logout');
 });
