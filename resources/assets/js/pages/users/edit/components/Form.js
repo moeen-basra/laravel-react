@@ -49,13 +49,13 @@ const Form = ({ user, onChange, onSubmit }) => {
     <div className="form-group row">
       <label htmlFor="about" className="col-sm-2 col-form-label">About</label>
       <div className="col-sm-10">
-        <input type="text"
-               id="about"
-               name="about"
-               className="form-control"
-               placeholder="About"
-               value={user.about}
-               onChange={e => onChange(e.target.name, e.target.value)}/>
+        <textarea id="about"
+                  name="about"
+                  className="form-control"
+                  rows="3"
+                  placeholder="About"
+                  value={user.about}
+                  onChange={e => onChange(e.target.name, e.target.value)} />
       </div>
     </div>
     <div className="form-group row">

@@ -35,7 +35,15 @@ const reducer = (state = initialState, { type, payload = null }) => {
 }
 
 function add(state, payload) {
-  return state.data = [...state.data, payload]
+  const article = state.data.find((article) => (article.id === payload.id))
+  
+  if (!article) {
+    const data = [...state.data, payload]
+    
+    return Object.assign({}, state, { data })
+  }
+  
+  return update(state, payload)
 }
 
 function update(state, payload) {

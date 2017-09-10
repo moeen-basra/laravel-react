@@ -69,9 +69,9 @@ export function articleListRequest(pageNumber = 1) {
 
 export function articleRequest(id) {
   return dispatch => {
-    Http.get(`articles/${id}/edit`)
+    Http.get(`articles/${id}`)
       .then((res) => {
-        dispatch(articleActions.update(transformResponse(res.data)))
+        dispatch(articleActions.add(transformResponse(res.data)))
       })
       .catch((err) => {
         // TODO: handle err
