@@ -42,7 +42,6 @@ class ArticleController extends Controller
         $article->slug = str_slug($request->get('title'));
         $article->description = $request->get('description');
         $article->content = $request->get('content');
-        $article->published = false;
 
         $article->save();
 

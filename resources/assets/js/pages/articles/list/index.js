@@ -1,38 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// import libs
 import { connect } from 'react-redux'
 import Article from '../models/Article'
-import { articleListRequest } from '../../../store/services/article'
 
+// import components
 import Page from './Page'
-
-class List extends Component {
-  static displayName = 'ArticlesList'
-  static propTypes = {
-    articles: PropTypes.array.isRequired,
-    dispatch: PropTypes.func.isRequired,
-  }
-  
-  constructor(props) {
-    super(props)
-    
-    this.state = {
-      //
-    }
-  }
-  
-  componentWillMount() {
-    const { dispatch, articles } = this.props
-    
-    if (!articles.length) {
-      dispatch(articleListRequest())
-    }
-  }
-  
-  render() {
-    return <Page {...this.props}/>
-  }
-}
 
 const mapStateToProps = state => {
   const {data, ...meta} = state.articles
@@ -43,4 +14,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(List)
+export default connect(mapStateToProps)(Page)

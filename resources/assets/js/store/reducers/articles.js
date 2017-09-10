@@ -58,7 +58,9 @@ function update(state, payload) {
 }
 
 function remove(state, id) {
-  return state.data.filter(obj => obj.id !== id)
+  const data = state.data.filter(obj => obj.id !== id)
+  
+  return Object.assign({}, state, { data })
 }
 
 function list(state, payload) {

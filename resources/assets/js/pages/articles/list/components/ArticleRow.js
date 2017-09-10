@@ -7,9 +7,10 @@ const propTypes = {
   index: PropTypes.number.isRequired,
   article: PropTypes.object.isRequired,
   togglePublish: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
 }
 
-const ArticleRow = ({ index, article, togglePublish }) => {
+const ArticleRow = ({ index, article, togglePublish, handleRemove }) => {
   return (<tr key={index}>
     <th scope="row">{index+1}</th>
     <td>{article.title}</td>
@@ -25,7 +26,7 @@ const ArticleRow = ({ index, article, togglePublish }) => {
           : <button className="btn btn-success" onClick={() => togglePublish(article.id)}>Publish</button>
         }
         <Link className="btn btn-primary" to={`articles/${article.id}/edit`}>Edit</Link>
-        <Link className="btn btn-danger" to={`articles/${article.id}/edit`}>Delete</Link>
+        <button className="btn btn-danger" onClick={() => handleRemove(article.id)}>Delete</button>
       </div>
     </td>
   </tr>)

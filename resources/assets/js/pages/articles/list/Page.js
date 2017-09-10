@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { articleListRequest, articleUpdateRequest } from '../../../store/services/article'
+import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../../store/services/article'
 
 // import components
 import ArticleRow from './components/ArticleRow'
@@ -20,13 +20,17 @@ class Page extends Component {
   constructor(props) {
     super(props)
     
-    this.state = {
-      //
-    }
-    
     this.togglePublish = this.togglePublish.bind(this)
     this.handleRemove = this.handleRemove.bind(this)
     this.pageChange = this.pageChange.bind(this)
+  }
+  
+  componentWillMount() {
+    const { dispatch, articles } = this.props
+    
+    if (!articles.length) {
+      dispatch(articleListRequest())
+    }
   }
   
   pageChange(pageNumber) {
@@ -50,10 +54,7 @@ class Page extends Component {
   }
   
   handleRemove(id) {
-  
-    // this.store.dispatch()
-    
-    console.log(id)
+    this.props.dispatch(articleRemoveRequest(id))
   }
   
   renderArticles() {
@@ -61,7 +62,8 @@ class Page extends Component {
       return <ArticleRow key={index}
                          article={article}
                          index={index}
-                         togglePublish={this.togglePublish}/>
+                         togglePublish={this.togglePublish}
+                         handleRemove={this.handleRemove}/>
     })
   }
   
