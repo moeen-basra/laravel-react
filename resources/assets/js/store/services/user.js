@@ -18,7 +18,7 @@ export function fetchUser() {
 export function userUpdateRequest(param) {
   return dispatch => {
     const data = Transformer.send(param)
-    Http.post(`/users/${data.id}`, data)
+    Http.patch(`/users/${data.id}`, data)
       .then((res) => {
         dispatch(userActions.userUpdate(Transformer.fetch(res.data)))
       })

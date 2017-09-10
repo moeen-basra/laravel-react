@@ -1,10 +1,6 @@
 import Model from '../../../utils/Model'
 
 class User extends Model {
-  
-  name = '';
-  email = '';
-  
   constructor(props) {
     super(props)
     
@@ -16,6 +12,8 @@ class User extends Model {
     
     this.name = props.name || ''
     this.email = props.email || ''
+    this.phone = props.phone || ''
+    this.about = props.about || ''
   }
 }
 

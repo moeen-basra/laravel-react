@@ -39,8 +39,8 @@ class Page extends Component {
   }
   
   render() {
-    return <div>
-      <h1>Edit User</h1>
+    return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+      <h1>Profile</h1>
   
       <section className="row">
         <div className="col-12 col-md-9 col-sm-12">
@@ -49,7 +49,7 @@ class Page extends Component {
                 onSubmit={this.handleSubmit}/>
         </div>
       </section>
-    </div>
+    </main>
   }
 }
 

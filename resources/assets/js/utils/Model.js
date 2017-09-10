@@ -15,12 +15,6 @@ import moment from 'moment'
 import _ from 'lodash'
 
 class Model {
-  
-  id
-  createdAt
-  updatedAt
-  deletedAt
-  
   constructor(props) {
     this.initialize(props)
   }

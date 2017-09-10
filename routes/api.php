@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
         return $request->user();
     });
 
-//    Route::post('/users/{id}', 'UserController@update');
+    Route::patch('/users/{id}', 'UserController@update');
 //
 //    Route::get('/users', function () {
 //        return User::all();
