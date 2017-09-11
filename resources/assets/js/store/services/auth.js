@@ -9,14 +9,36 @@ import Transformer from '../../utils/Transformer'
  * @returns {function(*)}
  */
 export function login(credentials) {
-  return dispatch => {
-    Http.post('auth/login', credentials)
-      .then(res => {
-        const data = Transformer.fetch(res.data)
-        dispatch(authActions.authLogin(data.accessToken))
-      })
-      .catch()
-  }
+  return dispatch => (
+    new Promise((resolve, reject) => {
+      Http.post('auth/login', credentials)
+        .then(res => {
+          const data = Transformer.fetch(res.data)
+          dispatch(authActions.authLogin(data.accessToken))
+          return resolve()
+        })
+        .catch((err) => {
+          const statusCode = err.response.status;
+          const data = {
+            error: null,
+            statusCode,
+          };
+  
+          if (statusCode === 422) {
+            const resetErrors = {
+              errors: err.response.data,
+              replace: false,
+              searchStr: '',
+              replaceStr: '',
+            };
+            data.error = Transformer.resetValidationFields(resetErrors);
+          } else if (statusCode === 401) {
+            data.error = err.response.data.message;
+          }
+          return reject(data);
+        })
+    })
+  )
 }
 
 /**
