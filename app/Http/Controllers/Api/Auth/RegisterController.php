@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
@@ -17,8 +18,8 @@ class RegisterController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email',
-            'password'=> 'required|min:6|confirmed',
-            'password_confirmation'=> 'required|min:6'
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'
         ], [
             'password.confirmed' => 'The password does not match.'
         ]);
@@ -28,19 +29,19 @@ class RegisterController extends Controller
 
             $http = new Client;
 
-            $response = $http->post(env('APP_URL').'/oauth/token', [
+            $response = $http->post(env('APP_URL') . '/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
-                    'client_id'     => env('PASSWORD_CLIENT_ID'),
+                    'client_id' => env('PASSWORD_CLIENT_ID'),
                     'client_secret' => env('PASSWORD_CLIENT_SECRET'),
-                    'username'      => $request->get('email'),
-                    'password'      => $request->get('password'),
-                    'remember'      => false,
+                    'username' => $request->get('email'),
+                    'password' => $request->get('password'),
+                    'remember' => false,
                     'scope' => '',
                 ],
             ]);
 
-            return json_decode((string) $response->getBody(), true);
+            return json_decode((string)$response->getBody(), true);
         } catch (\Exception $e) {
             dd($e->getMessage(), $e->getCode(), $e->getTrace());
             return response()->json([
@@ -53,7 +54,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)

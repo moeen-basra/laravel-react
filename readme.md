@@ -69,9 +69,9 @@ TODO:
 - [x] Add Passport for authentication
 - [x] User Login
 - [x] User Register
-- [x] Reset Password
 - [x] Users Crud
 - [x] Articles Crud
+- [ ] Reset Password
 - [ ] Form validation Client and Server
 - [ ] Tests
 - [ ] Upgrade to Laravel 5.5 and React 16
