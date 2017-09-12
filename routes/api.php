@@ -16,7 +16,7 @@ use App\Article;
 |
 */
 
-Route::post('/auth/register', 'Auth\RegisterController@register');
+Route::post('/auth/register', 'Api\Auth\RegisterController@register');
 Route::post('/auth/login', 'Api\Auth\LoginController@login');
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {

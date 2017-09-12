@@ -117,13 +117,22 @@ class Page extends Component {
       handleSubmit: this.handleSubmit,
     }
     
-    return <div className="container">
-      <div className="row justify-content-md-center">
-        <div className="col-12 col-sm-12">
-          <Form {...props} />
+    return (<div className="container py-5">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="row">
+            <div className="mx-auto">
+              <span className="anchor"/>
+              <div className="card has-shadow">
+                <div className="card-body">
+                  <Form {...props} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </div>)
   }
 }
 

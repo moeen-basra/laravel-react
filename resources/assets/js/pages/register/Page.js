@@ -1,59 +1,45 @@
 //import libs
-import $ from 'jquery'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import Http from '../../utils/Http'
+import $ from 'jquery'
+import _ from 'lodash'
+import { Redirect } from 'react-router-dom'
+import { register } from '../../store/services/auth'
+import { Validator } from 'vee-validate'
 
 // import components
 import Form from './components/Form'
 
+// initialize component
 class Page extends Component {
   static displayName = 'RegisterPage'
   static propTypes = {
-    history: PropTypes.object.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    dispatch: PropTypes.func.isRequired,
   }
   
   constructor(props) {
     super(props)
     
+    this.validator = new Validator({
+      name: 'required|min:6',
+      email: 'required|email',
+      password: 'required|min:6',
+      passwordConfirmation: 'required|min:6'
+    })
+    
     this.state = {
-      user: {
+      credentials: {
         name: '',
         email: '',
         password: '',
-        password_confirmation: '',
+        passwordConfirmation: '',
       },
+      errors: this.validator.errors
     }
     
-    this.onChange = this.onChange.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
-  }
-  
-  onChange(name, value) {
-    const { user } = this.state
-    
-    user[name] = value
-    
-    this.setState({ user })
-  }
-  
-  onSubmit(e) {
-    e.preventDefault()
-    
-    const { user } = this.state
-  
-    Http.post('/auth/register', user)
-      .then(res => {
-        if (res.status === 201) {
-          this.props.history.push('/login')
-        } else {
-          return res
-        }
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   
   componentDidMount() {
@@ -64,14 +50,85 @@ class Page extends Component {
     $('body').removeAttr('style')
   }
   
+  // event to handle input change
+  handleChange(name, value) {
+    const credentials = { ...this.state.credentials, [name]: value }
+    const { errors } = this.validator
+    
+    errors.remove(name)
+    
+    this.validator.validate(name, value)
+      .then(() => {
+        this.setState({ errors, credentials })
+      })
+  }
+  
+  handleSubmit(e) {
+    e.preventDefault()
+    const { credentials } = this.state
+    const { errors } = this.validator
+  
+    this.validator.validateAll(credentials)
+      .then((success) => {
+        if (success) {
+          this.submit(credentials)
+        } else {
+          this.setState({ errors })
+        }
+      })
+  }
+  
+  submit(credentials) {
+    this.props.dispatch(register(credentials))
+      .catch(({ error, statusCode }) => {
+        console.log(error)
+        const { errors } = this.validator
+        
+        if (statusCode === 422) {
+          _.forOwn(error, (message, field) => {
+            errors.add(field, message);
+          });
+        } else if (statusCode === 401) {
+          errors.add('password', error);
+        }
+        
+        this.setState({ errors })
+      })
+  }
+  
   render() {
-    return <div className="container">
-      <div className="row justify-content-md-center">
-        <div className="col-12 col-sm-12">
-          <Form {...this.state.user} onChange={this.onChange} onSubmit={this.onSubmit} />
+    // check if user is authenticated then redirect him to home page
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/" />
+    }
+    
+    const { name, email, password, passwordConfirmation } = this.state.credentials
+    const props = {
+      name,
+      email,
+      password,
+      passwordConfirmation,
+      errors: this.state.errors,
+      handleChange: this.handleChange,
+      handleSubmit: this.handleSubmit,
+    }
+    
+    return (<div className="container py-5">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="row">
+            <div className="mx-auto">
+              <span className="anchor"/>
+              <div className="card has-shadow">
+                <div className="card-body">
+                  <Form {...props} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </div>)
   }
 }
 

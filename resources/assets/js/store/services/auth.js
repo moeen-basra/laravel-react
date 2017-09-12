@@ -41,6 +41,39 @@ export function login(credentials) {
   )
 }
 
+export function register(credentials) {
+  return dispatch => (
+    new Promise((resolve, reject) => {
+      Http.post('auth/register', Transformer.send(credentials))
+        .then(res => {
+          const data = Transformer.fetch(res.data)
+          dispatch(authActions.authLogin(data.accessToken))
+          return resolve()
+        })
+        .catch((err) => {
+          const statusCode = err.response.status;
+          const data = {
+            error: null,
+            statusCode,
+          };
+          
+          if (statusCode === 422) {
+            const resetErrors = {
+              errors: err.response.data,
+              replace: false,
+              searchStr: '',
+              replaceStr: '',
+            };
+            data.error = Transformer.resetValidationFields(resetErrors);
+          } else if (statusCode === 401) {
+            data.error = err.response.data.message;
+          }
+          return reject(data);
+        })
+    })
+  )
+}
+
 /**
  * logout user
  *

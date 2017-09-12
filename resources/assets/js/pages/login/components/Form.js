@@ -12,43 +12,42 @@ const propTypes = {
   handleChange: PropTypes.func.isRequired,
 }
 
-const renderErrors = (errors) => {
-  if (errors.count()) {
-    return <div className="alert alert-danger" role="alert">
-      {errors.has('email') && <p className="m-0">{errors.first('email')}</p>}
-      {errors.has('password') && <p className="m-0">{errors.first('password')}</p>}
-    </div>
-  }
-}
-
 const Form = ({ email, password, remember, errors, handleChange, handleSubmit }) => (
-  <form className="form-signin" onSubmit={handleSubmit} noValidate>
-    <h2 className="form-signin-heading">Please sign in</h2>
-    { renderErrors(errors) }
-    <label htmlFor="email" className="sr-only">E-Mail Address</label>
-    <input id="email"
-           type="email"
-           className={`form-control ${errors.has('email') && 'is-invalid'}`}
-           name="email"
-           placeholder="Email address"
-           value={email || ''}
-           onChange={e => handleChange(e.target.name, e.target.value)}
-           required
-           autoFocus />
-    <label htmlFor="password" className="sr-only">Password</label>
-    <input id="password"
-           type="password"
-           className={`form-control ${errors.has('password') && 'is-invalid'}`}
-           name="password"
-           placeholder="Password"
-           value={password || ''}
-           onChange={e => handleChange(e.target.name, e.target.value)}
-           required />
-    <div className="checkbox mt-3">
-      <label>
+  <form className="form" role="form" onSubmit={handleSubmit} noValidate>
+    <h2 className="card-title">Please sign in</h2>
+    <div className="form-group">
+      <label htmlFor="email" className="sr-only">Email</label>
+      <input type="text"
+             className={`form-control form-control-lg rounded-0 ${errors.has('email') && 'is-invalid'}`}
+             name="email"
+             id="email"
+             placeholder="Email address"
+             value={email || ''}
+             onChange={e => handleChange(e.target.name, e.target.value)}
+             required
+             autoFocus/>
+      {errors.has('email') && <div className="invalid-feedback">{errors.first('email')}</div>}
+    </div>
+    <div className="form-group">
+      <label htmlFor="password" className="sr-only">Password</label>
+      <input type="password"
+             className={`form-control form-control-lg rounded-0 ${errors.has('password') && 'is-invalid'}`}
+             id="password"
+             name="password"
+             placeholder="Password"
+             value={password || ''}
+             onChange={e => handleChange(e.target.name, e.target.value)}
+             required/>
+      {errors.has('password') && <div className="invalid-feedback">{errors.first('password')}</div>}
+    </div>
+    <div>
+      <label className="custom-control custom-checkbox">
         <input type="checkbox"
                name="remember"
-               onChange={e => handleChange(e.target.name, !remember)} /> Remember me
+               className="custom-control-input"
+               onChange={e => handleChange(e.target.name, !remember)}/>
+        <span className="custom-control-indicator" />
+        <span className="custom-control-description small">Remember me on this computer</span>
       </label>
     </div>
     <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
