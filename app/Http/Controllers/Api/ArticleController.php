@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Article;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -31,10 +32,10 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ArticleRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         $article = new Article();
 
@@ -45,7 +46,7 @@ class ArticleController extends Controller
 
         $article->save();
 
-        return $article;
+        return response()->json($article, 201);
     }
 
     /**
@@ -73,11 +74,11 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ArticleRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
         $article = Article::findOrFail($id);
 
@@ -90,7 +91,7 @@ class ArticleController extends Controller
 
         $article->save();
 
-        return response()->json($article, 201);
+        return response()->json($article, 200);
     }
 
     /**

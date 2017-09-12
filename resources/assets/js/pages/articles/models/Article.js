@@ -2,13 +2,6 @@ import moment from 'moment'
 import Model from '../../../utils/Model'
 
 class Article extends Model {
-  slug = ''
-  title = ''
-  content = ''
-  description = ''
-  published = false
-  publishedAt;
-  
   constructor(props) {
     super(props)
     

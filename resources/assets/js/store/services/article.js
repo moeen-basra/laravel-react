@@ -11,20 +11,69 @@ function transformResponse(params) {
 }
 
 export function articleAddRequest(params) {
-  return dispatch => {
-    Http.post('/articles', transformRequest(params))
-      .then((res) => {
-        dispatch(articleActions.add(transformResponse(res.data)))
-      })
-      .catch((err) => {
-        // TODO: handle error
-        console.error(err.response)
-      })
-  }
+  return dispatch => (
+    new Promise((resolve, reject) => {
+      Http.post('/articles', transformRequest(params))
+        .then(res => {
+          dispatch(articleActions.add(transformResponse(res.data)))
+          return resolve()
+        })
+        .catch((err) => {
+          const statusCode = err.response.status;
+          const data = {
+            error: null,
+            statusCode,
+          };
+          
+          if (statusCode === 422) {
+            const resetErrors = {
+              errors: err.response.data,
+              replace: false,
+              searchStr: '',
+              replaceStr: '',
+            };
+            data.error = Transformer.resetValidationFields(resetErrors);
+          } else if (statusCode === 401) {
+            data.error = err.response.data.message;
+          }
+          return reject(data);
+        })
+    })
+  )
 }
 
 export function articleUpdateRequest(params) {
-  return dispatch => {
+  return dispatch => (
+    new Promise((resolve, reject) => {
+      Http.patch(`articles/${params.id}`, transformRequest(params))
+        .then(res => {
+          dispatch(articleActions.add(transformResponse(res.data)))
+          return resolve()
+        })
+        .catch((err) => {
+          const statusCode = err.response.status;
+          const data = {
+            error: null,
+            statusCode,
+          };
+          
+          if (statusCode === 422) {
+            const resetErrors = {
+              errors: err.response.data,
+              replace: false,
+              searchStr: '',
+              replaceStr: '',
+            };
+            data.error = Transformer.resetValidationFields(resetErrors);
+          } else if (statusCode === 401) {
+            data.error = err.response.data.message;
+          }
+          return reject(data);
+        })
+    })
+  )
+  
+  /*return dispatch => {
     Http.patch(`articles/${params.id}`, transformRequest(params))
       .then((res) => {
         dispatch(articleActions.update(transformResponse(res.data)))
@@ -33,7 +82,7 @@ export function articleUpdateRequest(params) {
         // TODO: handle error
         console.error(err.response)
       })
-  }
+  }*/
 }
 
 export function articleRemoveRequest(id) {

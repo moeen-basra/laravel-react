@@ -86,7 +86,6 @@ class Page extends Component {
   submit(credentials) {
     this.props.dispatch(login(credentials))
       .catch(({ error, statusCode }) => {
-        console.log(error)
         const { errors } = this.validator
   
         if (statusCode === 422) {
