@@ -67,7 +67,9 @@ const Form = ({ name, email, password, passwordConfirmation, errors, handleChang
              required/>
       {errors.has('passwordConfirmation') && <div className="invalid-feedback">{errors.first('passwordConfirmation')}</div>}
     </div>
-    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button className="btn btn-lg btn-primary btn-block"
+            type="submit"
+            disabled={errors.any()}>Sign Up</button>
     <p>Back to<Link to="/login" className="btn btn-link">Login</Link></p>
   </form>)
 }

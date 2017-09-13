@@ -50,7 +50,9 @@ const Form = ({ email, password, remember, errors, handleChange, handleSubmit })
         <span className="custom-control-description small">Remember me on this computer</span>
       </label>
     </div>
-    <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <button className="btn btn-lg btn-primary btn-block"
+            type="submit"
+            disabled={errors.any()}>Sign In</button>
     <p>Not a member? <Link to='/register'>Signup here</Link></p>
   </form>
 )

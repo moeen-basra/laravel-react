@@ -72,17 +72,6 @@ export function articleUpdateRequest(params) {
         })
     })
   )
-  
-  /*return dispatch => {
-    Http.patch(`articles/${params.id}`, transformRequest(params))
-      .then((res) => {
-        dispatch(articleActions.update(transformResponse(res.data)))
-      })
-      .catch((err) => {
-        // TODO: handle error
-        console.error(err.response)
-      })
-  }*/
 }
 
 export function articleRemoveRequest(id) {

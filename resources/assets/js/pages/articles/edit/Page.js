@@ -7,7 +7,7 @@ import { update as articleUpdate } from '../../../store/actions/article'
 import { Validator } from 'vee-validate'
 
 // import components
-import Form from '../add/components/Form'
+import Form from './components/Form'
 
 class Page extends Component {
   static displayName = 'EditArticle'
