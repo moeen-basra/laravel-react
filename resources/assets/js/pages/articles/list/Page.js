@@ -26,11 +26,9 @@ class Page extends Component {
   }
   
   componentWillMount() {
-    const { dispatch, articles } = this.props
-    
-    if (!articles.length) {
-      dispatch(articleListRequest())
-    }
+    const { dispatch } = this.props
+  
+    dispatch(articleListRequest())
   }
   
   pageChange(pageNumber) {

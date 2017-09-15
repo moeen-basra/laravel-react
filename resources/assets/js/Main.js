@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import { fetchUser } from './store/services/user'
 
 // import components
-import Navigation from './includes/navigation'
+import Navigation from './common/navigation'
+import Footer from './common/footer'
 
 const containerStyle = {
   paddingTop: '3.5rem',
@@ -40,11 +41,8 @@ class Main extends Component {
   render() {
     return <div style={containerStyle}>
       <Navigation/>
-      <div className="container-fluid">
-        <div className="row">
-          { this.props.children }
-        </div>
-      </div>
+      { this.props.children }
+      <Footer/>
     </div>
   }
 }

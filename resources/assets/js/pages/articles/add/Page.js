@@ -33,7 +33,7 @@ class Page extends Component {
   }
   
   handleChange(name, value) {
-    this.props.article = { ...this.props.article, [name]: value}
+    this.props.article[name] = value
     const { errors } = this.validator
   
     errors.remove(name)
@@ -77,7 +77,7 @@ class Page extends Component {
   render() {
     return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
       <h1>Edit</h1>
-      <Form article={this.state.article}
+      <Form article={this.props.article}
             errors={this.state.errors}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />

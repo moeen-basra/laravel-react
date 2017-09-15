@@ -1,6 +1,6 @@
 import Register from '../pages/register'
 import Login from '../pages/login'
-import Home from '../pages/Home'
+import Home from '../pages/home'
 import EditUser from '../pages/users/edit'
 import Articles from '../pages/articles/list'
 import AddArticle from '../pages/articles/add'

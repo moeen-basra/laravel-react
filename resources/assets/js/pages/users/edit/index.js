@@ -8,7 +8,7 @@
 
 // import libs
 import { connect } from 'react-redux'
-import User from '../models/User'
+import User from '../../../models/User'
 
 // import components
 import Page from './Page'

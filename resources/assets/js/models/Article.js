@@ -1,5 +1,5 @@
 import moment from 'moment'
-import Model from '../../../utils/Model'
+import Model from './Model'
 
 class Article extends Model {
   constructor(props) {

@@ -1,4 +1,4 @@
-import Model from '../../../utils/Model'
+import Model from './Model'
 
 class User extends Model {
   constructor(props) {

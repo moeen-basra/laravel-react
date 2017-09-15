@@ -1,4 +1,4 @@
-import User from '../../pages/users/models/User'
+import User from '../../models/User'
 import { USER_UPDATE , USER_UNSET, AUTH_LOGOUT } from '../action-types'
 
 const initialState = Object.assign({}, new User({}))

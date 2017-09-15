@@ -16,33 +16,18 @@ use App\Article;
 |
 */
 
-Route::post('/auth/register', 'Api\Auth\RegisterController@register');
-Route::post('/auth/login', 'Api\Auth\LoginController@login');
+Route::post('auth/register', 'Api\Auth\RegisterController@register')->name('auth.register');
+Route::post('auth/login', 'Api\Auth\LoginController@login')->name('auth.login');
+Route::get('articles', 'Api\ArticleController@index')->name('articles.index');
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
-    Route::patch('/users/{id}', 'UserController@update');
+    Route::patch('/users/{id}', 'UserController@update')->name('users.update');
 
-    Route::resource('articles', 'ArticleController');
-//
-//    Route::get('/articles', 'ArticleController@index');
-//
-//    Route::get('/articles/{id}', function ($id) {
-//        return Article::findOrFail($id);
-//    });
-//
-//    Route::put('/articles/{id}', 'ArticleController@update');
-//
-//    Route::delete('/articles/{id}', function ($id) {
-//        $article = Article::findOrFail($id);
-//
-//        $article->delete();
-//
-//        return response('Article Deleted.', 200);
-//    });
+    Route::resource('articles', 'ArticleController', ['except' => ['index', 'edit', 'create']]);
 
-    Route::delete('/auth/logout', 'Auth\LoginController@logout');
+    Route::delete('/auth/logout', 'Auth\LoginController@logout')->name('auth.logout');;
 });
