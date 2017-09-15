@@ -28,11 +28,11 @@ class Page extends Component {
   componentWillMount() {
     const { dispatch } = this.props
   
-    dispatch(articleListRequest())
+    dispatch(articleListRequest({}))
   }
   
   pageChange(pageNumber) {
-    this.props.dispatch(articleListRequest(pageNumber))
+    this.props.dispatch(articleListRequest({ pageNumber }))
   }
   
   togglePublish(id) {

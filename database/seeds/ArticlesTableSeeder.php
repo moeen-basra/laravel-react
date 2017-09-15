@@ -11,6 +11,9 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Article::class, 250)->create();
+        $user = \App\User::where('is_admin', true)->first();
+        factory(App\Article::class, 250)->create([
+            'user_id' => $user->id
+        ]);
     }
 }

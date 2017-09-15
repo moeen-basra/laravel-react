@@ -87,9 +87,8 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest(pageNumber = 1) {
+export function articleListRequest({pageNumber = 1, url = '/articles'}) {
   return dispatch => {
-    let url = 'articles'
     if (pageNumber > 1) {
       url = url + `?page=${pageNumber}`
     }
@@ -105,9 +104,22 @@ export function articleListRequest(pageNumber = 1) {
   }
 }
 
-export function articleRequest(id) {
+export function articleEditRequest(id) {
   return dispatch => {
-    Http.get(`articles/${id}`)
+    Http.get(`articles/${id}/edit`)
+      .then((res) => {
+        dispatch(articleActions.add(transformResponse(res.data)))
+      })
+      .catch((err) => {
+        // TODO: handle err
+        console.error(err.response)
+      })
+  }
+}
+
+export function articleFetchRequest(id) {
+  return dispatch => {
+    Http.get(`articles/published/${id}`)
       .then((res) => {
         dispatch(articleActions.add(transformResponse(res.data)))
       })

@@ -1,5 +1,6 @@
 import moment from 'moment'
 import Model from './Model'
+import User from './User'
 
 class Article extends Model {
   constructor(props) {
@@ -17,6 +18,9 @@ class Article extends Model {
     this.content = props.content || ''
     this.published = props.published || false
     this.publishedAt = props.publishedAt ? moment(props.publishedAt) : null
+    
+    // relate user model
+    this.user = props.user ? new User(props.user) : null
   }
 }
 

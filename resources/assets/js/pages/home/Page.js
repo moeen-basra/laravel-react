@@ -20,7 +20,7 @@ class Page extends Component {
   }
   
   componentDidMount() {
-    this.props.dispatch(articleListRequest())
+    this.props.dispatch(articleListRequest({ url: '/articles/published' }))
   }
   
   render() {

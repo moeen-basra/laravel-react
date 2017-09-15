@@ -5,6 +5,7 @@ import EditUser from '../pages/users/edit'
 import Articles from '../pages/articles/list'
 import AddArticle from '../pages/articles/add'
 import EditArticle from '../pages/articles/edit'
+import ShowArticle from '../pages/articles/show'
 
 const routes = [
   {
@@ -48,6 +49,12 @@ const routes = [
     exact: true,
     auth: true,
     component: EditArticle,
+  },
+  {
+    path: '/articles/:id',
+    exact: true,
+    auth: false,
+    component: ShowArticle,
   },
 ]
 

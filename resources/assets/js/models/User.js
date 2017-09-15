@@ -1,4 +1,5 @@
 import Model from './Model'
+import Article from './Article'
 
 class User extends Model {
   constructor(props) {
@@ -14,6 +15,9 @@ class User extends Model {
     this.email = props.email || ''
     this.phone = props.phone || ''
     this.about = props.about || ''
+    
+    // relate article
+    this.article = props.article ? new Article(props.article) : null
   }
 }
 

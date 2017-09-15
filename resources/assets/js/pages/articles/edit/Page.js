@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleRequest, articleUpdateRequest } from '../../../store/services/article'
+import { articleEditRequest, articleUpdateRequest } from '../../../store/services/article'
 import { update as articleUpdate } from '../../../store/actions/article'
 import { Validator } from 'vee-validate'
 
@@ -42,7 +42,7 @@ class Page extends Component {
     const { match, article, dispatch } = this.props
     
     if (!article.id) {
-      dispatch(articleRequest(match.params.id))
+      dispatch(articleEditRequest(match.params.id))
     }
   }
   

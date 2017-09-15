@@ -18,7 +18,8 @@ use App\Article;
 
 Route::post('auth/register', 'Api\Auth\RegisterController@register')->name('auth.register');
 Route::post('auth/login', 'Api\Auth\LoginController@login')->name('auth.login');
-Route::get('articles', 'Api\ArticleController@index')->name('articles.index');
+Route::get('articles/published', 'Api\ArticleController@publishedArticles')->name('articles.published.index');
+Route::get('articles/published/{id}', 'Api\ArticleController@publishedArticle')->name('articles.published.show');
 
 Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
     Route::get('/user', function (Request $request) {
@@ -27,7 +28,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
 
     Route::patch('/users/{id}', 'UserController@update')->name('users.update');
 
-    Route::resource('articles', 'ArticleController', ['except' => ['index', 'edit', 'create']]);
+    Route::resource('articles', 'ArticleController', ['except' => ['edit', 'create']]);
 
     Route::delete('/auth/logout', 'Auth\LoginController@logout')->name('auth.logout');;
 });

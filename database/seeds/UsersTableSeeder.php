@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Moeen Basra',
             'email' => 'm.basra@live.com',
             'password' => bcrypt('secret'),
+            'is_admin' => true,
             'remember_token' => str_random(10),
         ]);
     }

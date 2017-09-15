@@ -16,10 +16,29 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user('api')) {
+        if ($request->user()->is_admin) {
             return Article::loadAll();
         }
-        return Article::loadPublished();
+        return Article::loadAllMine($request->user()->id);
+    }
+
+    /**
+     * get published articles
+     *
+     * @return mixed
+     */
+    public function publishedArticles() {
+        return Article::loadAllPublished();
+    }
+
+    /**
+     * Get detail of published article
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function publishedArticle($id) {
+        return Article::loadPublished($id);
     }
 
     /**
@@ -40,6 +59,8 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        $user = $request->user();
+
         $article = new Article();
 
         $article->title = $request->get('title');
@@ -47,7 +68,7 @@ class ArticleController extends Controller
         $article->description = $request->get('description');
         $article->content = $request->get('content');
 
-        $article->save();
+        $user->articles()->save($article);
 
         return response()->json($article, 201);
     }
@@ -55,11 +76,16 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        if (!$request->user()->is_admin) {
+            return Article::mine($request->user()->id)->findOrFail($id);
+        }
+
         return Article::findOrFail($id);
     }
 
