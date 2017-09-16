@@ -6,6 +6,7 @@ import { fetchUser } from './store/services/user'
 
 // import components
 import Navigation from './common/navigation'
+import Scroller from './common/scroll-top'
 import Footer from './common/footer'
 
 const containerStyle = {
@@ -42,6 +43,7 @@ class Main extends Component {
     return <div style={containerStyle}>
       <Navigation/>
       { this.props.children }
+      <Scroller />
       <Footer/>
     </div>
   }
