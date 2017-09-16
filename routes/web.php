@@ -14,20 +14,3 @@
 Route::get( '/{any}', function () {
     return view('index');
 })->where('any', '.*');
-
-//Route::get('/', function () {
-//    return view('index');
-//});
-//
-//Route::get('/{slug}', function () {
-//    return view('index');
-//});
-//
-//Route::get('/articles/{id}/edit', function ($id) {
-//    return view('index', compact('id'));
-//});
-
-//Auth::routes();
-
-//Route::get('/home', 'HomeController@index');
-

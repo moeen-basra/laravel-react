@@ -16,12 +16,14 @@ use App\Article;
 |
 */
 
-Route::post('auth/register', 'Api\Auth\RegisterController@register')->name('auth.register');
-Route::post('auth/login', 'Api\Auth\LoginController@login')->name('auth.login');
-Route::get('articles/published', 'Api\ArticleController@publishedArticles')->name('articles.published.index');
-Route::get('articles/published/{id}', 'Api\ArticleController@publishedArticle')->name('articles.published.show');
+// default name space for all routes is 'App\Http\Controllers\Api'
 
-Route::group(['middleware' => 'auth:api', 'namespace' => 'Api'], function() {
+Route::post('auth/register', 'Auth\RegisterController@register')->name('auth.register');
+Route::post('auth/login', 'Auth\LoginController@login')->name('auth.login');
+Route::get('articles/published', 'ArticleController@publishedArticles')->name('articles.published.index');
+Route::get('articles/published/{id}', 'ArticleController@publishedArticle')->name('articles.published.show');
+
+Route::group(['middleware' => 'auth:api'], function() {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });

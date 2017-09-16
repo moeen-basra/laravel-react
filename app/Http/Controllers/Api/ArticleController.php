@@ -23,7 +23,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * get published articles
+     * get all published articles
      *
      * @return mixed
      */
@@ -32,7 +32,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Get detail of published article
+     * Get single published article
      *
      * @param $id
      * @return mixed
