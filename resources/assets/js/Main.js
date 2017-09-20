@@ -42,8 +42,10 @@ class Main extends Component {
   render() {
     return <div style={containerStyle}>
       <Navigation/>
-      { this.props.children }
-      <Scroller />
+      <main style={{ minHeight: '100vh'}}>
+        { this.props.children }
+        <Scroller />
+      </main>
       <Footer/>
     </div>
   }

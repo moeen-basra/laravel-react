@@ -75,13 +75,13 @@ class Page extends Component {
   }
   
   render() {
-    return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+    return <div className="col-sm-9 ml-sm-auto col-md-10 pt-3">
       <h1>Edit</h1>
       <Form article={this.props.article}
             errors={this.state.errors}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />
-    </main>
+    </div>
   }
 }
 
