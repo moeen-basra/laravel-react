@@ -48,13 +48,17 @@ class Page extends Component {
     
   }
   
+  createMarkup() {
+    return {__html: this.props.article.content};
+  }
+  
   renderArticle() {
     const { article } = this.props
     return (<div className="col-12 col-sm-9 mb-5 mx-auto">
       <h2>{article.title}</h2>
       <small className="text-muted mb-5">{ this.renderPublishedDate() } { this.renderAuthor() }</small>
       <p className="text-muted mb-5">{article.description}</p>
-      <p>{article.content}</p>
+      <div dangerouslySetInnerHTML={this.createMarkup()} />
     </div>)
   }
   
