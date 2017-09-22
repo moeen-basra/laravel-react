@@ -106,7 +106,7 @@ export function articleListRequest({pageNumber = 1, url = '/articles'}) {
 
 export function articleEditRequest(id) {
   return dispatch => {
-    Http.get(`articles/${id}/edit`)
+    Http.get(`articles/${id}`)
       .then((res) => {
         dispatch(articleActions.add(transformResponse(res.data)))
       })
