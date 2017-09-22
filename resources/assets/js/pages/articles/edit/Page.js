@@ -89,13 +89,21 @@ class Page extends Component {
       })
   }
   
+  renderForm() {
+    const { article } = this.props
+    
+    if (article.id) {
+      return <Form article={this.props.article}
+                   errors={this.state.errors}
+                   onChange={this.handleChange}
+                   onSubmit={this.handleSubmit} />
+    }
+  }
+  
   render() {
     return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
       <h1>Edit</h1>
-      <Form article={this.props.article}
-            errors={this.state.errors}
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit} />
+      { this.renderForm() }
     </main>
   }
 }
