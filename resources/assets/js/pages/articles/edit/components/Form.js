@@ -11,6 +11,13 @@ const propTypes = {
 }
 
 const Form = ({ article, errors, onChange, onSubmit }) => {
+  
+  function handleChange(name, value) {
+    if (value !== article[name]) {
+      onChange(name, value)
+    }
+  }
+  
   return <form onSubmit={e => onSubmit(e)}>
     <div className="form-group row">
       <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
@@ -21,7 +28,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
                className={`form-control ${errors.has('title') && 'is-invalid'}`}
                placeholder="Title"
                value={article.title || ''}
-               onChange={e => onChange(e.target.name, e.target.value)} />
+               onChange={e => handleChange(e.target.name, e.target.value)} />
         {errors.has('title') && <div className="invalid-feedback">{errors.first('title')}</div>}
       </div>
     </div>
@@ -34,14 +41,14 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
                   rows="3"
                   placeholder="Description"
                   value={article.description}
-                  onChange={e => onChange(e.target.name, e.target.value)} />
+                  onChange={e => handleChange(e.target.name, e.target.value)} />
         {errors.has('description') && <div className="invalid-feedback">{errors.first('description')}</div>}
       </div>
     </div>
     <div className="form-group row">
       <label htmlFor="content" className="col-sm-2 col-form-label">Content</label>
       <div className="col-sm-10">
-        <MyEditor id="content" value={article.content} onChange={(e) => (onChange('content', e))} />
+        <MyEditor id="content" value={article.content} onChange={e => handleChange('content', e)} />
         {errors.has('content') && <div className="invalid-feedback">{errors.first('content')}</div>}
       </div>
     </div>
