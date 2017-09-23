@@ -12,7 +12,7 @@ class Article extends Model {
   initialize(props) {
     super.initialize(props)
     
-    this.slug = props.slug | ''
+    this.slug = props.slug || ''
     this.title = props.title || ''
     this.description = props.description || ''
     this.content = props.content || ''

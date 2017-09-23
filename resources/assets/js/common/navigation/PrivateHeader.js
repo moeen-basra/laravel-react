@@ -34,11 +34,11 @@ const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, log
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-right">
           <Link className='dropdown-item' to={`/users/${user.id}/edit`}>
-            <span className="oi oi-person" title="logout" aria-hidden="true"/> Profile
+            <span className="fa fa-user-o" title="logout" aria-hidden="true"/> Profile
           </Link>
           <DropdownItem divider />
           <DropdownItem onClick={e => logout(e)}>
-            <span className="oi oi-account-logout" title="logout" aria-hidden="true"/> Logout
+            <span className="fa fa-sign-out" title="logout" aria-hidden="true"/> Logout
           </DropdownItem>
         </DropdownMenu>
       </NavDropdown>

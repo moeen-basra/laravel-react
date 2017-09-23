@@ -32,7 +32,7 @@ class Page extends Component {
             <h1>Moeen Farooq Basra</h1>
             <p className="lead">Master in Information Technology</p>
             <p className="lead">Web Developer at <a className="text-white" href="infamous.ae" target="_blank">Infamous.ae</a></p>
-            <p className="lead"><i className="oi oi-heart text-danger" />{`{ PHP, JavaScript, Python, MySQL, MongoDB }`}</p>
+            <p className="lead"><i className="fa fa-heart text-danger" />{`{ PHP, JavaScript, Python, MySQL, MongoDB }`}</p>
           </div>
         </header>
         <Articles/>

@@ -59,7 +59,7 @@ class ScrollButton extends Component {
       return (<a href="#" title='Back to top'
                  style={style}
                  onClick={(e) => { this.scrollToTop(e) }}>
-        <i className="oi oi-arrow-circle-top"
+        <i className="fa fa-chevron-circle-up"
            style={{ fontSize: '3rem' }}
            aria-hidden="true" />
       </a>)
