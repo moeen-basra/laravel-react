@@ -75,4 +75,4 @@ TODO:
 - [ ] Reset Password
 - [ ] Tests
 - [x] Upgrade to Laravel 5.5
-- [ ] Upgrade to React 16
+- [x] Upgrade to React 16
