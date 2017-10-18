@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Laravel 5.4 & React boilerplate
+## Laravel 5.5 and React boilerplate
 
 Please follow the guide.
 
@@ -74,4 +74,5 @@ TODO:
 - [x] Form validation Client and Server
 - [ ] Reset Password
 - [ ] Tests
-- [ ] Upgrade to Laravel 5.5 and React 16
+- [x] Upgrade to Laravel 5.5
+- [ ] Upgrade to React 16
