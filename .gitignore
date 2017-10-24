@@ -6,6 +6,7 @@ composer.lock
 Homestead.json
 Homestead.yaml
 .env
+package-lock.json
 _ide_helper.php
 
 /public/storage
