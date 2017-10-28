@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { articleEditRequest, articleUpdateRequest } from '../../../store/services/article'
 import { update as articleUpdate } from '../../../store/actions/article'
-import { Validator } from 'vee-validate'
+import { Validator } from 'ree-validate'
 
 // import components
 import Form from './components/Form'

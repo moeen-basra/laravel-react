@@ -5,7 +5,7 @@ import $ from 'jquery'
 import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../store/services/auth'
-import { Validator } from 'vee-validate'
+import { Validator } from 'ree-validate'
 
 // import components
 import Form from './components/Form'

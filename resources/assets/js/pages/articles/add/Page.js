@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { articleAddRequest } from '../../../store/services/article'
-import { Validator } from 'vee-validate'
+import { Validator } from 'ree-validate'
 
 // import components
 import Form from './components/Form'

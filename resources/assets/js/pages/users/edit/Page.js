@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { userUpdate } from '../../../store/actions/user'
 import { userUpdateRequest } from '../../../store/services/user'
-import { Validator } from 'vee-validate'
+import { Validator } from 'ree-validate'
 
 // import components
 import Form from './components/Form'
