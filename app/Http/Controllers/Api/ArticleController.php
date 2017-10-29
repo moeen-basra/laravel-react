@@ -61,12 +61,8 @@ class ArticleController extends Controller
     {
         $user = $request->user();
 
-        $article = new Article();
-
-        $article->title = $request->get('title');
+        $article = new Article($request->validated());
         $article->slug = str_slug($request->get('title'));
-        $article->description = $request->get('description');
-        $article->content = $request->get('content');
 
         $user->articles()->save($article);
 
@@ -111,14 +107,10 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id);
 
-        $article->slug = $request->get('slug');
-        $article->title = $request->get('title');
-        $article->description = $request->get('description');
-        $article->content = $request->get('content');
-        $article->published = $request->get('published');
-        $article->published_at = $request->get('published_at');
+        $data = $request->validated();
+        $data['slug'] = str_slug($data['title']);
 
-        $article->save();
+        $article->update($data);
 
         return response()->json($article, 200);
     }

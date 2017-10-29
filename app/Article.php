@@ -18,6 +18,8 @@ class Article extends Model
      */
     protected $table = 'articles';
 
+    protected $fillable = ['title', 'slug', 'description', 'content'];
+
     /**
      * The attributes that should be mutated to dates.
      *

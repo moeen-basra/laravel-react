@@ -15,12 +15,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->phone = $request->get('phone');
-        $user->about = $request->get('about');
-
-        $user->save();
+        $user->update($request->validated());
 
         return response()->json([
             'user' => $user

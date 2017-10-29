@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Article;
 use App\User;
+use Carbon\Carbon;
 use Symfony\Component\HttpKernel\Tests\Exception\NotFoundHttpExceptionTest;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -35,7 +36,7 @@ class ArticleTest extends TestCase
     }
 
     /** @test */
-    public function that_load_all_loads_all_articles()
+    public function that_load_all_articles()
     {
         $this->seedUnpublishedArticles();
 
@@ -69,17 +70,59 @@ class ArticleTest extends TestCase
         $this->assertInstanceOf(Article::class, $article);
     }
 
-    private function seedUnpublishedArticles()
+    /** @test */
+    public function that_article_get_published_and_total_number_of_published_get_changed()
     {
-        factory(Article::class, 15)->create([
+        $this->seedPublishedArticles(2);
+        $this->seedUnpublishedArticles(5);
+
+        $date = Carbon::now()->format('Y-m-d');
+
+        $article = Article::where('published', false)->first();
+        $article->published = true;
+        $article->published_at = $date;
+
+        $article->save();
+
+        $this->assertEquals($article->published, true);
+        $this->assertEquals($article->published_at->format('Y-m-d'), $date);
+
+        $articles = Article::where('published', true)->get();
+
+        $this->assertEquals($articles->count(), 3);
+    }
+
+    /** @test */
+    public function that_article_get_unpublished_and_total_number_of_unpublished_get_changed()
+    {
+        $this->seedPublishedArticles(2);
+        $this->seedUnpublishedArticles(5);
+
+        $article = Article::where('published', true)->first();
+        $article->published = false;
+        $article->published_at = null;
+
+        $article->save();
+
+        $this->assertEquals($article->published, false);
+        $this->assertEquals($article->published_at, null);
+
+        $articles = Article::where('published', false)->get();
+
+        $this->assertEquals($articles->count(), 6);
+    }
+
+    private function seedUnpublishedArticles($num = 15)
+    {
+        factory(Article::class, $num)->create([
             'user_id' => $this->user->id,
             'published' => false,
         ]);
     }
 
-    private function seedPublishedArticles()
+    private function seedPublishedArticles($num = 5)
     {
-        factory(Article::class, 5)->create([
+        factory(Article::class, $num)->create([
             'user_id' => $this->user->id,
             'published' => true,
         ]);

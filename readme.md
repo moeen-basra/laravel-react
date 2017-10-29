@@ -73,6 +73,6 @@ TODO:
 - [x] Articles Crud
 - [x] Form validation Client and Server
 - [ ] Reset Password
-- [ ] Tests
+- [x] Tests
 - [x] Upgrade to Laravel 5.5
 - [x] Upgrade to React 16
