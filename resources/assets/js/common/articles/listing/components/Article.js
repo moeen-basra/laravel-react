@@ -11,16 +11,16 @@ const propTypes = {
   article: PropTypes.object.isRequired,
 }
 
-const renderAuthor = (article) => {
-  return article.user && `By ${ article.user.name }`
-}
+// const renderAuthor = (article) => {
+//   return article.user && `By ${ article.user.name }`
+// }
 
 const renderPublishedAt = (article) => {
   return article.publishedAt && `at ${article.publishedAt.format('MMMM D, YYYY')}`
 }
 
-const Article = ({ index, article }) => (
-  <div className="col-12 col-sm-9 mb-5 mx-auto">
+function render ({ article }) {
+  return <div className="col-12 col-sm-9 mb-5 mx-auto">
     <div className="card">
       <div className="card-body">
         <h4 className="card-title">{article.title}</h4>
@@ -30,9 +30,9 @@ const Article = ({ index, article }) => (
       </div>
     </div>
   </div>
-)
+}
 
-Article.displayName = displayName
-Article.propTypes = propTypes
+render.displayName = displayName
+render.propTypes = propTypes
 
-export default Article
+export default render
