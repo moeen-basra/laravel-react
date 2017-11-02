@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel 5.4 & ReactJS',
+    'name' => 'Laravel 5.5 & ReactJS 16 Boilerplate',
 
     /*
     |--------------------------------------------------------------------------
