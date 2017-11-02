@@ -17,7 +17,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "^4.0.0-beta.2",
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
     "classnames": "^2.2.5",
@@ -46,6 +46,7 @@
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-pure-render-mixin": "^15.6.2",
     "react-addons-transition-group": "^15.6.2",
+    "react-document-title": "^2.0.3",
     "react-dom": "^16.0.0",
     "react-draft-wysiwyg": "^1.10.12",
     "react-redux": "^5.0.6",
@@ -54,7 +55,6 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "ree-validate": "^2.0.1",
-    "react-document-title": "^2.0.3"
+    "ree-validate": "^2.0.1"
   }
 }
