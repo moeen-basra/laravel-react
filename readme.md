@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Laravel 5.5 and React boilerplate
+## Laravel 5.5 and React 16 boilerplate
 
 Please follow the guide.
 
