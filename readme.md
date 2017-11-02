@@ -40,6 +40,14 @@ Set the APP_URL in `.env` file (e.g)
 ```
 APP_URL=http://localhost:8000
 ```
+
+## Set the APP Title
+Set the APP_TITLE in `resources/assets/js/values/index.js`
+
+```angular2html
+APP_TITLE='Your Blog Name'
+```
+
 ## Run PHP Dev Server
 Either create a local dev url and map the link in webpack.mix.js file or open an other terminal window and copy paste the following command
 
@@ -47,7 +55,7 @@ Either create a local dev url and map the link in webpack.mix.js file or open an
 php artisan serve
 ```
 
-## Run Node Compiler
+## Run Node Engine
 
 Compile assets one time.
 ```
