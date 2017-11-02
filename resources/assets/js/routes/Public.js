@@ -14,7 +14,6 @@ const PublicRoutes = ({ component: Component, ...rest }) => {
 PublicRoutes.propTypes = {
   component: PropTypes.func.isRequired,
   location: PropTypes.object,
-  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default PublicRoutes

@@ -5,7 +5,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import rootReducer from './reducers'
-import DevTools from '../utils/DevTools'
 
 export default function (initialState = {}) {
   // Middleware and store enhancers
@@ -15,7 +14,7 @@ export default function (initialState = {}) {
   
   if (process.env.NODE_ENV !== 'production') {
     enhancers.push(applyMiddleware(createLogger()))
-    enhancers.push(window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument())
+    enhancers.push(window.devToolsExtension && window.devToolsExtension())
   }
   
   const store = createStore(rootReducer, initialState, compose(...enhancers))
