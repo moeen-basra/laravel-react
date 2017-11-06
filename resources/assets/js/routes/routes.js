@@ -51,7 +51,7 @@ const routes = [
     component: EditArticle,
   },
   {
-    path: '/articles/:id',
+    path: '/articles/:slug',
     exact: true,
     auth: false,
     component: ShowArticle,

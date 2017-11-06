@@ -110,13 +110,14 @@ class Article extends Model
      * @param $id
      * @return mixed
      */
-    public static function loadPublished($id) {
+    public static function loadPublished($slug) {
         return static::with([
             'user' => function($query) {
                 $query->select('id', 'name');
             }
         ])
             ->published()
-            ->findOrFail($id);
+            ->where('slug', $slug)
+            ->firstOrFail();
     }
 }

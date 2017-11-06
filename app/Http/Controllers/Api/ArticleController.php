@@ -37,8 +37,8 @@ class ArticleController extends Controller
      * @param $id
      * @return mixed
      */
-    public function publishedArticle($id) {
-        return Article::loadPublished($id);
+    public function publishedArticle($slug) {
+        return Article::loadPublished($slug);
     }
 
     /**

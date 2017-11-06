@@ -28,8 +28,8 @@ class Page extends Component {
     loadArticle() {
         const {match, article, dispatch} = this.props
 
-        if (!article.id) {
-            dispatch(articleFetchRequest(match.params.id))
+        if (!article.slug) {
+            dispatch(articleFetchRequest(match.params.slug))
         }
     }
 

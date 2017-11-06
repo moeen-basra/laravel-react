@@ -117,9 +117,9 @@ export function articleEditRequest(id) {
   }
 }
 
-export function articleFetchRequest(id) {
+export function articleFetchRequest(slug) {
   return dispatch => {
-    Http.get(`articles/published/${id}`)
+    Http.get(`articles/published/${slug}`)
       .then((res) => {
         dispatch(articleActions.add(transformResponse(res.data)))
       })
