@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 const style = {
   float: 'right',
@@ -8,7 +7,7 @@ const style = {
   right: '1rem',
 }
 
-class ScrollButton extends Component {
+class ScrollTop extends Component {
   constructor() {
     super()
     
@@ -20,8 +19,8 @@ class ScrollButton extends Component {
       showScoller: false,
     }
     
-    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
     this.toggleScroll = this.toggleScroll.bind(this)
+    this.scrollStep = this.scrollStep.bind(this)
   }
   
   componentDidMount() {
@@ -50,7 +49,7 @@ class ScrollButton extends Component {
   scrollToTop(e) {
     e.preventDefault()
     
-    let intervalId = setInterval(this.scrollStep.bind(this), this.delayInMs)
+    let intervalId = setInterval(this.scrollStep, this.delayInMs)
     this.setState({ intervalId: intervalId })
   }
   
@@ -68,4 +67,4 @@ class ScrollButton extends Component {
   }
 }
 
-export default ScrollButton
+export default ScrollTop

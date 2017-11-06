@@ -1,3 +1,3 @@
-import Scroller from './Scroller'
+import ScrollTop from './ScrollTop'
 
-export default Scroller
+export default ScrollTop
