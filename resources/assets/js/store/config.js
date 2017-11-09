@@ -14,7 +14,7 @@ export default function (initialState = {}) {
   
   if (process.env.NODE_ENV !== 'production') {
     enhancers.push(applyMiddleware(createLogger()))
-    enhancers.push(window.devToolsExtension && window.devToolsExtension())
+    window.devToolsExtension && enhancers.push(window.devToolsExtension())
   }
   
   const store = createStore(rootReducer, initialState, compose(...enhancers))
