@@ -16,8 +16,12 @@ export default function (initialState = {}) {
     enhancers.push(applyMiddleware(createLogger()))
     window.devToolsExtension && enhancers.push(window.devToolsExtension())
   }
-  
-  const store = createStore(rootReducer, initialState, compose(...enhancers))
+
+    const store = createStore(
+        rootReducer,
+        initialState,
+        compose(applyMiddleware(thunk))
+    );
   
   // For hot reloading reducers
   if (module.hot) {
