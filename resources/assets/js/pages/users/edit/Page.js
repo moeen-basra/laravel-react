@@ -1,7 +1,7 @@
 // import libs
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { userUpdate } from '../../../store/actions/user'
+import _ from 'lodash'
 import { userUpdateRequest } from '../../../store/services/user'
 import { Validator } from 'ree-validate'
 
@@ -25,7 +25,10 @@ class Page extends Component {
       'about': 'min:10|max:1024',
     })
     
+    const user = this.props.user.toJson()
+    
     this.state = {
+      user,
       errors: this.validator.errors
     }
     
@@ -33,22 +36,31 @@ class Page extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
   
+  componentWillReceiveProps(nextProps) {
+    const user = nextProps.user.toJson()
+    
+    if (!_.isEqual(this.state.user, user)) {
+      this.setState({ user })
+    }
+    
+  }
+  
   handleChange(name, value) {
-    const article = { ...this.props.user, [name]: value}
     const { errors } = this.validator
+    
+    this.setState({ user: { ...this.props.user, [name]: value} })
     
     errors.remove(name)
     
     this.validator.validate(name, value)
       .then(() => {
-        this.props.dispatch(userUpdate(article))
-        this.setState({ errors })
+          this.setState({ errors })
       })
   }
   
   handleSubmit(e) {
     e.preventDefault()
-    const user = this.props.user
+    const user = this.state.user
     const { errors } = this.validator
     
     this.validator.validateAll(user)
@@ -76,27 +88,13 @@ class Page extends Component {
       })
   }
   
-  /*handleChange(name, value) {
-    const payload = { [name]: value }
-    this.props.dispatch(userUpdate(payload))
-  }
-  
-  handleSubmit(e) {
-    e.preventDefault()
-    
-    const payload = Object.assign({}, this.props.user)
-    
-    this.props.dispatch(userUpdateRequest(payload))
-  }*/
-  
   render() {
     return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
       <h1>Profile</h1>
   
       <section className="row">
         <div className="col-12 col-md-9 col-sm-12">
-          <Form user={this.props.user}
-                errors={this.state.errors}
+          <Form {...this.state}
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}/>
         </div>

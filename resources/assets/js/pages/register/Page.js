@@ -52,14 +52,14 @@ class Page extends Component {
   
   // event to handle input change
   handleChange(name, value) {
-    const credentials = { ...this.state.credentials, [name]: value }
     const { errors } = this.validator
     
+    this.setState({credentials: { ...this.state.credentials, [name]: value }})
     errors.remove(name)
     
     this.validator.validate(name, value)
       .then(() => {
-        this.setState({ errors, credentials })
+        this.setState({ errors })
       })
   }
   

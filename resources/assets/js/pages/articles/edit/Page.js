@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { articleEditRequest, articleUpdateRequest } from '../../../store/services/article'
-import { update as articleUpdate } from '../../../store/actions/article'
 import { Validator } from 'ree-validate'
 
 // import components
@@ -26,7 +25,10 @@ class Page extends Component {
       description: 'required|min:10',
     })
     
+    const article = this.props.article.toJson()
+    
     this.state = {
+      article,
       errors: this.validator.errors
     }
     
@@ -38,6 +40,15 @@ class Page extends Component {
     this.loadArticle()
   }
   
+  componentWillReceiveProps(nextProps) {
+    const article = nextProps.article.toJson()
+    
+    if (!_.isEqual(this.state.article, article)) {
+      this.setState({ article })
+    }
+    
+  }
+  
   loadArticle() {
     const { match, article, dispatch } = this.props
     
@@ -47,21 +58,21 @@ class Page extends Component {
   }
   
   handleChange(name, value) {
-    const article = { ...this.props.article, [name]: value}
     const { errors } = this.validator
+    
+    this.setState({ article: { ...this.state.article, [name]: value} })
     
     errors.remove(name)
     
     this.validator.validate(name, value)
       .then(() => {
-        this.props.dispatch(articleUpdate(article))
         this.setState({ errors })
       })
   }
   
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.props.article.toJson()
+    const article = this.state.article
     const { errors } = this.validator
     
     this.validator.validateAll(article)
@@ -93,8 +104,7 @@ class Page extends Component {
     const { article } = this.props
     
     if (article.id) {
-      return <Form article={this.props.article}
-                   errors={this.state.errors}
+      return <Form {...this.state}
                    onChange={this.handleChange}
                    onSubmit={this.handleSubmit} />
     }

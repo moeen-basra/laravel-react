@@ -24,7 +24,10 @@ class Page extends Component {
       description: 'required|min:10',
     })
     
+    const article = this.props.article.toJson()
+    
     this.state = {
+      article,
       errors: this.validator.errors
     }
     
@@ -32,9 +35,19 @@ class Page extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   
+  componentWillReceiveProps(nextProps) {
+    const article = nextProps.article.toJson()
+    
+    if (!_.isEqual(this.state.article, article)) {
+      this.setState({ article })
+    }
+    
+  }
+  
   handleChange(name, value) {
-    this.props.article[name] = value
     const { errors } = this.validator
+  
+    this.setState({ article: { ...this.state.article, [name]: value} })
   
     errors.remove(name)
   
@@ -46,7 +59,7 @@ class Page extends Component {
   
   handleSubmit(e) {
     e.preventDefault()
-    const article = this.props.article.toJson()
+    const article = this.state.article
     const { errors } = this.validator
     
     this.validator.validateAll(article)
@@ -77,8 +90,7 @@ class Page extends Component {
   render() {
     return <div className="col-sm-9 ml-sm-auto col-md-10 pt-3">
       <h1>Edit</h1>
-      <Form article={this.props.article}
-            errors={this.state.errors}
+      <Form {...this.state}
             onChange={this.handleChange}
             onSubmit={this.handleSubmit} />
     </div>

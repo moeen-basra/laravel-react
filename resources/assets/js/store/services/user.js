@@ -20,7 +20,7 @@ export function userUpdateRequest(params) {
     new Promise((resolve, reject) => {
       Http.patch(`/users/${params.id}`, Transformer.send(params))
         .then(res => {
-          dispatch(userActions.userUpdate(Transformer.fetch(res.data)))
+          dispatch(userActions.userUpdate(Transformer.fetch(res.data.user)))
           return resolve()
         })
         .catch((err) => {
