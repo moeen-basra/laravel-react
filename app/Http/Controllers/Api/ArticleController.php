@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 use App\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
-use App\User;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 
@@ -29,7 +28,8 @@ class ArticleController extends Controller
      *
      * @return mixed
      */
-    public function publishedArticles() {
+    public function publishedArticles()
+    {
         return Article::loadAllPublished();
     }
 
@@ -39,7 +39,8 @@ class ArticleController extends Controller
      * @param $id
      * @return mixed
      */
-    public function publishedArticle($slug) {
+    public function publishedArticle($slug)
+    {
         return Article::loadPublished($slug);
     }
 

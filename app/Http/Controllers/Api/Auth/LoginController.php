@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
-use Illuminate\Validation\UnauthorizedException;
 
 class LoginController extends Controller
 {

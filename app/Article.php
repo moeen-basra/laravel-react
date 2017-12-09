@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
 
 class Article extends Model
 {
@@ -42,7 +41,8 @@ class Article extends Model
      * @param $query
      * @return mixed
      */
-    public function scopePublished($query) {
+    public function scopePublished($query)
+    {
         return $query->where([
             'published' => true
         ]);
@@ -55,7 +55,8 @@ class Article extends Model
      * @param $user_id
      * @return mixed
      */
-    public function scopeMine($query, $user_id) {
+    public function scopeMine($query, $user_id)
+    {
         return $query->where('user_id', $user_id);
     }
 
@@ -64,7 +65,8 @@ class Article extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -73,7 +75,8 @@ class Article extends Model
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public static function loadAll() {
+    public static function loadAll()
+    {
         return static::latest()
             ->paginate();
     }
@@ -84,7 +87,8 @@ class Article extends Model
      * @param $user_id
      * @return mixed
      */
-    public static function loadAllMine($user_id) {
+    public static function loadAllMine($user_id)
+    {
         return static::latest()
             ->mine($user_id)
             ->paginate();
@@ -95,8 +99,9 @@ class Article extends Model
      *
      * @return mixed
      */
-    public static function loadAllPublished() {
-        return static::with(['user' => function($query) {
+    public static function loadAllPublished()
+    {
+        return static::with(['user' => function ($query) {
             $query->select('id', 'name');
         }])
             ->latest()
@@ -110,9 +115,10 @@ class Article extends Model
      * @param $id
      * @return mixed
      */
-    public static function loadPublished($slug) {
+    public static function loadPublished($slug)
+    {
         return static::with([
-            'user' => function($query) {
+            'user' => function ($query) {
                 $query->select('id', 'name');
             }
         ])
