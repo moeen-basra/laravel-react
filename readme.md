@@ -86,6 +86,4 @@ TODO:
 - [x] Upgrade to React 16
 
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/uHp8T9Vx7k7NjrWR6RnD5bDx/moeen-basra/laravel-react'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/uHp8T9Vx7k7NjrWR6RnD5bDx/moeen-basra/laravel-react.svg' />
-</a>
+
