@@ -16,7 +16,7 @@ const propTypes = {
 
 // initiate comppnent
 const PublicHeader = ({ showNavigation }) => (
-  <Collapse className="navbar-collapse navbar-dark bg-danger" isOpen={showNavigation}>
+  <Collapse className="navbar-collapse navbar-dark" isOpen={showNavigation}>
     <ul className="navbar-nav mr-auto">
       <NavItem path="/">Home</NavItem>
     </ul>

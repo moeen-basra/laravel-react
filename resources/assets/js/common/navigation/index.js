@@ -50,7 +50,7 @@ class Navigation extends Component {
   
   render() {
     return (
-      <Navbar color="danger" className="navbar navbar-expand-md navbar-dark bg-danger fixed-top">
+      <Navbar className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <Link to="/" className="navbar-brand">MOEEN.ME</Link>
         <NavbarToggler className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
         {

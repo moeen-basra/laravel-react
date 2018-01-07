@@ -26,12 +26,12 @@ class Page extends Component {
   render() {
     return (
       <div>
-        <header className="bg-danger text-white">
+        <header className="bg-primary text-white">
           <div className="container text-center">
             <img width="125" height="125" src="/img/moeen.jpg" alt="..." className="rounded-circle" />
             <h1>Moeen Farooq Basra</h1>
             <p className="lead">Master in Information Technology</p>
-            <p className="lead">Web Developer at&nbsp;
+            <p className="lead">Fullstack Developer at&nbsp;
                 <a className="text-white"
                    href="http://awok.com"
                    target="_blank"

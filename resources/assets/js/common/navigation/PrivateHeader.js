@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 // import components
-import { Collapse, NavDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Collapse, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import NavItem from './NavItem'
 
 // define component name
@@ -28,7 +28,7 @@ const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, log
     </ul>
     
     <ul className="navbar-nav">
-      <NavDropdown isOpen={showDropdown} toggle={toggleDropdown}>
+      <Dropdown isOpen={showDropdown} toggle={toggleDropdown}>
         <DropdownToggle nav caret>
           { user.name }
         </DropdownToggle>
@@ -41,7 +41,7 @@ const PrivateHeader = ({ user, showNavigation, showDropdown, toggleDropdown, log
             <span className="fa fa-sign-out" title="logout" aria-hidden="true"/> Logout
           </DropdownItem>
         </DropdownMenu>
-      </NavDropdown>
+      </Dropdown>
     </ul>
   </Collapse>)
 

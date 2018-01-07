@@ -36,7 +36,7 @@ class ArticleController extends Controller
     /**
      * Get single published article
      *
-     * @param $id
+     * @param $slug
      * @return mixed
      */
     public function publishedArticle($slug)
@@ -112,7 +112,6 @@ class ArticleController extends Controller
 
         $data = $request->validated();
         $data['slug'] = str_slug($data['title']);
-
         $article->update($data);
 
         return response()->json($article, 200);
