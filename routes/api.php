@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\User;
-use App\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +15,21 @@ use App\Article;
 
 // default name space for all routes is 'App\Http\Controllers\Api'
 
-Route::post('auth/register', 'Auth\RegisterController@register')->name('auth.register');
+$api_version = config('api.api_version');
+
+Route::group(["prefix" => "{$api_version}"], function() {
+    // register auth routes
+    Route::prefix('auth')
+        ->group(base_path('routes/api/auth.php'));
+    // register users routes
+    Route::prefix('users')
+        ->group(base_path('routes/api/users.php'));
+    // register articles routes
+    Route::prefix('articles')
+        ->group(base_path('routes/api/articles.php'));
+});
+
+/*Route::post('auth/register', 'Auth\RegisterController@register')->name('auth.register');
 Route::post('auth/login', 'Auth\LoginController@login')->name('auth.login');
 Route::get('articles/published', 'ArticleController@publishedArticles')->name('articles.published.index');
 Route::get('articles/published/{id}', 'ArticleController@publishedArticle')->name('articles.published.show');
@@ -33,4 +44,4 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::resource('articles', 'ArticleController', ['except' => ['edit', 'create']]);
 
     Route::delete('/auth/logout', 'Auth\LoginController@logout')->name('auth.logout');;
-});
+});*/
