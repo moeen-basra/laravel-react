@@ -4,6 +4,7 @@ export const AUTH_LOGIN = 'AUTH_LOGIN'
 export const AUTH_LOGOUT = 'AUTH_LOGOUT'
 export const AUTH_REFRESH_TOKEN = 'AUTH_REFRESH_TOKEN'
 export const AUTH_RESET_PASSWORD = 'AUTH_RESET_PASSWORD'
+export const AUTH_USER = 'AUTH_USER'
 
 // user action types
 export const USER_UPDATE = 'USER_UPDATE'
@@ -21,6 +22,7 @@ export default {
   AUTH_LOGOUT,
   AUTH_REFRESH_TOKEN,
   AUTH_RESET_PASSWORD,
+  AUTH_USER,
   
   USER_UPDATE,
   USER_UNSET,

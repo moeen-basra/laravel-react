@@ -7,14 +7,6 @@ import {
   AUTH_RESET_PASSWORD,
 } from '../action-types';
 
-const user = {
-  id: null,
-  name: null,
-  email: null,
-  createdAt: null,
-  updatedAt: null,
-}
-
 const initialState = {
   isAuthenticated: false,
 };
@@ -38,10 +30,10 @@ const reducer = (state = initialState, { type, payload = null }) => {
 function login(state, payload) {
   localStorage.setItem('access_token', payload);
   HTTP.defaults.headers.common['Authorization'] = `Bearer ${payload}`;
-  
-  state = Object.assign({}, state, { isAuthenticated: true })
-  
-  return state
+
+  return {
+    ...state, isAuthenticated: true,
+  }
 }
 
 function checkAuth(state) {
@@ -58,18 +50,16 @@ function checkAuth(state) {
 
 function logout(state) {
   localStorage.removeItem('access_token')
-  
-  state = Object.assign({}, state, {
-    isAuthenticated: false,
-    user,
-  })
-  
-  return state;
+
+  return {
+    ...state, isAuthenticated: false
+  }
 }
 
 function resetPassword(state) {
-  state.resetPassword = true;
-  return state;
+  return {
+    ...state, resetPassword: true,
+  }
 }
 
 export const getAuth = state => state.auth.isAuthenticated;

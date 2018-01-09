@@ -12,6 +12,7 @@ import {
   AUTH_LOGOUT,
   AUTH_REFRESH_TOKEN,
   AUTH_RESET_PASSWORD,
+  AUTH_USER,
 } from '../action-types';
 
 
@@ -44,5 +45,12 @@ export function authRefreshToken(payload) {
 export function authResetPassword() {
   return {
     type: AUTH_RESET_PASSWORD,
+  }
+}
+
+export function authUser(payload) {
+  return {
+    type: AUTH_USER,
+    payload
   }
 }

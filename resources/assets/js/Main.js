@@ -2,7 +2,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchUser } from './store/services/user'
+
+// import services actions
+import { fetchUser } from './store/services/auth'
 
 // import components
 import Navigation from './common/navigation'
