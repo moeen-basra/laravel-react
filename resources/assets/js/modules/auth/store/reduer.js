@@ -1,11 +1,11 @@
-import HTTP from '../../utils/Http';
+import HTTP from '../../../utils/Http';
 import {
   AUTH_CHECK,
   AUTH_LOGIN,
   AUTH_LOGOUT,
   AUTH_REFRESH_TOKEN,
   AUTH_RESET_PASSWORD,
-} from '../action-types';
+} from './action-types';
 
 const initialState = {
   isAuthenticated: false,
@@ -40,11 +40,11 @@ function checkAuth(state) {
   state = Object.assign({}, state, {
     isAuthenticated: !!localStorage.getItem('access_token')
   })
-  
+
   if (state.isAuthenticated) {
     HTTP.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
   }
-  
+
   return state;
 }
 

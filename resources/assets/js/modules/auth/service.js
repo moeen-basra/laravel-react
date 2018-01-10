@@ -1,5 +1,5 @@
 import Http from '../../utils/Http'
-import { authActions } from '../actions'
+import * as authActions from './store/actions'
 import Transformer from '../../utils/Transformer'
 
 /**
@@ -41,7 +41,7 @@ export function login(credentials) {
             error: null,
             statusCode,
           };
-  
+
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data,
@@ -74,7 +74,7 @@ export function register(credentials) {
             error: null,
             statusCode,
           };
-          
+
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data,

@@ -1,5 +1,6 @@
 import User from '../../models/User'
-import { USER_UPDATE , USER_UNSET, AUTH_LOGOUT, AUTH_USER} from '../action-types'
+import { USER_UPDATE , USER_UNSET } from '../action-types'
+import { AUTH_LOGOUT, AUTH_USER } from '../../modules/auth/store/action-types'
 
 const initialState = Object.assign({}, new User({}))
 

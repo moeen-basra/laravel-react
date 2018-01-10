@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 // import services actions
-import { fetchUser } from './store/services/auth'
+import { fetchUser } from './modules/auth/service'
 
 // import components
 import Navigation from './common/navigation'

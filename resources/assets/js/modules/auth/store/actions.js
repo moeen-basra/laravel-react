@@ -13,7 +13,7 @@ import {
   AUTH_REFRESH_TOKEN,
   AUTH_RESET_PASSWORD,
   AUTH_USER,
-} from '../action-types';
+} from './action-types';
 
 
 export function authCheck() {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import $ from 'jquery'
 import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
-import { register } from '../../store/services/auth'
+import { register } from '../../service'
 import { Validator } from 'ree-validate'
 
 // import components

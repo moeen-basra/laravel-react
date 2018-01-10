@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { logout } from '../../store/services/auth'
+import { logout } from '../../modules/auth/service'
 
 // import components
 import { Link } from 'react-router-dom'

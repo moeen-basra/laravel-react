@@ -6,12 +6,10 @@
  * auth module.
  */
 
-import * as authActions from './auth'
 import * as userActions from './user'
 import * as articleActions from './article'
 
 export {
-  authActions,
   userActions,
   articleActions,
 }

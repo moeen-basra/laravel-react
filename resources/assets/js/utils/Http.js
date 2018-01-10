@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import axios from 'axios'
 import store from '../store'
-import { authLogout } from '../store/actions/auth'
+import { authLogout } from '../modules/auth/store/actions'
 
 const version = 'v1'
 const API_URL = (process.env.NODE_ENV === 'test') ? process.env.BASE_URL || (`http://localhost:${process.env.PORT}/api/${version}/`) : `/api/${version}`;
