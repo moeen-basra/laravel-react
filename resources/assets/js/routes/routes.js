@@ -1,29 +1,22 @@
 import Register from '../pages/register'
 import Login from '../pages/login'
-import Home from '../pages/home'
 import EditUser from '../pages/users/edit'
 import Articles from '../pages/articles/list'
 import AddArticle from '../pages/articles/add'
 import EditArticle from '../pages/articles/edit'
-import ShowArticle from '../pages/articles/show'
+
+// import modular routes
+import webRoutes from "../modules/web/routes"
 
 const routes = [
   {
-    path: '/',
-    exact: true,
-    auth: false,
-    component: Home,
-  },
-  {
     path: '/login',
     exact: true,
-    auth: false,
     component: Login,
   },
   {
     path: '/register',
     exact: true,
-    auth: false,
     component: Register,
   },
   {
@@ -50,12 +43,6 @@ const routes = [
     auth: true,
     component: EditArticle,
   },
-  {
-    path: '/articles/:slug',
-    exact: true,
-    auth: false,
-    component: ShowArticle,
-  },
 ]
 
-export default routes
+export default [...webRoutes, ...routes]

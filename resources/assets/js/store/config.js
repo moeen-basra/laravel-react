@@ -13,7 +13,7 @@ export default function (initialState = {}) {
   ]
   
   if (process.env.NODE_ENV !== 'production') {
-    enhancers.push(applyMiddleware(createLogger()))
+    // enhancers.push(applyMiddleware(createLogger()))
     window.devToolsExtension && enhancers.push(window.devToolsExtension())
   }
   

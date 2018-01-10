@@ -26,7 +26,7 @@ function render ({ article }) {
         <h4 className="card-title">{article.title}</h4>
         <h6 className="card-subtitle mb-2 text-muted">{renderPublishedAt(article)}</h6>
         <p className="card-text">{ article.description }</p>
-        <Link to={`articles/${article.slug}`} className="card-link">Read More</Link>
+        <Link to={`blog/${article.slug}`} className="card-link">Read More</Link>
       </div>
     </div>
   </div>
