@@ -1,5 +1,5 @@
 import moment from 'moment'
-import Model from '../../models/Model'
+import Model from '../../utils/Model'
 import User from '../../modules/user/User'
 
 class Article extends Model {
