@@ -2,16 +2,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { articleAddRequest } from '../../../store/services/article'
+import { articleEditRequest, articleUpdateRequest } from '../../service'
 import { Validator } from 'ree-validate'
 
 // import components
 import Form from './components/Form'
 
 class Page extends Component {
-  static displayName = 'AddArticle'
+  static displayName = 'EditArticle'
   static propTypes = {
-    article: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
+    article: PropTypes.object,
     dispatch: PropTypes.func.isRequired,
   }
   
@@ -35,6 +36,10 @@ class Page extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   
+  componentWillMount() {
+    this.loadArticle()
+  }
+  
   componentWillReceiveProps(nextProps) {
     const article = nextProps.article.toJson()
     
@@ -44,13 +49,21 @@ class Page extends Component {
     
   }
   
+  loadArticle() {
+    const { match, article, dispatch } = this.props
+    
+    if (!article.id) {
+      dispatch(articleEditRequest(match.params.id))
+    }
+  }
+  
   handleChange(name, value) {
     const { errors } = this.validator
-  
+    
     this.setState({ article: { ...this.state.article, [name]: value} })
-  
+    
     errors.remove(name)
-  
+    
     this.validator.validate(name, value)
       .then(() => {
         this.setState({ errors })
@@ -73,27 +86,35 @@ class Page extends Component {
   }
   
   submit(article) {
-    this.props.dispatch(articleAddRequest(article))
+    this.props.dispatch(articleUpdateRequest(article))
       .catch(({ error, statusCode }) => {
         const { errors } = this.validator
-  
+        
         if (statusCode === 422) {
           _.forOwn(error, (message, field) => {
             errors.add(field, message);
           });
         }
-  
+        
         this.setState({ errors })
       })
   }
   
+  renderForm() {
+    const { article } = this.props
+    
+    if (article.id) {
+      return <Form {...this.state}
+                   onChange={this.handleChange}
+                   onSubmit={this.handleSubmit} />
+    }
+  }
+  
   render() {
-    return <div className="col-sm-9 ml-sm-auto col-md-10 pt-3">
+    return <main className="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
       <h1>Edit</h1>
-      <Form {...this.state}
-            onChange={this.handleChange}
-            onSubmit={this.handleSubmit} />
-    </div>
+      { this.renderForm() }
+    </main>
   }
 }
 

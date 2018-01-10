@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../../store/services/article'
+import { articleListRequest, articleUpdateRequest, articleRemoveRequest } from '../../service'
 
 // import components
 import ArticleRow from './components/ArticleRow'

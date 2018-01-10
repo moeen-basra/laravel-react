@@ -6,7 +6,7 @@ import Header from "./components/Header"
 import Articles from "../../../../common/articles/listing"
 
 // import services
-import { articleListRequest } from "../../../../store/services/article"
+import { articleListRequest } from "../../../article/service"
 
 class Page extends Component {
   static displayName = "HomePage"

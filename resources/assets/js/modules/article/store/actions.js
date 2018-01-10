@@ -11,7 +11,7 @@ import {
   ARTICLE_UPDATE,
   ARTICLE_REMOVE,
   ARTICLE_LIST,
-} from '../action-types';
+} from './action-types';
 
 export function add(payload) {
   return {

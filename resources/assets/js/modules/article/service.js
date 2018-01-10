@@ -1,6 +1,6 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
-import { articleActions } from '../actions'
+import * as articleActions from './store/actions'
 
 function transformRequest(parms) {
   return Transformer.send(parms)
@@ -24,7 +24,7 @@ export function articleAddRequest(params) {
             error: null,
             statusCode,
           };
-          
+
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data,
@@ -56,7 +56,7 @@ export function articleUpdateRequest(params) {
             error: null,
             statusCode,
           };
-          
+
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data,
@@ -92,7 +92,7 @@ export function articleListRequest({pageNumber = 1, url = '/articles'}) {
     if (pageNumber > 1) {
       url = url + `?page=${pageNumber}`
     }
-    
+
     Http.get(url)
       .then((res) => {
         dispatch(articleActions.list(transformResponse(res.data)))

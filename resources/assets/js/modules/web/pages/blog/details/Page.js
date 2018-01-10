@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import DocumentTitle from 'react-document-title';
-import {articleFetchRequest} from '../../../../../store/services/article'
+import {articleFetchRequest} from '../../../../article/service'
 import {APP_TITLE} from '../../../../../values/index'
 
 class Page extends Component {

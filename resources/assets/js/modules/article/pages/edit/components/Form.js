@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MyEditor from '../../../../common/wysiwyg-editor'
+import MyEditor from '../../../../../common/wysiwyg-editor'
 
 const displayName = 'ArticleFrom'
 const propTypes = {
