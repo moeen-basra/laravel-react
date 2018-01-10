@@ -1,6 +1,6 @@
 import Http from '../../utils/Http'
 import Transformer from '../../utils/Transformer'
-import { userActions } from '../actions'
+import * as userActions from './store/actions'
 
 export function userUpdateRequest(params) {
   return dispatch => (
@@ -16,7 +16,7 @@ export function userUpdateRequest(params) {
             error: null,
             statusCode,
           };
-          
+
           if (statusCode === 422) {
             const resetErrors = {
               errors: err.response.data,

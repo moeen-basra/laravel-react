@@ -9,7 +9,7 @@
 import {
   USER_UPDATE,
   USER_UNSET,
-} from '../action-types';
+} from './action-types';
 
 export function userUpdate(payload) {
   return {

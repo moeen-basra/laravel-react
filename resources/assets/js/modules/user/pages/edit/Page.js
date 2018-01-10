@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
-import { userUpdateRequest } from '../../../store/services/user'
+import { userUpdateRequest } from '../../service'
 import { Validator } from 'ree-validate'
 
 // import components

@@ -1,4 +1,3 @@
-import EditUser from '../pages/users/edit'
 import Articles from '../pages/articles/list'
 import AddArticle from '../pages/articles/add'
 import EditArticle from '../pages/articles/edit'
@@ -6,14 +5,9 @@ import EditArticle from '../pages/articles/edit'
 // import modular routes
 import webRoutes from "../modules/web/routes"
 import authRoutes from "../modules/auth/routes"
+import userRoutes from "../modules/user/routes"
 
 const routes = [
-  {
-    path: '/users/:id/edit',
-    exact: true,
-    auth: true,
-    component: EditUser,
-  },
   {
     path: '/articles',
     exact: true,
@@ -34,4 +28,4 @@ const routes = [
   },
 ]
 
-export default [...webRoutes, ...authRoutes, ...routes]
+export default [...webRoutes, ...authRoutes, ...userRoutes, ...routes]

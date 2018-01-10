@@ -6,10 +6,8 @@
  * auth module.
  */
 
-import * as userActions from './user'
 import * as articleActions from './article'
 
 export {
-  userActions,
   articleActions,
 }
