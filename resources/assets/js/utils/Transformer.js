@@ -103,6 +103,7 @@ export default class Transformer {
    * @returns {{}}
    */
   static resetValidationFields({ errors, replace = false, searchStr = '', replaceStr = '' }) {
+    console.log(errors)
     const data = {};
     _.forOwn(errors, (value, key) => {
       let index = '';

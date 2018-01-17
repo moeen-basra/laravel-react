@@ -44,7 +44,7 @@ export function login(credentials) {
 
           if (statusCode === 422) {
             const resetErrors = {
-              errors: err.response.data,
+              errors: err.response.data.errors,
               replace: false,
               searchStr: '',
               replaceStr: '',
@@ -77,7 +77,7 @@ export function register(credentials) {
 
           if (statusCode === 422) {
             const resetErrors = {
-              errors: err.response.data,
+              errors: err.response.data.errors,
               replace: false,
               searchStr: '',
               replaceStr: '',
@@ -86,6 +86,7 @@ export function register(credentials) {
           } else if (statusCode === 401) {
             data.error = err.response.data.message;
           }
+          console.log(data)
           return reject(data);
         })
     })
