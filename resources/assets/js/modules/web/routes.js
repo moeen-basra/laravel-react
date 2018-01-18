@@ -1,22 +1,33 @@
-import Home from "./pages/home"
-import Blog from "./pages/blog/list"
-import BlogDetails from "./pages/blog/details"
+// import lib
+import Loadable from 'react-loadable'
+
+// import components
+import LoadingComponent from '../../common/loader'
 
 const routes = [
   {
     path: '/',
     exact: true,
-    component: Home,
+    component: Loadable({
+      loader: () => import('./pages/home'),
+      loading: LoadingComponent,
+    }),
   },
   {
     path: '/blog',
     exact: true,
-    component: Blog,
+    component: Loadable({
+      loader: () => import('./pages/blog/list'),
+      loading: LoadingComponent,
+    }),
   },
   {
     path: '/blog/:slug',
     exact: true,
-    component: BlogDetails,
+    component: Loadable({
+      loader: () => import('./pages/blog/details'),
+      loading: LoadingComponent,
+    }),
   },
 ]
 

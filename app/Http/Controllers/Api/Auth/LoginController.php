@@ -35,8 +35,8 @@ class LoginController extends Controller
             return json_decode((string)$response->getBody(), true);
         } catch (\Exception $e) {
             return response()->json([
-                "error" => "invalid_credentials",
-                "message" => "The user credentials were incorrect."
+                'error' => 'invalid_credentials',
+                'message' => "{$e->getCode()}: {$e->getMessage()}"
             ], 401);
         }
     }

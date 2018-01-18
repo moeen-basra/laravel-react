@@ -7,6 +7,8 @@ import Page from './Page'
 const mapStateToProps = (state, router) => {
   const { params } = router.match
 
+  console.log(params)
+
   const article = state.articles.data.find(article => article.slug === params.slug)
   return {
     article: article ? new Article(article) : new Article({})

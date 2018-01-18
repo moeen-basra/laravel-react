@@ -1,15 +1,25 @@
-import Register from "./pages/register"
-import Login from "./pages/login"
+// import lib
+import Loadable from 'react-loadable'
+
+// import components
+import LoadingComponent from '../../common/loader'
+
 
 export default [
   {
     path: '/login',
     exact: true,
-    component: Login,
+    component: Loadable({
+      loader: () => import('./pages/login'),
+      loading: LoadingComponent,
+    }),
   },
   {
     path: '/register',
     exact: true,
-    component: Register,
+    component: Loadable({
+      loader: () => import('./pages/register'),
+      loading: LoadingComponent,
+    }),
   },
 ]

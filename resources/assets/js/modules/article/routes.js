@@ -1,24 +1,35 @@
-import Articles from "./pages/list"
-import EditArticle from "./pages/edit"
-import AddArticle from "./pages/add"
+// import lib
+import Loadable from 'react-loadable'
+
+// import components
+import LoadingComponent from '../../common/loader'
 
 export default [
   {
     path: '/articles',
     exact: true,
     auth: true,
-    component: Articles,
+    component: Loadable({
+      loader: () => import('./pages/list'),
+      loading: LoadingComponent,
+    }),
   },
   {
     path: '/articles/create',
     exact: true,
     auth: true,
-    component: AddArticle,
+    component: Loadable({
+      loader: () => import('./pages/add'),
+      loading: LoadingComponent,
+    }),
   },
   {
     path: '/articles/:id/edit',
     exact: true,
     auth: true,
-    component: EditArticle,
+    component: Loadable({
+      loader: () => import('./pages/edit'),
+      loading: LoadingComponent,
+    }),
   },
 ]
