@@ -12,13 +12,16 @@ const path = require('path')
  */
 
 mix.webpackConfig({
+  output: {
+    chunkFilename: 'js/chunks/[name].js'
+  },
   resolve: {
     alias : {
       '@': path.resolve(__dirname, 'resources/assets/js'),
       'public': path.resolve(__dirname, 'public'),
       'node': path.resolve(__dirname, 'node'),
-    }
-  }
+    },
+  },
 })
 
 mix.react('resources/assets/js/app.js', 'public/js')
