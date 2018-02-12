@@ -8,19 +8,22 @@ import routes from './routes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
 
-const history = createBrowserHistory()
+import Layout from '../layout'
 
+const history = createBrowserHistory()
 
 const Routes = () => (
   <Router hisotry={history}>
-    <Switch>
-      {routes.map((route, i) => {
-        if (route.auth) {
-          return <PrivateRoute key={i} {...route} />
-        }
-        return <PublicRoute key={i} {...route} />
-      })}
-    </Switch>
+    <Layout>
+      <Switch>
+        {routes.map((route, i) => {
+          if (route.auth) {
+            return <PrivateRoute key={i} {...route} />
+          }
+          return <PublicRoute key={i} {...route} />
+        })}
+      </Switch>
+    </Layout>
   </Router>
 )
 
