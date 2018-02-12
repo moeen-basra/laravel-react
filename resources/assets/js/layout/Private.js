@@ -1,9 +1,6 @@
 //import libs
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-
-// import services actions
-import { fetchUser } from '../modules/auth/service'
 
 // import components
 import Navigation from '../common/navigation'
@@ -14,16 +11,16 @@ const containerStyle = {
   paddingTop: '3.5rem',
 }
 
-const displayName = 'MainContainer'
+const displayName = 'Private Layout'
 const propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-function PrivateLayout() {
+function PrivateLayout({ children }) {
   return <div style={containerStyle}>
     <Navigation/>
     <main style={{ minHeight: '100vh'}}>
-      { this.props.children }
+      { children }
       <ScrollTop />
     </main>
     <Footer/>

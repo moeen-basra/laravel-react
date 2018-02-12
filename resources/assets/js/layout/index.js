@@ -11,7 +11,7 @@ import { fetchUser } from '../modules/auth/service'
 import PrivateLayout from './Private'
 import PublicLayout from './Public'
 
-class Main extends Component {
+class Layout extends Component {
   static displayName = 'Layout'
   static propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
@@ -45,4 +45,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Main))
+export default withRouter(connect(mapStateToProps)(Layout))
