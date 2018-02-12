@@ -75,7 +75,7 @@ TODO:
 - [x] Form validation Client and Server
 - [ ] Reset Password
 - [x] Tests
-- [x] Upgrade to Laravel 5.5
+- [ ] Upgrade to Laravel 5.6
 - [x] Upgrade to React 16
 
 
