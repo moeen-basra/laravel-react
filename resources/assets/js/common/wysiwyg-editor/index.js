@@ -11,36 +11,37 @@ class WYSIWYG extends Component {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
   }
-  
+
   constructor(props) {
     super(props)
-    
+
     this.state = {
       editorState: this.convertHtmlToEditorState(this.props.value),
     }
-    
+
     this.onEditorStateChange = this.onEditorStateChange.bind(this)
   }
-  
-  convertHtmlToEditorState() {
-    const { value } = this.props
-    const blocksFromHTML = convertFromHTML(value)
-    const state = ContentState.createFromBlockArray(
-      blocksFromHTML.contentBlocks,
-      blocksFromHTML.entityMap
-    )
-    
-    return EditorState.createWithContent(state)
+
+  convertHtmlToEditorState(value) {
+    if (value){
+      const blocksFromHTML = convertFromHTML(value)
+      const state = ContentState.createFromBlockArray(
+        blocksFromHTML.contentBlocks,
+        blocksFromHTML.entityMap
+      )
+
+      return EditorState.createWithContent(state)
+    }
   }
-  
+
   onEditorStateChange(editorState) {
     this.setState({
       editorState,
     })
-    
+
     this.props.onChange(draftToHtml(convertToRaw(editorState.getCurrentContent())))
   }
-  
+
   render() {
     const { editorState } = this.state
     return (
