@@ -5,7 +5,7 @@ import $ from 'jquery'
 import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
 import { register } from '../../service'
-import { Validator } from 'ree-validate'
+import { Validator } from 'ree-validate-dev'
 
 // import components
 import Form from './components/Form'
@@ -24,8 +24,8 @@ class Page extends Component {
     this.validator = new Validator({
       name: 'required|min:6',
       email: 'required|email',
-      password: 'required|min:6',
-      passwordConfirmation: 'required|min:6'
+      password: 'required|min:6|confirmed',
+      password_confirmation: 'required|min:6'
     })
     
     this.state = {
@@ -33,7 +33,7 @@ class Page extends Component {
         name: '',
         email: '',
         password: '',
-        passwordConfirmation: '',
+        password_confirmation: '',
       },
       errors: this.validator.errors
     }
@@ -101,12 +101,12 @@ class Page extends Component {
       return <Redirect to="/" />
     }
     
-    const { name, email, password, passwordConfirmation } = this.state.credentials
+    const { name, email, password, password_confirmation } = this.state.credentials
     const props = {
       name,
       email,
       password,
-      passwordConfirmation,
+      password_confirmation,
       errors: this.state.errors,
       handleChange: this.handleChange,
       handleSubmit: this.handleSubmit,
