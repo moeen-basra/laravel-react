@@ -57,6 +57,6 @@
     "redux-thunk": "^2.2.0"
   },
   "dependencies": {
-    "ree-validate": "^2.0.2"
+    "ree-validate": "moeen-basra/ree-validate#development"
   }
 }

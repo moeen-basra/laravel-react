@@ -8,13 +8,13 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  password_confirmation: PropTypes.string.isRequired,
+  passwordConfirmation: PropTypes.string.isRequired,
   errors: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 }
 
-const Form = ({ name, email, password, password_confirmation, errors, handleChange, handleSubmit }) => {
+const Form = ({ name, email, password, passwordConfirmation, errors, handleChange, handleSubmit }) => {
   return (<form className="form" role="form" onSubmit={handleSubmit} noValidate>
     <h2 className="card-title">Sign up</h2>
     <div className="form-group">
@@ -56,16 +56,16 @@ const Form = ({ name, email, password, password_confirmation, errors, handleChan
       {errors.has('password') && <div className="invalid-feedback">{errors.first('password')}</div>}
     </div>
     <div className="form-group">
-      <label htmlFor="password_confirmation" className="sr-only">Confirm Password</label>
+      <label htmlFor="passwordConfirmation" className="sr-only">Confirm Password</label>
       <input type="password"
-             className={`form-control form-control-lg rounded-0 ${errors.has('password_confirmation') && 'is-invalid'}`}
-             id="password_confirmation"
-             name="password_confirmation"
+             className={`form-control form-control-lg rounded-0 ${errors.has('passwordConfirmation') && 'is-invalid'}`}
+             id="passwordConfirmation"
+             name="passwordConfirmation"
              placeholder="Confirm Password"
-             value={password_confirmation || ''}
+             value={passwordConfirmation || ''}
              onChange={e => handleChange(e.target.name, e.target.value)}
              required/>
-      {errors.has('password_confirmation') && <div className="invalid-feedback">{errors.first('password_confirmation')}</div>}
+      {errors.has('passwordConfirmation') && <div className="invalid-feedback">{errors.first('passwordConfirmation')}</div>}
     </div>
     <button className="btn btn-lg btn-primary btn-block"
             type="submit"

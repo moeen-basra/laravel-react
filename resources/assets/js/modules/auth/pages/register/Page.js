@@ -5,7 +5,7 @@ import $ from 'jquery'
 import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
 import { register } from '../../service'
-import { Validator } from 'ree-validate-dev'
+import ReeValidate from 'ree-validate'
 
 // import components
 import Form from './components/Form'
@@ -21,11 +21,11 @@ class Page extends Component {
   constructor(props) {
     super(props)
     
-    this.validator = new Validator({
+    this.validator = new ReeValidate({
       name: 'required|min:6',
       email: 'required|email',
-      password: 'required|min:6|confirmed',
-      password_confirmation: 'required|min:6'
+      password: 'required|min:6',
+      passwordConfirmation: 'required|min:6'
     })
     
     this.state = {
@@ -33,9 +33,10 @@ class Page extends Component {
         name: '',
         email: '',
         password: '',
-        password_confirmation: '',
+        passwordConfirmation: '',
       },
-      errors: this.validator.errors
+      errors: this.validator.errors,
+      fields: this.validator.fields
     }
     
     this.handleChange = this.handleChange.bind(this)
@@ -53,7 +54,7 @@ class Page extends Component {
   // event to handle input change
   handleChange(name, value) {
     const { errors } = this.validator
-    
+
     this.setState({credentials: { ...this.state.credentials, [name]: value }})
     errors.remove(name)
     
@@ -101,12 +102,12 @@ class Page extends Component {
       return <Redirect to="/" />
     }
     
-    const { name, email, password, password_confirmation } = this.state.credentials
+    const { name, email, password, passwordConfirmation } = this.state.credentials
     const props = {
       name,
       email,
       password,
-      password_confirmation,
+      passwordConfirmation,
       errors: this.state.errors,
       handleChange: this.handleChange,
       handleSubmit: this.handleSubmit,
@@ -120,7 +121,7 @@ class Page extends Component {
               <span className="anchor"/>
               <div className="card has-shadow">
                 <div className="card-body">
-                  <Form {...props} />
+                  <Form {...props}  />
                 </div>
               </div>
             </div>
