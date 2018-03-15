@@ -1,6 +1,6 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-## Laravel 5.5 and React 16 boilerplate
+## Laravel 5.6 and React 16 boilerplate
 
 Please follow the guide.
 
@@ -75,7 +75,7 @@ TODO:
 - [x] Form validation Client and Server
 - [ ] Reset Password
 - [x] Tests
-- [ ] Upgrade to Laravel 5.6
+- [x] Upgrade to Laravel 5.6
 - [x] Upgrade to React 16
 
 
