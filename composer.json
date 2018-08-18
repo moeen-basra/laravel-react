@@ -1,14 +1,25 @@
 {
   "name": "moeen-basra/laravel-react",
   "description": "Laravel React",
-  "keywords": ["laravel", "react", "laravel-react", "laravel-react-boilerplate", "react-16", "laravel-5.6", "bootstrap-4", "passport", "laravel-passport", "react-router-4"],
+  "keywords": [
+    "laravel",
+    "react",
+    "laravel-react",
+    "laravel-react-boilerplate",
+    "react-16",
+    "laravel-5.7",
+    "bootstrap-4",
+    "passport",
+    "laravel-passport",
+    "react-router-4"
+  ],
   "license": "MIT",
   "type": "project",
   "require": {
     "php": "^7.1.3",
     "fideloper/proxy": "^4.0",
-    "laravel/framework": "5.6.*",
-    "laravel/passport": "^5.0",
+    "laravel/framework": "5.7.*",
+    "laravel/passport": "^7.0",
     "laravel/tinker": "^1.0"
   },
   "require-dev": {
