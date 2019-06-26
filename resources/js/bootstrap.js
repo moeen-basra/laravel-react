@@ -7,5 +7,6 @@
 try {
   window.$ = window.jQuery = require('jquery');
 // eslint-disable-next-line no-empty
+  require('popper.js')
   require('bootstrap')
 } catch(e) {}
