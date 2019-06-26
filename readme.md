@@ -1,6 +1,6 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-## Laravel 5.6 and React 16 boilerplate
+## Laravel 5.8 and React 16.8 boilerplate
 
 Please follow the guide.
 
