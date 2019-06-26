@@ -1,5 +1,4 @@
-const { mix } = require('laravel-mix');
-const path = require('path')
+const mix = require('laravel-mix')
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,28 +10,14 @@ const path = require('path')
  |
  */
 
-mix.webpackConfig({
-  output: {
-    chunkFilename: 'js/chunks/[name].js'
-  },
-  resolve: {
-    alias : {
-      '@': path.resolve(__dirname, 'resources/assets/js'),
-      'public': path.resolve(__dirname, 'public'),
-      'node': path.resolve(__dirname, 'node'),
-    },
-  },
-})
-
-mix.react('resources/assets/js/app.js', 'public/js')
-  .extract(['react'])
-    .sass('resources/assets/sass/app.scss', 'public/css');
+mix.react('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css');
 
 if (mix.inProduction()) {
   mix.version()
 } else {
   mix.sourceMaps()
   mix.browserSync({
-    proxy: 'http://laravel-react.test'
+    proxy: 'http://laravel-react.test',
   })
 }
