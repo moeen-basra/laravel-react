@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
@@ -101,7 +102,7 @@ class Article extends Model
      */
     public static function loadAllPublished()
     {
-        return static::with(['user' => function ($query) {
+        return static::with(['user' => function (Builder $query) {
             $query->select('id', 'name');
         }])
             ->latest()
