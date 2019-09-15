@@ -65,9 +65,7 @@ class ArticleTest extends TestCase
             'published' => true,
         ]);
 
-        $article = Article::loadPublished(16);
-
-        $this->assertInstanceOf(Article::class, $article);
+        $this->assertEquals(1, Article::published()->count());
     }
 
     /** @test */
