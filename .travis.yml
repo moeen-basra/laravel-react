@@ -11,15 +11,21 @@ addons:
 
 before_script:
   - cp .env.travis .env
-  - sudo mysql -e 'CREATE DATABASE testing_db;'
   - composer self-update
   - composer install --no-interaction
   - php artisan key:generate
   - php artisan migrate --no-interaction --verbose
   - php artisan passport:configure
 
+before_install:
+  - mysql -e 'CREATE DATABASE travis;'
+
 script:
   -  ./vendor/bin/phpunit
+
+cache:
+  directories:
+    - vendor
 
 branches:
   only:
