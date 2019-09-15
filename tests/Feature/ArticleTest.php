@@ -13,11 +13,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ArticleTest extends TestCase
 {
-    use DatabaseMigrations, DatabaseTransactions;
+    use DatabaseTransactions;
 
     public $user;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
