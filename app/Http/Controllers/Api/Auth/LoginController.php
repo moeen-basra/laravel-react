@@ -2,43 +2,39 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use GuzzleHttp\Client;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $this->validate($request, [
+        $input = $this->validate($request, [
             'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ], [
-            'email.exists' => 'The user credentials were incorrect.'
+            'email.exists' => 'The user credentials were incorrect.',
         ]);
-        try {
-            $http = new Client;
 
-            $response = $http->post(env('APP_URL') . '/oauth/token', [
-                'form_params' => [
-                    'grant_type' => 'password',
-                    'client_id' => env('PASSWORD_CLIENT_ID'),
-                    'client_secret' => env('PASSWORD_CLIENT_SECRET'),
-                    'username' => $request->get('email'),
-                    'password' => $request->get('password'),
-                    'remember' => $request->get('remember'),
-                    'scope' => '',
-                ],
-            ]);
+        request()->request->add([
+            'grant_type' => 'password',
+            'client_id' => env('PASSWORD_CLIENT_ID'),
+            'client_secret' => env('PASSWORD_CLIENT_SECRET'),
+            'username' => $input['email'],
+            'password' => $input['password'],
+        ]);
 
-            return json_decode((string)$response->getBody(), true);
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'invalid_credentials',
-                'message' => "{$e->getCode()}: {$e->getMessage()}"
-            ], 401);
+        $response = Route::dispatch(Request::create('/oauth/token', 'POST'));
+
+        $data = json_decode($response->getContent(), true);
+
+        if (!$response->isOk()) {
+            return response()->json($data, 401);
         }
+
+        return $data;
     }
 
     public function logout(Request $request)
@@ -48,7 +44,7 @@ class LoginController extends Controller
         DB::table('oauth_refresh_tokens')
             ->where('access_token_id', $accessToken->id)
             ->update([
-                'revoked' => true
+                'revoked' => true,
             ]);
 
         $accessToken->revoke();
