@@ -18,7 +18,7 @@ before_script:
   - php artisan passport:configure
 
 before_install:
-  - mysql -e 'CREATE DATABASE travis;'
+  - mysql -e 'CREATE DATABASE testing;'
 
 script:
   -  ./vendor/bin/phpunit
