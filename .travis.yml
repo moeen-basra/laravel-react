@@ -1,0 +1,26 @@
+language: php
+
+php:
+  - 7.2.20
+
+services:
+  - mariadb
+
+addons:
+  mariadb: "10.4"
+
+before_script:
+  - cp .env.travis .env
+  - sudo mysql -e 'CREATE DATABASE testing_db;'
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate --no-interaction -vvv
+  - php artisan passport:configure
+
+script:
+  -  ./vendor/bin/phpunit
+
+branches:
+  only:
+    - master
