@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Article extends Model
 {
@@ -33,50 +35,15 @@ class Article extends Model
      * @var array
      */
     protected $casts = [
-        'published' => 'boolean'
+        'published' => 'boolean',
     ];
-
-    /**
-     * Add query scope to get only published articles
-     *
-     * @param $query
-     * @return mixed
-     */
-    public function scopePublished($query)
-    {
-        return $query->where([
-            'published' => true
-        ]);
-    }
-
-    /**
-     * Load only articles related with the user id
-     *
-     * @param $query
-     * @param $user_id
-     * @return mixed
-     */
-    public function scopeMine($query, $user_id)
-    {
-        return $query->where('user_id', $user_id);
-    }
-
-    /**
-     * Relationship between articles and user
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     /**
      * Load all for admin and paginate
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     * @return Paginator
      */
-    public static function loadAll()
+    public static function loadAll(): Paginator
     {
         return static::latest()
             ->paginate();
@@ -86,9 +53,10 @@ class Article extends Model
      * Load all for logged in user and paginate
      *
      * @param $user_id
-     * @return mixed
+     *
+     * @return Paginator
      */
-    public static function loadAllMine($user_id)
+    public static function loadAllMine(int $user_id): Paginator
     {
         return static::latest()
             ->mine($user_id)
@@ -98,13 +66,15 @@ class Article extends Model
     /**
      * load all published with pagination
      *
-     * @return mixed
+     * @return Paginator
      */
-    public static function loadAllPublished()
+    public static function loadAllPublished(): Paginator
     {
-        return static::with(['user' => function (Builder $query) {
-            $query->select('id', 'name');
-        }])
+        return static::with([
+            'user' => function (Builder $query) {
+                $query->select('id', 'name');
+            },
+        ])
             ->latest()
             ->published()
             ->paginate();
@@ -113,18 +83,56 @@ class Article extends Model
     /**
      * load one published
      *
-     * @param $id
-     * @return mixed
+     * @param string $slug
+     *
+     * @return \App\Article
      */
-    public static function loadPublished($slug)
+    public static function loadPublished(string $slug): Article
     {
         return static::with([
-            'user' => function ($query) {
+            'user' => function (Builder $query) {
                 $query->select('id', 'name');
-            }
+            },
         ])
             ->published()
             ->where('slug', $slug)
             ->firstOrFail();
+    }
+
+    /**
+     * Add query scope to get only published articles
+     *
+     * @param Builder $query
+     *
+     * @return Builder
+     */
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->where([
+            'published' => true,
+        ]);
+    }
+
+    /**
+     * Load only articles related with the user id
+     *
+     * @param Builder $query
+     * @param int $user_id
+     *
+     * @return Builder
+     */
+    public function scopeMine(Builder $query, int $user_id): Builder
+    {
+        return $query->where('user_id', $user_id);
+    }
+
+    /**
+     * Relationship between articles and user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
