@@ -23,9 +23,7 @@ class LoginTest extends TestCase
             'email' => $user->email,
             'password' => 'secret',
         ]);
-
-        dd($response->json());
-
+        
         $response->assertStatus(200);
     }
 }
