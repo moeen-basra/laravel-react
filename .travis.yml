@@ -3,12 +3,6 @@ language: php
 php:
   - 7.2.20
 
-services:
-  - mariadb
-
-addons:
-  mariadb: "10.4"
-
 before_script:
   - cp .env.travis .env
   - composer self-update
@@ -21,7 +15,10 @@ before_install:
   - mysql -e 'CREATE DATABASE testing;'
 
 script:
-  -  ./vendor/bin/phpunit
+  - ./vendor/bin/phpunit
+
+services:
+  - mysql
 
 cache:
   directories:
