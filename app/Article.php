@@ -71,7 +71,7 @@ class Article extends Model
     public static function loadAllPublished(): Paginator
     {
         return static::with([
-            'user' => function (Builder $query) {
+            'user' => function (BelongsTo $query) {
                 $query->select('id', 'name');
             },
         ])
