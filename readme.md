@@ -8,7 +8,7 @@ Please follow the guide.
 ## Prerequisite
 
 1. Make sure you have [composer](https://getcomposer.org/download/) installed.
-2. Make sure you have (node)[] installed.
+2. Make sure you have latest stable version of [node](https://nodejs.org/en/download/) installed.
 
 ### Option 1
 
