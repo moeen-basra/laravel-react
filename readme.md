@@ -1,68 +1,51 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 ## Laravel 5.8 and React 16.8 boilerplate
+There are two different ways to run this demo
 
 Please follow the guide.
 
+## Prerequisite
+
+1. Make sure you have [composer](https://getcomposer.org/download/) installed.
+2. Make sure you have (node)[] installed.
+
+### Option 1
+
 1. `git clone`
-2. `update the .env file along with database connection`
+2. `create a .env file copy content from .env.example and update the values`
 3. `composer install && composer update`
-4. `php artisan migrate`
-5. `php artisan db:seed`
-6. `npm install`
+4. `cron:refresh-database`
+5. `npm install && npm run dev`
+6. `php artisan serve`
 
-## Install Passport
+### Option 2
 
-Open a terminal window and install the passport using following command
+## Prerequisite
+Make sure you have [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed on you machine.
 
- ```
- php artisan passport:install
- ```
-## Update the Passport keys in .env file 
-Copy the keys for personal and password grants in `.env` file
+1. `git clone`
+2. `create a .env file copy content from .env.docker and do not make any change`
 
+run following command in terminal / power shell
 ```
-PERSONAL_CLIENT_ID=1
-PERSONAL_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-PASSWORD_CLIENT_ID=2
-PASSWORD_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-## Set the App URL
-Set the APP_URL in `.env` file (e.g)
-
-```
-APP_URL=http://localhost:8000
+docker-compose up -d
 ```
 
-## Set the APP Title
-Set the APP_TITLE in `resources/assets/js/values/index.js`
+when docker will finish building the containers, access the "laravel-react-app" container using following command
 
-```angular2html
-APP_TITLE='Your Blog Name'
-```
+`docker exec -it laravel-react-app sh`
 
-## Run PHP Dev Server
-Either create a local dev url and map the link in webpack.mix.js file or open an other terminal window and copy paste the following command
+now you will be inside container
 
-```
-php artisan serve
-```
+run following commands
+1. `composer install && composer update`
+2. `cron:refresh-database`
+3. `npm install && npm run dev`
 
-## Run Node Engine
+open browser and check the following address
 
-Compile assets one time.
-```
-npm run dev
-```
-**OR**
-or if you would like to compile assets on runtime then copy paste following command in terminal 
-
-`npm run watch` or `npm run watch-poll`
-
-
-for complete list of instruction follow the link below
-[Laravel Mix](https://laravel.com/docs/5.4/mix#running-mix)
-
+`http://localhost:8100`
 
 TODO:
 
@@ -77,6 +60,7 @@ TODO:
 - [x] Tests
 - [x] Upgrade to Laravel 5.6
 - [x] Upgrade to React 16
+- [x] docker
 
 
 
