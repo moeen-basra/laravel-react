@@ -5,7 +5,7 @@ const displayName = "HomePageHeader"
 function Header() {
   return <header className="bg-primary text-white">
     <div className="container text-center">
-      <img width="125" height="125" src="/img/moeen.jpg" alt="..." className="rounded-circle" />
+      <img width="125" height="125" src="https://graph.facebook.com/1243067599/picture?type=square" alt="..." className="rounded-circle" />
       <h1>Moeen Farooq Basra</h1>
       <p className="lead">Master in Information Technology</p>
       <p className="lead">Fullstack Developer at&nbsp;
