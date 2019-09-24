@@ -15,7 +15,7 @@ Please follow the guide.
 1. `git clone`
 2. `create a .env file copy content from .env.example and update the values`
 3. `composer install && composer update`
-4. `cron:refresh-database`
+4. `php artisan cron:refresh-database`
 5. `npm install && npm run dev`
 6. `php artisan serve`
 
@@ -40,7 +40,7 @@ now you will be inside container
 
 run following commands
 1. `composer install && composer update`
-2. `cron:refresh-database`
+2. `php artisan cron:refresh-database`
 3. `npm install && npm run dev`
 
 open browser and check the following address
