@@ -17,7 +17,8 @@ Please follow the guide.
 3. `composer install && composer update`
 4. `php artisan cron:refresh-database`
 5. `npm install && npm run dev`
-6. `php artisan serve`
+6. `php artisan key:gen`
+7. `php artisan serve`
 
 ### Option 2
 
@@ -41,7 +42,8 @@ now you will be inside container
 run following commands
 1. `composer install && composer update`
 2. `php artisan cron:refresh-database`
-3. `npm install && npm run dev`
+3. `php artisan key:gen`
+4. `npm install && npm run dev`
 
 open browser and check the following address
 
