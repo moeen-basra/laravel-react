@@ -39,7 +39,7 @@ services:
     ports:
       - 3333:3306
     volumes:
-      - ./.docker/db/dump.sql:/docker-entrypoint-initdb.d/laravel_react.sql
+      - ./.docker/db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
     command: --default-authentication-plugin=mysql_native_password
     networks:
       - laravel_react_network
