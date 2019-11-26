@@ -9,7 +9,6 @@ RUN apk -u add bash git
 # Install PHP extensions
 ADD ./.docker/install-php.sh /usr/sbin/install-php.sh
 RUN chmod +x /usr/sbin/install-php.sh
-ENV XDEBUG_VERSION 2.7.2
 RUN /usr/sbin/install-php.sh
 
 # Copy existing application directory contents

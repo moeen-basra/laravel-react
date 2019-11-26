@@ -2,7 +2,7 @@ version: "3.7"
 services:
   #Laravel Service
   app:
-    container_name: laravel-react-app
+    container_name: laravel_react_app
     restart: always
     tty: true
     working_dir: /var/www/app
@@ -14,6 +14,7 @@ services:
       PHP_IDE_CONFIG: "serverName=laravel_react_app"
     ports:
       - 9000:9000
+      - 9001:9001
     volumes:
       - .:/var/www/app
     depends_on:
@@ -26,7 +27,7 @@ services:
   #DB Service
   database:
     image: mariadb:latest
-    container_name: laravel-react-database
+    container_name: laravel_react_database
     restart: always
     working_dir: /etc/mysql
     tty: true
@@ -46,7 +47,7 @@ services:
   #Nginx Service
   server:
     image: nginx:alpine
-    container_name: laravel-react-server
+    container_name: laravel_react_server
     restart: always
     tty: true
     ports:

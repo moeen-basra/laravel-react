@@ -41,16 +41,21 @@ docker-php-ext-install \
     mysqli \
     pdo_mysql
 
+# Install Xdebug
+pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && echo "remote_host=docker.for.mac.localhost" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "idekey=IDE_DEBUG" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "error_reporting=E_ALL" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "display_startup_errors=On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "display_errors=On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
 # Install composer
 cd /tmp && php -r "readfile('https://getcomposer.org/installer');" | php && \
 	mv composer.phar /usr/bin/composer && \
 	chmod +x /usr/bin/composer
-
-# Install Xdebug
-curl -sSL -o /tmp/xdebug-${XDEBUG_VERSION}.tgz http://xdebug.org/files/xdebug-${XDEBUG_VERSION}.tgz
-cd /tmp && tar -xzf xdebug-${XDEBUG_VERSION}.tgz && cd xdebug-${XDEBUG_VERSION} && phpize && ./configure && make && make install
-echo "zend_extension=xdebug" > /usr/local/etc/php/conf.d/xdebug.ini
-rm -rf /tmp/xdebug*
 
 apk del $TMP
 
