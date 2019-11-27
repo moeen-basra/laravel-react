@@ -1,33 +1,21 @@
 // import lib
-import Loadable from 'react-loadable'
-
-// import components
-import LoadingComponent from '../../common/loader/index'
+import { lazy } from 'react'
 
 const routes = [
   {
     path: '/',
     exact: true,
-    component: Loadable({
-      loader: () => import('./pages/home/index'),
-      loading: LoadingComponent,
-    }),
+    component: lazy(() => import('./pages/home/index')),
   },
   {
     path: '/blog',
     exact: true,
-    component: Loadable({
-      loader: () => import('./pages/blog/list/index'),
-      loading: LoadingComponent,
-    }),
+    component: lazy(() => import('./pages/blog/list/index')),
   },
   {
     path: '/blog/:slug',
     exact: true,
-    component: Loadable({
-      loader: () => import('./pages/blog/details/index'),
-      loading: LoadingComponent,
-    }),
+    component: lazy(() => import('./pages/blog/details/index')),
   },
 ]
 

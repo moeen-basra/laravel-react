@@ -18,6 +18,6 @@ if (mix.inProduction()) {
 } else {
   mix.sourceMaps()
   mix.browserSync({
-    proxy: 'http://laravel-react.test',
+    proxy: 'http://localhost:8100',
   })
 }

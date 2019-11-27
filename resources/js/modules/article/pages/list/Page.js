@@ -25,7 +25,7 @@ class Page extends Component {
     this.pageChange = this.pageChange.bind(this)
   }
   
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { dispatch } = this.props
   
     dispatch(articleListRequest({}))

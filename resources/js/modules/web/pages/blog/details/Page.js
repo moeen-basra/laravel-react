@@ -21,7 +21,7 @@ class Page extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.loadArticle()
   }
 

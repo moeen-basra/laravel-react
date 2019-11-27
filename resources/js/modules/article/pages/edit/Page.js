@@ -35,12 +35,12 @@ class Page extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
-  
-  componentWillMount() {
+
+  UNSAFE_componentWillMount() {
     this.loadArticle()
   }
   
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const article = nextProps.article.toJson()
     
     if (!_.isEqual(this.state.article, article)) {
