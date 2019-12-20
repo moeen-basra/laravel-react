@@ -2,14 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Article;
 use App\User;
+use App\Article;
 use Carbon\Carbon;
-use Symfony\Component\HttpKernel\Tests\Exception\NotFoundHttpExceptionTest;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Str;
 
 class ArticleTest extends TestCase
 {
@@ -24,6 +22,17 @@ class ArticleTest extends TestCase
         $this->user = $this->createAdminUser();
     }
 
+    private function createAdminUser()
+    {
+        return User::create([
+            'name' => 'Moeen Basra',
+            'email' => 'm.basra@live.com',
+            'password' => bcrypt('secret'),
+            'is_admin' => true,
+            'remember_token' => Str::random(10),
+        ]);
+    }
+
     /** @test */
     public function that_only_loading_articles_for_provided_user_id()
     {
@@ -33,6 +42,14 @@ class ArticleTest extends TestCase
 
         $this->assertCount(15, $articles);
 
+    }
+
+    private function seedUnpublishedArticles($num = 15)
+    {
+        factory(Article::class, $num)->create([
+            'user_id' => $this->user->id,
+            'published' => false,
+        ]);
     }
 
     /** @test */
@@ -53,6 +70,14 @@ class ArticleTest extends TestCase
         $articles = Article::published()->get();
 
         $this->assertCount(5, $articles);
+    }
+
+    private function seedPublishedArticles($num = 5)
+    {
+        factory(Article::class, $num)->create([
+            'user_id' => $this->user->id,
+            'published' => true,
+        ]);
     }
 
     /** @test */
@@ -108,32 +133,5 @@ class ArticleTest extends TestCase
         $articles = Article::where('published', false)->get();
 
         $this->assertEquals($articles->count(), 6);
-    }
-
-    private function seedUnpublishedArticles($num = 15)
-    {
-        factory(Article::class, $num)->create([
-            'user_id' => $this->user->id,
-            'published' => false,
-        ]);
-    }
-
-    private function seedPublishedArticles($num = 5)
-    {
-        factory(Article::class, $num)->create([
-            'user_id' => $this->user->id,
-            'published' => true,
-        ]);
-    }
-
-    private function createAdminUser()
-    {
-        return User::create([
-            'name' => 'Moeen Basra',
-            'email' => 'm.basra@live.com',
-            'password' => bcrypt('secret'),
-            'is_admin' => true,
-            'remember_token' => str_random(10),
-        ]);
     }
 }
