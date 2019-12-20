@@ -1,6 +1,6 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-## Laravel 5.8 and React 16.8 boilerplate
+## Laravel 6 and React 16.12 boilerplate
 There are two different ways to run this demo
 
 Please follow the guide.
@@ -60,8 +60,8 @@ TODO:
 - [x] Form validation Client and Server
 - [ ] Reset Password
 - [x] Tests
-- [x] Upgrade to Laravel 5.6
-- [x] Upgrade to React 16
+- [x] Upgrade to Laravel 6
+- [x] Upgrade to React 16.12
 - [x] docker
 
 
