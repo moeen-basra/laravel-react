@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Str;
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
@@ -21,7 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'phone' => $faker->phoneNumber,
         'about' => $faker->sentence(10),
         'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'remember_token' => Str::random(10),
     ];
 });
 
@@ -32,7 +34,7 @@ $factory->define(App\Article::class, function (Faker\Generator $faker) {
 
     return [
         'title' => $title,
-        'slug' => str_slug($title),
+        'slug' => Str::slug($title),
         'description' => $faker->sentence(15),
         'content' => implode(' ', $faker->paragraphs(2)),
         'published' => true,
