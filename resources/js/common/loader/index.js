@@ -17,6 +17,12 @@ const LoadingComponent = ({isLoading, error}) => {
   }
   // Handle the error state
   else if (error) {
+
+    // This resolves an issue that newly named code-splitted js files make
+    if(error['name'] && error['name'] == "ChunkLoadError"){
+      window.location.reload();
+    }
+
     return <div>Sorry, there was a problem loading the page.</div>
   }
   else {
