@@ -85,12 +85,12 @@ class Article extends Model
      *
      * @param string $slug
      *
-     * @return \App\Article
+     * @return Article
      */
     public static function loadPublished(string $slug): Article
     {
         return static::with([
-            'user' => function (Builder $query) {
+            'user' => function (BelongsTo $query) {
                 $query->select('id', 'name');
             },
         ])
