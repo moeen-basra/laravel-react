@@ -60,8 +60,8 @@ TODO:
 - [x] Form validation Client and Server
 - [ ] Reset Password
 - [x] Tests
-- [x] Upgrade to Laravel 6
-- [x] Upgrade to React 16.12
+- [x] Upgrade to Laravel 7
+- [x] Upgrade to React 16.13
 - [x] docker
 
 
