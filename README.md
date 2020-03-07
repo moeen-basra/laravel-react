@@ -1,6 +1,6 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-## Laravel 6 and React 16.12 boilerplate
+## Laravel 7 and React 16.13 boilerplate
 There are two different ways to run this demo
 
 Please follow the guide.

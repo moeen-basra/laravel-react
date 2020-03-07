@@ -43,18 +43,17 @@ const removePlugin =  new RemovePlugin({
   }
 })
 
-
 mix.webpackConfig({
-
   plugins: [removePlugin],
 
   node: {
     fs: 'empty'
   },
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].[chunkhash]' + String(new Date().getTime()) +'.app.js'
-  }
-}).react('resources/js/app.js', 'public/js')
+    publicPath: '/',
+    chunkFilename: 'js/chunks/[name].[chunkhash].js',
+  },
+})
+  .react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version();
