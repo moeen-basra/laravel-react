@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { EditorState, convertToRaw, ContentState, convertFromHTML } from 'draft-js'
+import { ContentState, convertFromHTML, convertToRaw, EditorState } from 'draft-js'
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
 
@@ -22,8 +22,8 @@ class WYSIWYG extends Component {
     this.onEditorStateChange = this.onEditorStateChange.bind(this)
   }
 
-  convertHtmlToEditorState(value) {
-    if (value){
+  convertHtmlToEditorState = (value) => {
+    if (value) {
       const blocksFromHTML = convertFromHTML(value)
       const state = ContentState.createFromBlockArray(
         blocksFromHTML.contentBlocks,
@@ -34,7 +34,7 @@ class WYSIWYG extends Component {
     }
   }
 
-  onEditorStateChange(editorState) {
+  onEditorStateChange = (editorState) => {
     this.setState({
       editorState,
     })
@@ -43,14 +43,14 @@ class WYSIWYG extends Component {
   }
 
   render() {
-    const { editorState } = this.state
+    const {editorState} = this.state
     return (
       <div>
         <Editor
-          editorState={editorState}
+          editorState={ editorState }
           wrapperClassName="demo-wrapper"
           editorClassName="form-control"
-          onEditorStateChange={this.onEditorStateChange}
+          onEditorStateChange={ this.onEditorStateChange }
         />
       </div>
     )
