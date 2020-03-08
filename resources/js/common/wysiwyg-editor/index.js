@@ -4,7 +4,7 @@ import { ContentState, convertFromHTML, convertToRaw, EditorState } from 'draft-
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from 'draftjs-to-html'
 
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+require('react-draft-wysiwyg/dist/react-draft-wysiwyg.css')
 
 class WYSIWYG extends Component {
   static propTypes = {

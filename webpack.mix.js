@@ -13,47 +13,43 @@ const mix = require('laravel-mix')
 
 const RemovePlugin = require('remove-files-webpack-plugin');
 
-const removePlugin =  new RemovePlugin({
+const removePlugin = new RemovePlugin({
 
   before: {
     test: [
       {
         folder: 'public',
         method: (filePath) => {
-          return new RegExp(/(?:.*\.app\.js|mix-manifest\.json)$/, 'm').test(filePath);
+          return new RegExp(/(?:.*\.js|.*\.map|mix-manifest\.json)$/, 'm').test(filePath);
         }
       },
       {
         folder: 'public/js',
         method: (filePath) => {
-          return new RegExp(/app\.js$/, 'm').test(filePath);
-        }
+          return new RegExp(/(?:.*\.js|.*\.map)$/, 'm').test(filePath);
+        },
+        recursive: true
       },
       {
         folder: 'public/css',
         method: (filePath) => {
-          return new RegExp(/app\.css$/, 'm').test(filePath);
+          return new RegExp(/(?:.*\.css|.*\.map)$/, 'm').test(filePath);
         }
       }
     ]
   },
 
-  after: {
-
-  }
+  after: {}
 })
 
 mix.webpackConfig({
-  plugins: [removePlugin],
+  plugins: [ removePlugin ],
 
   node: {
     fs: 'empty'
   },
-  output: {
-    publicPath: '/',
-    chunkFilename: 'js/chunks/[name].[chunkhash].js',
-  },
-})
-  .react('resources/js/app.js', 'public/js')
+});
+  mix.react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
+    .sourceMaps(false, 'source-map')
     .version();
