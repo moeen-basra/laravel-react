@@ -35,7 +35,7 @@ docker-compose up -d
 
 when docker will finish building the containers, access the "laravel-react-app" container using following command
 
-`docker exec -it laravel-react-app sh`
+`docker exec -it laravel_react_app sh`
 
 now you will be inside container
 
