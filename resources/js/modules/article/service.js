@@ -87,7 +87,10 @@ export function articleRemoveRequest(id) {
   }
 }
 
-export function articleListRequest({pageNumber = 1, url = '/articles'}) {
+export function articleListRequest(params) {
+
+  let { pageNumber = 1, url = '/articles' } = params
+
   return dispatch => {
     if (pageNumber > 1) {
       url = url + `?page=${pageNumber}`

@@ -1,5 +1,5 @@
 //import libs
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -11,31 +11,29 @@ import { fetchUser } from '../modules/auth/service'
 import PrivateLayout from './Private'
 import PublicLayout from './Public'
 
-class Layout extends Component {
-  static displayName = 'Layout'
-  static propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired,
-    children: PropTypes.node.isRequired,
-    dispatch: PropTypes.func.isRequired,
-  }
+function Layout(props) {
 
-  UNSAFE_componentWillMount() {
-    const { isAuthenticated, user } = this.props
+  const { isAuthenticated, user, children, dispatch } = props
 
+  useEffect(() => {
     if (isAuthenticated && !user.id) {
-      this.props.dispatch(fetchUser())
+      dispatch(fetchUser())
     }
+  }, [isAuthenticated])
 
+  if (isAuthenticated) {
+    return <PrivateLayout {...props}>{children}</PrivateLayout>
   }
+  return <PublicLayout {...props}>{children}</PublicLayout>
+}
 
-  render() {
-    const { children, ...props } = this.props
-    if (this.props.isAuthenticated) {
-      return <PrivateLayout {...props}>{children}</PrivateLayout>
-    }
-    return <PublicLayout {...props}>{children}</PublicLayout>
-  }
+Layout.displayName = 'Layout';
+
+Layout.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
+  dispatch: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

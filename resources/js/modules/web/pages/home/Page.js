@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { useLayoutEffect } from "react"
 import PropTypes from "prop-types"
 
 // import components
@@ -6,24 +6,20 @@ import Header from "./components/Header"
 import Articles from "../../../../common/articles/listing/index"
 
 // import services
-import { articleListRequest } from "../../../article/service"
+import { articleListRequest } from '../../../article/service'
 
-class Page extends Component {
-  static displayName = "HomePage"
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-  }
+export default function Page({ dispatch }) {
+  useLayoutEffect(() => {
+    dispatch(articleListRequest({ url: '/articles/published' }))
+  }, [])
 
-  componentDidMount() {
-    this.props.dispatch(articleListRequest({ url: '/articles/published' }))
-  }
-
-  render() {
-    return <div>
-      <Header/>
-      <Articles/>
-    </div>
-  }
+  return <div>
+    <Header/>
+    <Articles/>
+  </div>
 }
 
-export default Page
+Page.displayName = 'HomePage'
+Page.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+}

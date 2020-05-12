@@ -24,25 +24,21 @@ class Navigation extends Component {
       showNavigation: false,
       showDropdown: false,
     }
-  
-    this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.logout = this.logout.bind(this);
   }
   
-  toggleNavbar() {
+  toggleNavbar = () => {
     this.setState({
       showNavigation: !this.state.showNavigation,
     });
   }
   
-  toggleDropdown() {
+  toggleDropdown = () => {
     this.setState({
       showDropdown: !this.state.showDropdown,
     })
   }
   
-  logout(e) {
+  logout = e => {
     e.preventDefault()
     
     this.props.dispatch(logout())

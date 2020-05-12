@@ -19,42 +19,39 @@ class Page extends Component {
   
   constructor(props) {
     super(props)
-    
-    this.togglePublish = this.togglePublish.bind(this)
-    this.handleRemove = this.handleRemove.bind(this)
-    this.pageChange = this.pageChange.bind(this)
   }
-  
-  UNSAFE_componentWillMount() {
+
+  componentDidMount() {
+    console.log('moeen')
     const { dispatch } = this.props
-  
+
     dispatch(articleListRequest({}))
   }
-  
-  pageChange(pageNumber) {
+
+  pageChange = (pageNumber) => {
     this.props.dispatch(articleListRequest({ pageNumber }))
   }
-  
-  togglePublish(id) {
+
+  togglePublish = (id) => {
     const article = this.props.articles.find(article => (article.id === id))
-    
+
     if (!article)
       return
-  
+
     article.published = !article.published
     if (article.published) {
       article.publishedAt = moment()
     } else {
       article.publishedAt = null
     }
-    
+
     this.props.dispatch(articleUpdateRequest(article.toJson()))
   }
-  
-  handleRemove(id) {
+
+  handleRemove = (id) => {
     this.props.dispatch(articleRemoveRequest(id))
   }
-  
+
   renderArticles() {
     return this.props.articles.map((article, index) => {
       return <ArticleRow key={index}
