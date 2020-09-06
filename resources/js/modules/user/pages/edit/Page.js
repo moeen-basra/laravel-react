@@ -18,7 +18,7 @@ class Page extends Component {
   constructor(props) {
     super(props)
     
-    this.validator = new ReeValidate({
+    this.validator = new ReeValidate.Validator({
       'name': 'required|min:3',
       'email': 'required|email',
       'phone': 'min:8|numeric',
@@ -29,7 +29,7 @@ class Page extends Component {
     
     this.state = {
       user,
-      errors: this.validator._validator.errors
+      errors: this.validator.errors
     }
     
     this.handleChange = this.handleChange.bind(this)
