@@ -36,7 +36,7 @@ class Page extends Component {
         password: '',
         remember: false,
       },
-      errors: this.validator.errors
+      errors: this.validator._validator.errors
     }
   }
 

@@ -29,7 +29,7 @@ class Page extends Component {
     
     this.state = {
       user,
-      errors: this.validator.errors
+      errors: this.validator._validator.errors
     }
     
     this.handleChange = this.handleChange.bind(this)

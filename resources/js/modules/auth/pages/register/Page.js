@@ -35,8 +35,8 @@ class Page extends Component {
         password: '',
         passwordConfirmation: '',
       },
-      errors: this.validator.errors,
-      fields: this.validator.fields
+      errors: this.validator._validator.errors,
+      fields: this.validator._validator.fields
     }
     
     this.handleChange = this.handleChange.bind(this)
