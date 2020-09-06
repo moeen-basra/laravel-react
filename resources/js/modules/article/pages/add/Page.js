@@ -28,7 +28,7 @@ class Page extends Component {
     
     this.state = {
       article,
-      errors: this.validator.errors
+      errors: this.validator._validator.errors
     }
     
     this.handleSubmit = this.handleSubmit.bind(this)
