@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import { userUpdateRequest } from '../../service'
-import ReeValidate from 'ree-validate'
+import { Validator } from 'ree-validate'
 
 // import components
 import Form from './components/Form'
@@ -18,7 +18,7 @@ class Page extends Component {
   constructor(props) {
     super(props)
     
-    this.validator = new ReeValidate({
+    this.validator = new Validator({
       'name': 'required|min:3',
       'email': 'required|email',
       'phone': 'min:8|numeric',
@@ -29,7 +29,7 @@ class Page extends Component {
     
     this.state = {
       user,
-      errors: this.validator._validator.errors
+      errors: this.validator.errors
     }
     
     this.handleChange = this.handleChange.bind(this)

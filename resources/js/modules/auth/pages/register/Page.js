@@ -5,7 +5,7 @@ import $ from 'jquery'
 import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
 import { register } from '../../service'
-import ReeValidate from 'ree-validate'
+import { Validator } from 'ree-validate'
 
 // import components
 import Form from './components/Form'
@@ -21,7 +21,7 @@ class Page extends Component {
   constructor(props) {
     super(props)
     
-    this.validator = new ReeValidate({
+    this.validator = new Validator({
       name: 'required|min:6',
       email: 'required|email',
       password: 'required|min:6',
@@ -35,8 +35,8 @@ class Page extends Component {
         password: '',
         passwordConfirmation: '',
       },
-      errors: this.validator._validator.errors,
-      fields: this.validator._validator.fields
+      errors: this.validator.errors,
+      fields: this.validator.fields
     }
     
     this.handleChange = this.handleChange.bind(this)
