@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class RefreshDatabase extends Command
 {
@@ -40,6 +39,5 @@ class RefreshDatabase extends Command
     {
         $this->call('migrate:refresh');
         $this->call('db:seed');
-        $this->call('passport:configure');
     }
 }

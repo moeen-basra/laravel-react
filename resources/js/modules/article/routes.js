@@ -6,18 +6,18 @@ export default [
     path: '/articles',
     exact: true,
     auth: true,
-    component: lazy(() => import('./pages/list/index')),
+    component: lazy(() => import('./pages/list')),
   },
   {
     path: '/articles/create',
     exact: true,
     auth: true,
-    component: lazy(() => import('./pages/add/index')),
+    component: lazy(() => import('./pages/add')),
   },
   {
     path: '/articles/:id/edit',
     exact: true,
     auth: true,
-    component: lazy(() => import('./pages/edit/index')),
+    component: lazy(() => import('./pages/edit')),
   },
 ]

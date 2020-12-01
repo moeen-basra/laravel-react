@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import DocumentTitle from 'react-document-title';
 import {articleFetchRequest} from '../../../../article/service'
-import {APP_TITLE} from '../../../../../values/index'
+import {APP_TITLE} from '../../../../../values'
 
 class Page extends Component {
   static displayName = 'ArticleShowPage'

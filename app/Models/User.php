@@ -1,15 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Laravel\Passport\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
+use Database\Factories\UserFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens;
+    use Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -38,10 +42,13 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
 
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
+
     /**
-     * The relation between user and articles
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function articles(): HasMany
     {

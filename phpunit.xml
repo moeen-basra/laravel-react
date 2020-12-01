@@ -28,5 +28,7 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
         <env name="DB_CONNECTION" value="testing"/>
+        <env name="DB_TEST_USERNAME" value="root"/>
+        <env name="DB_TEST_PASSWORD" value=""/>
     </php>
 </phpunit>

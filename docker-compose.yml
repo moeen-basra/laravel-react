@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.8"
 services:
   #Laravel Service
   app:
@@ -12,9 +12,6 @@ services:
     environment:
       XDEBUG_CONFIG: "idekey=IDE_DEBUG"
       PHP_IDE_CONFIG: "serverName=laravel_react_app"
-#    ports:
-#      - 9001:9000
-#      - 9002:9001
     volumes:
       - .:/var/www/app
     depends_on:

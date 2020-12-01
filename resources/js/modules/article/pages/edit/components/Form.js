@@ -1,6 +1,4 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import MyEditor from '../../../../../common/wysiwyg-editor/index'
 
 const displayName = 'ArticleFrom'
 const propTypes = {
@@ -48,7 +46,7 @@ const Form = ({ article, errors, onChange, onSubmit }) => {
     <div className="form-group row">
       <label htmlFor="content" className="col-sm-2 col-form-label">Content</label>
       <div className="col-sm-10">
-        <MyEditor id="content" value={article.content} onChange={e => handleChange('content', e)} />
+        <textarea id="content" value={article.content} onChange={e => handleChange('content', e)} />
         {errors.has('content') && <div className="invalid-feedback">{errors.first('content')}</div>}
       </div>
     </div>

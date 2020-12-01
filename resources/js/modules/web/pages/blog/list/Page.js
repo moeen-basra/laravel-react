@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 
 // import components
-import Articles from "../../../../../common/articles/listing/index"
+import Articles from "../../../../../common/articles/listing"
 
 // import services
 import { articleListRequest } from "../../../../article/service"

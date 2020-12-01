@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 # Comment this to improve stability on "auto deploy" environments
 RUN apk update && apk upgrade

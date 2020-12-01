@@ -5,17 +5,17 @@ const routes = [
   {
     path: '/',
     exact: true,
-    component: lazy(() => import('./pages/home/index')),
+    component: lazy(() => import('./pages/home')),
   },
   {
     path: '/blog',
     exact: true,
-    component: lazy(() => import('./pages/blog/list/index')),
+    component: lazy(() => import('./pages/blog/list')),
   },
   {
     path: '/blog/:slug',
     exact: true,
-    component: lazy(() => import('./pages/blog/details/index')),
+    component: lazy(() => import('./pages/blog/details')),
   },
 ]
 

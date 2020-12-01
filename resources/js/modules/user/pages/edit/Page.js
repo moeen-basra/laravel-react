@@ -35,8 +35,8 @@ class Page extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-  
-  componentWillReceiveProps(nextProps) {
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const user = nextProps.user.toJson()
     
     if (!_.isEqual(this.state.user, user)) {

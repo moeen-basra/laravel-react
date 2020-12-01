@@ -12,6 +12,7 @@ const mix = require('laravel-mix')
 
 
 const RemovePlugin = require('remove-files-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const removePlugin = new RemovePlugin({
 
@@ -43,7 +44,7 @@ const removePlugin = new RemovePlugin({
 })
 
 mix.webpackConfig({
-  plugins: [ removePlugin ],
+  plugins: [ removePlugin, new ESLintPlugin() ],
 
   node: {
     fs: 'empty'

@@ -1,17 +1,20 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Database\Factories\ArticleFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
     // use soft delete instead of permanent delete
     use SoftDeletes;
+    use HasFactory;
 
     /**
      * The table associated with the model.
@@ -37,6 +40,11 @@ class Article extends Model
     protected $casts = [
         'published' => 'boolean',
     ];
+
+    protected static function newFactory(): ArticleFactory
+    {
+        return ArticleFactory::new();
+    }
 
     /**
      * Load all for admin and paginate
