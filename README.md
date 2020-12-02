@@ -1,6 +1,6 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-## Laravel 7 and React 16.13 boilerplate
+## Laravel 8 and React 17 boilerplate
 There are two different ways to run this demo
 
 Please follow the guide.
@@ -52,7 +52,7 @@ open browser and check the following address
 TODO:
 
 - [x] Add Redux
-- [x] Add Passport for authentication
+- [x] Add Laravel Sanctum for authentication
 - [x] User Login
 - [x] User Register
 - [x] Users Crud

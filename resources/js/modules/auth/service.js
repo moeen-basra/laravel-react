@@ -103,7 +103,7 @@ export function register(credentials) {
  */
 export function logout() {
   return dispatch => {
-    return Http.delete('auth/logout')
+    return Http.post('logout')
       .then(() => {
         dispatch(authActions.authLogout())
       })
