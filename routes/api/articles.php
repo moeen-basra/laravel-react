@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('published', 'ArticleController@publishedArticles')->name('articles.published.index');
 Route::get('published/{id}', 'ArticleController@publishedArticle')->name('articles.published.show');
 
-Route::group(['middleware' => 'auth:api'], function() {
+Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('/', 'ArticleController@store')->name('articles.store');
     Route::get('/', 'ArticleController@index')->name('articles.index');
     Route::get('/{id}', 'ArticleController@show')->name('articles.show');

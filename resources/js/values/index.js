@@ -1,4 +1,4 @@
-const APP_TITLE = 'Your Blog Name'
+const APP_TITLE = 'Laravel React Boiler Plate'
 
 export {
     APP_TITLE,

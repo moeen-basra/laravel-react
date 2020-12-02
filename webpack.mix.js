@@ -1,4 +1,5 @@
-const mix = require('laravel-mix')
+const mix = require('laravel-mix');
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -53,4 +54,5 @@ mix.webpackConfig({
   mix.react('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps(false, 'source-map')
-    .version();
+    .version()
+    .browserSync('http://localhost:8100')

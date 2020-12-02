@@ -10,6 +10,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 
 class RouteServiceProvider extends ServiceProvider
 {
+    const HOME = '/';
+
     /**
      * This namespace is applied to your controller routes.
      *

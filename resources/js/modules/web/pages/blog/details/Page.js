@@ -1,82 +1,64 @@
 // import libs
-import React, {Component} from 'react'
+import React, {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import DocumentTitle from 'react-document-title';
 import {articleFetchRequest} from '../../../../article/service'
 import {APP_TITLE} from '../../../../../values'
 
-class Page extends Component {
-  static displayName = 'ArticleShowPage'
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    article: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
-  }
+export default function Page({match, article, dispatch}) {
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      //
-    }
-  }
-
-  UNSAFE_componentWillMount() {
-    this.loadArticle()
-  }
-
-  loadArticle() {
-    const {match, article, dispatch} = this.props
-
+  const loadArticle = () => {
     if (!article.slug) {
       dispatch(articleFetchRequest(match.params.slug))
     }
   }
 
-  renderPublishedDate() {
-    const {publishedAt} = this.props.article
+  useEffect(() => {
+    loadArticle()
+  })
+
+  const renderPublishedDate = () => {
+    const {publishedAt} = article
 
     if (publishedAt) {
       return `at ${publishedAt.format('MMMM d, YYYY')}`
     }
   }
 
-  renderAuthor() {
-    const {user} = this.props.article
+  const renderAuthor = () => {
+    const {user} = article
 
     if (user) {
       return `by ${user.name}`
     }
-
   }
 
-  createMarkup() {
-    return {__html: this.props.article.content};
-  }
-
-  renderArticle() {
-    const {article} = this.props
+  const renderArticle = () => {
     return (<div className="col-12 col-sm-9 mb-5 mx-auto">
       <h2>{article.title}</h2>
-      <small className="text-muted mb-5">{this.renderPublishedDate()} {this.renderAuthor()}</small>
+      <small className="text-muted mb-5">{renderPublishedDate()} {renderAuthor()}</small>
       <p className="text-muted mb-5">{article.description}</p>
-      <div dangerouslySetInnerHTML={this.createMarkup()}/>
+      <p>{article.content}</p>
     </div>)
   }
 
-  render() {
-    return (
-      <DocumentTitle title={`${this.props.article.title} - ${APP_TITLE}`}>
-        <section id="components-articles">
-          <div className="container">
-            <div className="row">
-              {this.renderArticle()}
-            </div>
+  return (
+    <DocumentTitle title={`${article.title} - ${APP_TITLE}`}>
+      <section id="components-articles">
+        <div className="container">
+          <div className="row">
+            {renderArticle()}
           </div>
-        </section>
-      </DocumentTitle>
-    )
-  }
+        </div>
+      </section>
+    </DocumentTitle>
+  )
+
 }
 
-export default Page
+Page.displayName = 'ArticleShowPage'
+Page.propTypes = {
+  match: PropTypes.object.isRequired,
+  article: PropTypes.object.isRequired,
+  dispatch: PropTypes.func.isRequired
+}

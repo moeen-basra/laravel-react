@@ -22,7 +22,6 @@ class Page extends Component {
   }
 
   componentDidMount() {
-    console.log('moeen')
     const { dispatch } = this.props
 
     dispatch(articleListRequest({}))

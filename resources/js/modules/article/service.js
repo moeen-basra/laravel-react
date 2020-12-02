@@ -13,7 +13,7 @@ function transformResponse(params) {
 export function articleAddRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post('/articles', transformRequest(params))
+      Http.post('api/v1/articles', transformRequest(params))
         .then(res => {
           dispatch(articleActions.add(transformResponse(res.data)))
           return resolve()
@@ -45,7 +45,7 @@ export function articleAddRequest(params) {
 export function articleUpdateRequest(params) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.patch(`articles/${params.id}`, transformRequest(params))
+      Http.patch(`api/v1/articles/${params.id}`, transformRequest(params))
         .then(res => {
           dispatch(articleActions.add(transformResponse(res.data)))
           return resolve()
@@ -76,7 +76,7 @@ export function articleUpdateRequest(params) {
 
 export function articleRemoveRequest(id) {
   return dispatch => {
-    Http.delete(`articles/${id}`)
+    Http.delete(`api/v1/articles/${id}`)
       .then(() => {
         dispatch(articleActions.remove(id))
       })
@@ -89,7 +89,7 @@ export function articleRemoveRequest(id) {
 
 export function articleListRequest(params) {
 
-  let { pageNumber = 1, url = '/articles' } = params
+  let { pageNumber = 1, url = 'api/v1/articles' } = params
 
   return dispatch => {
     if (pageNumber > 1) {
@@ -109,7 +109,7 @@ export function articleListRequest(params) {
 
 export function articleEditRequest(id) {
   return dispatch => {
-    Http.get(`articles/${id}`)
+    Http.get(`api/v1/articles/${id}`)
       .then((res) => {
         dispatch(articleActions.add(transformResponse(res.data)))
       })
@@ -122,7 +122,7 @@ export function articleEditRequest(id) {
 
 export function articleFetchRequest(slug) {
   return dispatch => {
-    Http.get(`articles/published/${slug}`)
+    Http.get(`api/v1/articles/published/${slug}`)
       .then((res) => {
         dispatch(articleActions.add(transformResponse(res.data)))
       })

@@ -9,7 +9,7 @@ import Transformer from '../../utils/Transformer'
  */
 export function fetchUser() {
   return dispatch => {
-    return Http.get('auth/me')
+    return Http.get('api/v1/auth/me')
       .then(res => {
         const data = Transformer.fetch(res.data)
         dispatch(authActions.authUser(data))
@@ -29,31 +29,34 @@ export function fetchUser() {
 export function login(credentials) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post('auth/login', credentials)
-        .then(res => {
-          const data = Transformer.fetch(res.data)
-          dispatch(authActions.authLogin(data.accessToken))
-          return resolve()
-        })
-        .catch((err) => {
-          const statusCode = err.response.status;
-          const data = {
-            error: null,
-            statusCode,
-          };
+      Http.get('sanctum/csrf-cookie')
+        .then(() => {
+          Http.post('login', credentials)
+            .then(res => {
+              const data = Transformer.fetch(res.data)
+              dispatch(authActions.authLogin(data.accessToken))
+              return resolve()
+            })
+            .catch((err) => {
+              const statusCode = err.response.status;
+              const data = {
+                error: null,
+                statusCode,
+              };
 
-          if (statusCode === 422) {
-            const resetErrors = {
-              errors: err.response.data.errors,
-              replace: false,
-              searchStr: '',
-              replaceStr: '',
-            };
-            data.error = Transformer.resetValidationFields(resetErrors);
-          } else if (statusCode === 401) {
-            data.error = err.response.data.message;
-          }
-          return reject(data);
+              if (statusCode === 422) {
+                const resetErrors = {
+                  errors: err.response.data.errors,
+                  replace: false,
+                  searchStr: '',
+                  replaceStr: '',
+                };
+                data.error = Transformer.resetValidationFields(resetErrors);
+              } else if (statusCode === 401) {
+                data.error = err.response.data.message;
+              }
+              return reject(data);
+            })
         })
     })
   )
@@ -62,7 +65,7 @@ export function login(credentials) {
 export function register(credentials) {
   return dispatch => (
     new Promise((resolve, reject) => {
-      Http.post('auth/register', Transformer.send(credentials))
+      Http.post('register', Transformer.send(credentials))
         .then(res => {
           const data = Transformer.fetch(res.data)
           dispatch(authActions.authLogin(data.accessToken))
