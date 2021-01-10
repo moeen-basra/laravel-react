@@ -10,7 +10,7 @@ import { articleListRequest } from '../../../article/service'
 
 export default function Page({ dispatch }) {
   useLayoutEffect(() => {
-    dispatch(articleListRequest({ url: 'api/v1//articles/published' }))
+    dispatch(articleListRequest({ url: 'api/v1/articles/published' }))
   }, [])
 
   return <div>

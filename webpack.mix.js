@@ -45,14 +45,18 @@ const removePlugin = new RemovePlugin({
 })
 
 mix.webpackConfig({
-  plugins: [ removePlugin, new ESLintPlugin() ],
-
-  node: {
-    fs: 'empty'
-  },
+  plugins: [removePlugin, new ESLintPlugin()],
 });
-  mix.react('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps(false, 'source-map')
-    .version()
-    .browserSync('http://localhost:8100')
+
+mix.js('resources/js/app.js', 'public/js').react()
+  .extract(['@popperjs/core', 'axios', 'bootstrap', 'clsx', 'font-awesome', 'history', 'jquery', 'lodash', 'moment', 'prop-types', 'react', 'react-document-title', 'react-dom', 'react-loadable', 'react-redux', 'react-router-dom', 'reactstrap', 'redux', 'redux-thunk', 'ree-validate'])
+  .sass('resources/sass/app.scss', 'public/css')
+  .sourceMaps(false, 'source-map')
+
+if (mix.inProduction()) {
+  mix.version();
+}
+
+if (!mix.inProduction()) {
+  mix.browserSync('http://localhost:8100')
+}

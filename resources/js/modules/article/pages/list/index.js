@@ -9,7 +9,7 @@ const mapStateToProps = state => {
   const {data, ...meta} = state.articles
   
   return {
-    articles: data.map((article) => new Article(article)),
+    articles: data?.map((article) => new Article(article)),
     meta: Object.assign({}, meta)
   }
 }
