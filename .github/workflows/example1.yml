@@ -22,7 +22,13 @@ jobs:
           node --version
       - name: Get env variables
         run: cat .env.example > .env
-      - name: Generate build
+      - name: Composer install
         run: |
           composer install
           npm ci
+      - name: Npm install
+        run: |
+          npm ci
+      - name: Run npm
+        run: |
+          npm run prod
