@@ -18,7 +18,7 @@ jobs:
       - name: Install node
         run: |
           curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-          apt install nodejs
+          sudo apt install nodejs
           node --version
       - name: Get env variables
         run: cat .env.example > .env
