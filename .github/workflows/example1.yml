@@ -1,0 +1,28 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    outputs:
+      job_status: ${{ job.status }}
+    steps:
+      - name: Checkout local actions
+        uses: actions/checkout@v2
+      - name: Install node
+        run: |
+          curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+          apt install nodejs
+          node --version
+      - name: Get env variables
+        run: cat .env.example > .env
+      - name: Generate build
+        run: |
+          composer install
+          npm ci
