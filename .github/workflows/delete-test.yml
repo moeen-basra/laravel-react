@@ -1,0 +1,39 @@
+name: "Manual/Auto: delete test"
+on:
+  delete:
+  workflow_dispatch:
+    inputs:
+      branch-name:
+        description: 'Type in branch if not listed'
+
+env:
+  IMAGE_NAME: mycall-frontend
+
+jobs:
+  cleanup-pr-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Get branch name from delete
+        id: get-branch-name
+        shell: bash
+        run: |
+          if [ -z ${{ github.event.inputs.branch-name }} ]
+          then
+            BRANCH=${{ github.event.ref }}
+          else
+            BRANCH=${{ github.event.inputs.branch-name }}
+          fi
+          if [[ $BRANCH =~ "/" ]];
+          then
+              id=$(echo $BRANCH | cut -d'/' -f2)
+          else
+              id=$BRANCH
+          fi
+          BRANCH="${id,,}"
+          echo "::set-output name=branch::$BRANCH"
+      - name: Echo the branch
+        env:
+          BRANCH: ${{ steps.get-branch-name.outputs.branch }}
+          K8_API_TOKEN: ${{ secrets.K8_API_TOKEN }}
+        run: |
+          echo $BRANCH
