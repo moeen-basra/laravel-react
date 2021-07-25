@@ -16,7 +16,7 @@ Please follow the guide.
 2. `create a .env file copy content from .env.example and update the values`
 3. `composer install && composer update`
 4. `php artisan cron:refresh-database`
-5. `npm install && npm run dev`
+5. if npm version < 7 `npm install && npm run dev` else `npm install --legacy-peer-deps && npm run dev`
 6. `php artisan key:gen`
 7. `php artisan serve`
 
@@ -43,7 +43,7 @@ run following commands
 1. `composer install && composer update`
 2. `php artisan cron:refresh-database`
 3. `php artisan key:gen`
-4. `npm install && npm run dev`
+4. if npm version < 7 `npm install && npm run dev` else `npm install --legacy-peer-deps && npm run dev`
 
 open browser and check the following address
 
