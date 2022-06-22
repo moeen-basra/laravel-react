@@ -12,4 +12,9 @@ export default [
     exact: true,
     component: lazy(() => import('./pages/register')),
   },
+  {
+    path: '/forget-password',
+    exact: true,
+    component: lazy(() => import('./pages/password')),
+  },
 ]

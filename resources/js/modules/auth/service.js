@@ -112,3 +112,11 @@ export function logout() {
       })
   }
 }
+
+
+/**
+ * Reset User's Password
+ */
+export function resetPassword(data){
+    return Http.post('password/email', data);
+}
