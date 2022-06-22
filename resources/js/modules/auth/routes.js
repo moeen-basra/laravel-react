@@ -17,4 +17,9 @@ export default [
     exact: true,
     component: lazy(() => import('./pages/password')),
   },
+  {
+    path: '/password/reset',
+    exact: true,
+    component: lazy(() => import('./pages/reset-password')),
+  },
 ]

@@ -2,9 +2,8 @@
  import React, { Component } from 'react'
  import PropTypes from 'prop-types'
  import $ from 'jquery'
- import _ from 'lodash'
  import { Redirect } from 'react-router-dom'
- import { resetPassword } from '../../service'
+ import { requestPasswordLink } from '../../service'
  import { Validator } from 'ree-validate'
  
  // import components
@@ -13,7 +12,7 @@
  // initialize component
  class Page extends Component {
    // set name of the component
-   static displayName = 'ResetPassword'
+   static displayName = 'ForgetPassword'
  
    // validate props
    static propTypes = {
@@ -81,7 +80,7 @@
  
   submit(data) {
     this.setState({message: ''});
-    resetPassword(data).then(res => {
+    requestPasswordLink(data).then(res => {
       console.log(res.data.message);
       this.setState({message: res.data.message})
     }).catch(err => {
