@@ -11,12 +11,19 @@
 |
 */
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+// Authentication Routes...
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get( '/{any}', function () {
+// Registration Routes...
+Route::post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+Route::get('/{any}', function () {
     return view('index');
 })->where('any', '.*');
-
