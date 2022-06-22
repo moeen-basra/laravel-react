@@ -54,6 +54,7 @@ const Form = ({ email, password, remember, errors, handleChange, handleSubmit })
             type="submit"
             disabled={errors.any()}>Sign In</button>
     <p>Not a member? <Link to='/register'>Signup here</Link></p>
+    <p>Forgot password? <Link to='/forget-password'>Reset it</Link></p>
   </form>
 )
 
