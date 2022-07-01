@@ -37,7 +37,8 @@
     "reactstrap": "^8.9.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "ree-validate": "^3.3.2"
+    "ree-validate": "^3.3.2",
+    "webpack": "^5.73.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.12.1",
