@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const displayName = 'LoginForm'
+const displayName = 'ForgetPasswordForm'
 const propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,

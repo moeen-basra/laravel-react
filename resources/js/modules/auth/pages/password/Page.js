@@ -12,7 +12,7 @@
  // initialize component
  class Page extends Component {
    // set name of the component
-   static displayName = 'ForgetPassword'
+   static displayName = 'ForgetPasswordPage'
  
    // validate props
    static propTypes = {
@@ -81,10 +81,9 @@
   submit(data) {
     this.setState({message: ''});
     requestPasswordLink(data).then(res => {
-      console.log(res.data.message);
       this.setState({message: res.data.message})
     }).catch(err => {
-      console.log('Reset Error', err);
+      console.error('Reset Error', err);
     })
   }
  

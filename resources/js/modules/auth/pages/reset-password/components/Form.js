@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const displayName = 'LoginForm'
+const displayName = 'ResetPasswordForm'
 const propTypes = {
   password: PropTypes.string,
   password_confirmation: PropTypes.string,

@@ -12,7 +12,7 @@ import Form from './components/Form'
 // initialize component
 class Page extends Component {
   // set name of the component
-  static displayName = 'LoginPage'
+  static displayName = 'ResetPasswordPage'
 
   // validate props
   static propTypes = {
