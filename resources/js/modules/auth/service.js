@@ -112,3 +112,19 @@ export function logout() {
       })
   }
 }
+
+
+/**
+ * Request reset password link
+ */
+export function requestPasswordLink(data){
+    return Http.post('password/email', data);
+}
+
+
+/**
+ * Request reset password link
+ */
+export function resetPassword(data){
+    return Http.post('password/reset', data);
+}

@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanResetPassword
 {
     use HasApiTokens;
     use Notifiable;
