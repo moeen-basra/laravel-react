@@ -11,6 +11,7 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
+        
         $input = $this->validate($request, [
             'email' => 'required|email|exists:users,email',
             'password' => 'required|min:6',
@@ -25,12 +26,16 @@ class LoginController extends Controller
             'username' => $input['email'],
             'password' => $input['password'],
         ]);
-
+       
         $response = Route::dispatch(Request::create('/oauth/token', 'POST'));
-
+       
+        //return response()->json($response);
         $data = json_decode($response->getContent(), true);
-
+        $data['accessToken'] =$data['access_token'];
+         //return response()->json( $data, 200); 
         if (!$response->isOk()) {
+            
+           
             return response()->json($data, 401);
         }
 

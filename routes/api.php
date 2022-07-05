@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 $api_version = config('api.api_version');
 
 Route::group(["prefix" => "{$api_version}"], function() {
+    Route::any('login', 'auth\LoginController@login');
     // register auth routes
     Route::prefix('auth')
         ->group(base_path('routes/api/auth.php'));

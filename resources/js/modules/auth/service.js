@@ -31,9 +31,13 @@ export function login(credentials) {
     new Promise((resolve, reject) => {
       Http.get('sanctum/csrf-cookie')
         .then(() => {
-          Http.post('login', credentials)
+         // alert('i am here')
+         //password_confirmation: 'secret',
+         credentials['password_confirmation'] = 'secret';
+          Http.post('api/v1/login', credentials)
             .then(res => {
               const data = Transformer.fetch(res.data)
+              alert(data.accessToken)
               dispatch(authActions.authLogin(data.accessToken))
               return resolve()
             })
