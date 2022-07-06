@@ -1,23 +1,22 @@
-FROM php:7.4-fpm-alpine
+FROM php:fpm-alpine
 
-# Comment this to improve stability on "auto deploy" environments
-RUN apk update && apk upgrade
+ARG user
+ARG uid
 
-# Install basic dependencies
-RUN apk -u add bash git
+
+# ADD and set Group
+RUN addgroup -g $uid $user && adduser -G $user -g $user -s /bin/sh -D $user \
+&& mkdir -p /var/www/app \
+&& chown $user:$user /var/www/app
 
 # Install PHP extensions
 ADD ./.docker/install-php.sh /usr/sbin/install-php.sh
-RUN chmod +x /usr/sbin/install-php.sh
-RUN /usr/sbin/install-php.sh
+RUN chmod +x /usr/sbin/install-php.sh \
+    && /usr/sbin/install-php.sh
 
 # Copy existing application directory contents
-COPY ./.docker/*.ini /usr/local/etc/php/conf.d/
+ADD ./.docker/*.ini /usr/local/etc/php/conf.d/
 COPY . .
 
-# Change current user to www-data
-USER www-data
-
-# Expose ports and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
