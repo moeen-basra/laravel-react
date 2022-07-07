@@ -29,6 +29,13 @@ Make sure you have [docker](https://docs.docker.com/install/) and [docker-compos
 2. `create a .env file copy content from .env.docker and do not make any change`
 
 run following command in terminal / power shell
+
+if you have make install
+```
+make up
+```
+or
+
 ```
 docker-compose up -d
 ```
@@ -40,19 +47,10 @@ when docker will finish building the containers, access the "laravel-react-app" 
 now you will be inside container
 
 run following commands
-1. change your `.env` file as follow
-    ```
-    DB_CONNECTION=mysql
-    DB_HOST=laravel-database
-    DB_PORT=3306
-    DB_DATABASE=laravel_react
-    DB_USERNAME=moeen
-    DB_PASSWORD=basra
-    ```
-2. `php artisan key:gen`
-3. `composer install && composer update`
-4. `php artisan cron:refresh-database` 
-5. if npm version < 7 `npm install && npm run dev` else `npm install --legacy-peer-deps && npm run dev`
+1. `php artisan key:gen`
+2. `composer install && composer update`
+3. `php artisan cron:refresh-database` 
+4. if npm version < 7 `npm install && npm run dev` else `npm install --legacy-peer-deps && npm run dev`
 
 open browser and check the following address
 

@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,19 +15,17 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
 
-// Authentication Routes...
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Registration Routes...
-Route::post('register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
-Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
-
-Route::get('/{any}', function () {
-    return view('index');
-})->where('any', '.*');
+require __DIR__.'/auth.php';

@@ -16,3 +16,4 @@ _ide_helper.php
 /*.log
 /public/*.js
 /public/*.js.map
+.phpunit.result.cache

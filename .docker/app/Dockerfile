@@ -25,8 +25,8 @@ RUN chmod +x /usr/sbin/install-php.sh \
 # ADD ./.docker/app/*.ini /usr/local/etc/php/conf.d/
 # COPY . .
 
-# # install nodejs and npm
-# RUN apk add nodejs npm
+# install nodejs and npm
+RUN apk add nodejs npm
 
 EXPOSE 9000
 CMD ["php-fpm"]

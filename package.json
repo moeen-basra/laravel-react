@@ -1,68 +1,31 @@
 {
-  "name": "laravel-react",
-  "scripts": {
-    "dev": "npm run development",
-    "development": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "prod": "npm run production",
-    "production": "mix --production"
-  },
-  "author": "Moeen Basra",
-  "license": "ISC",
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "dependencies": {
-    "@popperjs/core": "^2.6.0",
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "clsx": "^1.1.1",
-    "font-awesome": "^4.7.0",
-    "history": "^5.0.0",
-    "jquery": "^3.5.1",
-    "lodash": "^4.17.20",
-    "moment": "^2.29.1",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-document-title": "^2.0.3",
-    "react-dom": "^17.0.1",
-    "react-loadable": "^5.5.0",
-    "react-redux": "^7.2.2",
-    "react-router-dom": "^5.2.0",
-    "reactstrap": "^8.9.0",
-    "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0",
-    "ree-validate": "^3.3.2"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
-    "babel-eslint": "^10.1.0",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "browser-sync": "^2.26.14",
-    "browser-sync-webpack-plugin": "^2.3.0",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.19.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-friendly-formatter": "^4.0.1",
-    "eslint-plugin-html": "^6.1.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-webpack-plugin": "^2.4.3",
-    "laravel-mix": "^6.0.11",
-    "postcss": "^8.2.4",
-    "redux-logger": "^3.0.6",
-    "remove-files-webpack-plugin": "^1.4.4",
-    "resolve-url-loader": "^3.1.2",
-    "sass": "^1.32.5",
-    "sass-loader": "^10.1.1"
-  }
+    "name": "laravel-react",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "author": "Moeen Basra",
+    "license": "ISC",
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ],
+    "devDependencies": {
+        "@headlessui/react": "^1.4.2",
+        "@inertiajs/inertia": "^0.11.0",
+        "@inertiajs/inertia-react": "^0.8.0",
+        "@inertiajs/progress": "^0.2.6",
+        "@tailwindcss/forms": "^0.5.2",
+        "@vitejs/plugin-react": "^1.3.2",
+        "autoprefixer": "^10.4.2",
+        "laravel-vite-plugin": "^0.3.0",
+        "lodash": "^4.17.21",
+        "postcss": "^8.4.6",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "tailwindcss": "^3.1.0",
+        "vite": "^2.9.13"
+    }
 }
