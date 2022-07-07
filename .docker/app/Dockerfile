@@ -2,7 +2,7 @@ FROM php:fpm-alpine
 
 # Build Arguments
 ARG user=laravel
-ARG uid=10000
+ARG uid=1000
 ARG xdebug_remote_host=docker.for.mac.localhost
 ARG xdebug_port=9001
 
