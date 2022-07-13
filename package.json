@@ -1,8 +1,10 @@
 {
     "name": "laravel-react",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "dev": "concurrently -n \"vite,typescript\" -c \"white,green\" \"npm run run:dev\" \"npm run:tsc\"",
+        "build": "vite build",
+        "run:dev": "vite --clearScreen false",
+        "run:tsc": "tsc -w --preserveWatchOutput"
     },
     "author": "Moeen Basra",
     "license": "ISC",
@@ -20,6 +22,7 @@
         "@types/react-redux": "^7.1.24",
         "@vitejs/plugin-react": "^1.3.2",
         "autoprefixer": "^10.4.2",
+        "concurrently": "^7.2.2",
         "laravel-vite-plugin": "^0.3.0",
         "postcss": "^8.4.6",
         "tailwindcss": "^3.1.0",
@@ -28,6 +31,7 @@
         "vite": "^2.9.13"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.8.3",
         "lodash": "^4.17.21",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
