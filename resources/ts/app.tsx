@@ -3,11 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
 import { store } from './store/config'
-import Routes from './routes'
+// import Routes from './routes'
 
-import { authCheck } from './modules/auth/store/actions'
+// import { authCheck } from './modules/auth/store/actions'
 
-store.dispatch(authCheck())
+// store.dispatch(authCheck())
 
 const root = ReactDOM.createRoot(
     document.getElementById('app') as HTMLElement
@@ -16,7 +16,8 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <Routes />
+            {/* <Routes /> */}
+            <div>Welcome Home</div>
         </Provider>
     </React.StrictMode>
 );
