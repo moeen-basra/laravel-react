@@ -11,7 +11,7 @@
 <div id="app">
     @yield('content')
 </div>
-@vite('resources/js/app.ts')
+@viteReactRefresh
+@vite('resources/ts/app.tsx')
 </body>
 </html>
-

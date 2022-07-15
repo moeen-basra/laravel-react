@@ -3,5 +3,10 @@
     "file": "assets/app.5588d448.js",
     "src": "resources/ts/app.tsx",
     "isEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.b2a0e5b2.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
   }
 }

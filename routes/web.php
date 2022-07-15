@@ -2,30 +2,18 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Authentication Routes...
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Registration Routes...
+Route::post('register', 'Auth\RegisterController@register');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Password Reset Routes...
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 
-require __DIR__.'/auth.php';
+Route::get('/{any}', function () {
+    return view('index');
+})->where('any', '.*');
