@@ -5,7 +5,6 @@ services:
     container_name: laravel-app
     restart: always
     tty: true
-    working_dir: /var/www/app
     environment:
       COMPOSE_PROJECT_NAME: laravel-react
     build:
@@ -14,10 +13,11 @@ services:
         uid: 1000
         xdebug_remote_host: docker.for.mac.localhost
         xdebug_port: 9001
+        folder: app
       context: .
-      dockerfile: ./.docker/app/Dockerfile
+      dockerfile: ./.docker/php/Dockerfile
     volumes:
-      - .:/var/www/app
+      - .:/var/www/app # use the same folder name used in the build argument
     depends_on:
       - laravel-database
     links:

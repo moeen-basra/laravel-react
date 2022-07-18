@@ -22,6 +22,7 @@
         "@types/react-redux": "^7.1.24",
         "@vitejs/plugin-react": "^1.3.2",
         "autoprefixer": "^10.4.2",
+        "axios": "^0.27.2",
         "concurrently": "^7.2.2",
         "laravel-vite-plugin": "^0.3.0",
         "postcss": "^8.4.6",
