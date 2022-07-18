@@ -5,14 +5,16 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
     plugins: [
         laravel([
-            'resources/css/app.css',
             'resources/ts/app.tsx'
         ]),
         react(),
     ],
-    // resolve: {
-    //     alias: {
-    //         '@': './resources/ts'
-    //     }
-    // }
+    resolve: {
+        alias: {
+            '@': './resources/ts'
+        }
+    },
+    // server: {
+    //     host: 'localhost:8100', 
+    // }, 
 });

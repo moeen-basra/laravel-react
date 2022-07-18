@@ -58,6 +58,7 @@ services:
     tty: true
     ports:
       - 8100:8080
+      - 3000:3000
     volumes:
       - .:/var/www/app
     working_dir: /var/www

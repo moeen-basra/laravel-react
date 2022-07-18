@@ -1,10 +1,10 @@
 {
     "name": "laravel-react",
     "scripts": {
-        "dev": "concurrently -n \"vite,typescript\" -c \"white,green\" \"npm run run:dev\" \"npm run:tsc\"",
-        "build": "vite build",
-        "run:dev": "vite --clearScreen false",
-        "run:tsc": "tsc -w --preserveWatchOutput"
+        "dev": "concurrently -n \"vite,typescript\" -c \"blue,green\" \"npm run vite\" \"npm run tsc -w --preserveWatchOutput\"",
+        "vite": "vite --clearScreen false",
+        "tsc": "tsc -w --preserveWatchOutput",
+        "build": "vite build"
     },
     "author": "Moeen Basra",
     "license": "ISC",

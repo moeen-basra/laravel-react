@@ -1,8 +1,8 @@
-import './bootstrap';
+import '../css/app.css'; 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
-import { store } from './store/config'
+import { store } from './store'
 // import Routes from './routes'
 
 // import { authCheck } from './modules/auth/store/actions'
