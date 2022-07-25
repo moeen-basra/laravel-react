@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import HTTP from '@utils/Http';
+import HTTP from '../../..//utils/Http';
 
 export interface InitialState {
     isAuthenticaed: boolean,
@@ -12,7 +12,7 @@ const initialState: InitialState = {
     resetPassword: false,
 }
 
-export const authSlice = ({
+export const authSlice = createSlice({
     name: 'Auth',
     initialState,
     reducers: {
@@ -40,6 +40,6 @@ export const authSlice = ({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = authSlice.actions
+export const { login, logout, checkAuth, resetPassword } = authSlice.actions
 
 export default authSlice.reducer

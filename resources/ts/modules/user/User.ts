@@ -1,13 +1,17 @@
+import { UserInterface } from '../../types'
 import Model from '../../utils/Model'
+import { ModelProps } from '../../utils/Model'
 
-export interface UserInterface {
-  name: string,
-  email: string,
-  phone: string,
+
+type UserProps = {
+  name: string
+  email: string
+  phone: string
   about: string
-}
+} & ModelProps
 
-export class User extends Model<UserInterface> {
+
+export class User extends Model implements UserInterface {
 
   name: string
   email: string
@@ -15,7 +19,7 @@ export class User extends Model<UserInterface> {
   about: string
 
 
-  constructor(props: any) {
+  constructor(props: UserProps) {
     super(props)
 
     this.initialize(props)
@@ -24,10 +28,6 @@ export class User extends Model<UserInterface> {
     this.email = props.email || ''
     this.phone = props.phone || ''
     this.about = props.about || ''
-  }
-
-  initialize(props: any) {
-    super.initialize(props)
   }
 }
 
