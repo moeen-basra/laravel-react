@@ -1,5 +1,6 @@
 import Http from '../../utils/Http'
-import * as authActions from './store/actions'
+import * as authActions from '../auth/store'
+import * as userActions from '../user/store'
 import Transformer from '../../utils/Transformer'
 
 /**
@@ -12,7 +13,7 @@ export function fetchUser() {
     return Http.get('api/v1/auth/me')
       .then(res => {
         const data = Transformer.fetch(res.data)
-        dispatch(authActions.authUser(data))
+        dispatch(userActions.authUser(data))
       })
       .catch(err => {
         console.log(err)
@@ -34,7 +35,7 @@ export function login(credentials) {
           Http.post('login', credentials)
             .then(res => {
               const data = Transformer.fetch(res.data)
-              dispatch(authActions.authLogin(data.accessToken))
+              dispatch(authActions.login(data.accessToken))
               return resolve()
             })
             .catch((err) => {
@@ -68,7 +69,7 @@ export function register(credentials) {
       Http.post('register', Transformer.send(credentials))
         .then(res => {
           const data = Transformer.fetch(res.data)
-          dispatch(authActions.authLogin(data.accessToken))
+          dispatch(authActions.login(data.accessToken))
           return resolve()
         })
         .catch((err) => {
@@ -105,7 +106,7 @@ export function logout() {
   return dispatch => {
     return Http.post('logout')
       .then(() => {
-        dispatch(authActions.authLogout())
+        dispatch(authActions.logout())
       })
       .catch(err => {
         console.log(err)

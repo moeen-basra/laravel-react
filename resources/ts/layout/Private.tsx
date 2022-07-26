@@ -11,7 +11,6 @@ const containerStyle = {
   paddingTop: '3.5rem',
 }
 
-const displayName = 'Private Layout'
 const propTypes = {
   children: PropTypes.node.isRequired,
 }
@@ -27,7 +26,6 @@ function PrivateLayout({ children }) {
   </div>
 }
 
-PrivateLayout.dispatch = displayName
 PrivateLayout.propTypes = propTypes
 
 export default PrivateLayout

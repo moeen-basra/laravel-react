@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux'
 import { store } from './store'
-// import Routes from './routes'
+import Router from './routes'
 
 // import { authCheck } from './modules/auth/store/actions'
 
@@ -16,8 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            {/* <Routes /> */}
-            <div>Welcome Home</div>
+            <Router />
         </Provider>
     </React.StrictMode>
 );

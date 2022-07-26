@@ -1,8 +1,6 @@
 //import libs
 import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 
 // import services actions
 import { fetchUser } from '../modules/auth/service'
@@ -12,7 +10,7 @@ import PrivateLayout from './Private'
 import PublicLayout from './Public'
 
 function Layout(props) {
-
+  console.log(props)
   const { isAuthenticated, user, children, dispatch } = props
 
   useEffect(() => {
@@ -27,15 +25,6 @@ function Layout(props) {
   return <PublicLayout {...props}>{children}</PublicLayout>
 }
 
-Layout.displayName = 'Layout';
-
-Layout.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  user: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
-  dispatch: PropTypes.func.isRequired,
-}
-
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
@@ -43,4 +32,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Layout))
+export default connect(mapStateToProps)(Layout)

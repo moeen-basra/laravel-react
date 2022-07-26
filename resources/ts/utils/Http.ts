@@ -2,6 +2,7 @@
 import axios from 'axios'
 import {store} from '../store'
 import { logout } from '../modules/auth/store'
+import { forOwn } from 'lodash-es';
 
 const API_URL = (process.env.NODE_ENV === 'test') ? process.env.BASE_URL || (`http://localhost:${process.env.PORT}/`) : `/`;
 
@@ -19,3 +20,13 @@ axios.interceptors.response.use(
   });
 
 export default axios
+
+export const setHeaders = (headers: Record<string, any>) => {
+  forOwn(headers, (value, key) => {
+    if (!!value ) {
+      axios.defaults.headers[key] = value
+    } else {
+      delete axios.defaults.headers[key]
+    }
+  })
+}

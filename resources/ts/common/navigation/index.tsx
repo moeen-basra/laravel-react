@@ -1,64 +1,70 @@
 // import libs
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { logout } from '../../modules/auth/service'
+import { Dispatch } from '@reduxjs/toolkit'
 
 // import components
 import { Link } from 'react-router-dom'
-import { Navbar, NavbarToggler } from 'reactstrap';
 import PrivateHeader from './PrivateHeader'
 import PublicHeader from './PublicHeader'
+import { UserInterface } from '../../types'
 
-class Navigation extends Component {
-  static propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-    user: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
-  }
-  
-  constructor(props) {
+type Props = {
+  isAuthenticated: boolean,
+  user: UserInterface | undefined,
+  dispatch: Dispatch
+}
+
+type State = {
+  showNavigation: boolean,
+  showDropdown: boolean
+}
+
+class Navigation extends Component<Props, State> {
+
+  constructor(props: Props) {
     super(props)
-    
+
     this.state = {
       showNavigation: false,
       showDropdown: false,
     }
   }
-  
+
   toggleNavbar = () => {
     this.setState({
       showNavigation: !this.state.showNavigation,
     });
   }
-  
+
   toggleDropdown = () => {
     this.setState({
       showDropdown: !this.state.showDropdown,
     })
   }
-  
+
   logout = e => {
     e.preventDefault()
-    
+
     this.props.dispatch(logout())
   }
-  
+
   render() {
     return (
-      <Navbar className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+      <div className="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
         <Link to="/" className="navbar-brand">MOEEN.ME</Link>
-        <NavbarToggler className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
+        <div className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
         {
           this.props.isAuthenticated
             ? <PrivateHeader user={this.props.user}
-                             showNavigation={this.state.showNavigation}
-                             toggleDropdown={this.toggleDropdown}
-                             showDropdown={this.state.showDropdown}
-                             logout={this.logout} />
+              showNavigation={this.state.showNavigation}
+              toggleDropdown={this.toggleDropdown}
+              showDropdown={this.state.showDropdown}
+              logout={this.logout} />
             : <PublicHeader showNavigation={this.state.showNavigation} />
         }
-      </Navbar>
+      </div>
     )
   }
 }

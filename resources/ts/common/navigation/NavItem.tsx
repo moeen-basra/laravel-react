@@ -14,7 +14,7 @@ const contextTypes = {
 
 const Link = ({ path, children }) => {
   return <NavItem>
-    <NavLink exact to={path} className="nav-link">
+    <NavLink to={path} className="nav-link">
       {children}
     </NavLink>
   </NavItem>

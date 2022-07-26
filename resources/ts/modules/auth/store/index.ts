@@ -1,41 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import HTTP from '../../..//utils/Http';
-import { AuthState } from "../../../types";
+import HTTP, { setHeaders } from '../../..//utils/Http';
+import { AuthObject, AuthState } from "../../../types";
 
 const initialState: AuthState = {
     isAuthenticated: false,
-    resetPassword: false,
+    isInitialised: false,
+    // resetPassword: false,
+    auth: null,
+    user: null
 }
 
 export const authSlice = createSlice({
     name: 'Auth',
     initialState,
     reducers: {
-      login: (state: AuthState, action: PayloadAction<string>) => {
-        localStorage.setItem('access_token', action.payload);
-        HTTP.defaults.headers.common['Authorization'] = `Bearer ${action.payload}`;
+      login: (state: AuthState, action: PayloadAction<AuthObject>) => {
+        localStorage.setItem('auth', JSON.stringify(action.payload));
+        setHeaders({
+          Authorization: `${action.payload.tokenType} ${action.payload.accessToken}`
+        })
       
         state.isAuthenticated = true
+        state.auth = action.payload
       },
       logout: (state: AuthState) => {
-        localStorage.removeItem('access_token')
+        localStorage.removeItem('auth')
         state.isAuthenticated = true
       },
       checkAuth: (state: AuthState) => {
-        state.isAuthenticated = !!localStorage.getItem('access_token')
-      
-        if (state.isAuthenticated) {
-          HTTP.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
+        const auth = localStorage.getItem('auth')
+
+        if (!!auth) {
+          state.isAuthenticated = true
+          state.auth = JSON.parse(auth)
+          setHeaders({
+            Authorization: state.auth?.accessToken
+          })
         }
       },
-      resetPassword: (state: AuthState) =>{
-        state.resetPassword = true
-      }
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { login, logout, checkAuth, resetPassword } = authSlice.actions
+export const { login, logout, checkAuth } = authSlice.actions
 
 export default authSlice.reducer
