@@ -14,7 +14,19 @@ export default defineConfig({
             '@': './resources/ts'
         }
     },
-    // server: {
-    //     host: 'localhost:8100', 
-    // }, 
+    server: {
+        strictPort: true,
+        port: 3030,
+        // https: true,
+        hmr: {
+            host: 'localhost',
+        },
+    },
+    optimizeDeps: {
+        include: [
+            'axios',
+            'lodash-es',
+            'react'
+        ],
+    },
 });

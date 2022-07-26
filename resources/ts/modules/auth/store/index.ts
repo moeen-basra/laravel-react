@@ -1,14 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import HTTP from '../../..//utils/Http';
+import { AuthState } from "../../../types";
 
-export interface InitialState {
-    isAuthenticaed: boolean,
-    resetPassword: boolean,
-}
-
-const initialState: InitialState = {
-    isAuthenticaed: false,
+const initialState: AuthState = {
+    isAuthenticated: false,
     resetPassword: false,
 }
 
@@ -16,24 +12,24 @@ export const authSlice = createSlice({
     name: 'Auth',
     initialState,
     reducers: {
-      login: (state: InitialState, action: PayloadAction<string>) => {
+      login: (state: AuthState, action: PayloadAction<string>) => {
         localStorage.setItem('access_token', action.payload);
         HTTP.defaults.headers.common['Authorization'] = `Bearer ${action.payload}`;
       
-        state.isAuthenticaed = true
+        state.isAuthenticated = true
       },
-      logout: (state: InitialState) => {
+      logout: (state: AuthState) => {
         localStorage.removeItem('access_token')
-        state.isAuthenticaed = true
+        state.isAuthenticated = true
       },
-      checkAuth: (state: InitialState) => {
-        state.isAuthenticaed = !!localStorage.getItem('access_token')
+      checkAuth: (state: AuthState) => {
+        state.isAuthenticated = !!localStorage.getItem('access_token')
       
-        if (state.isAuthenticaed) {
+        if (state.isAuthenticated) {
           HTTP.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('access_token')}`;
         }
       },
-      resetPassword: (state: InitialState) =>{
+      resetPassword: (state: AuthState) =>{
         state.resetPassword = true
       }
     }

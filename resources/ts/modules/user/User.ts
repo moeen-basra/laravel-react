@@ -3,7 +3,7 @@ import Model from '../../utils/Model'
 import { ModelProps } from '../../utils/Model'
 
 
-type UserProps = {
+type Props = {
   name: string
   email: string
   phone: string
@@ -19,7 +19,7 @@ export class User extends Model implements UserInterface {
   about: string
 
 
-  constructor(props: UserProps) {
+  constructor(props: Props) {
     super(props)
 
     this.initialize(props)
