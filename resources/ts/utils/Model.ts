@@ -22,9 +22,9 @@ export type ModelProps = {
 class Model implements ModelInterface {
   [key: string]: any
   id?: string | number
-  createdAt?: undefined | Moment
-  updatedAt?: undefined | Moment
-  deletedAt?: undefined | Moment
+  createdAt?: null | Moment
+  updatedAt?: null | Moment
+  deletedAt?: null | Moment
 
   constructor(props: ModelProps) {
     this.initialize(props)
@@ -32,9 +32,9 @@ class Model implements ModelInterface {
 
   initialize(props: ModelProps) {
     this.id = props.id && Number(props.id) || undefined
-    this.createdAt = props.createdAt && moment(props.createdAt) || undefined
-    this.updatedAt = props.updatedAt && moment(props.updatedAt) || undefined
-    this.deletedAt = props.deletedAt && moment(props.deletedAt) || undefined
+    this.createdAt = props.createdAt && moment(props.createdAt) || null
+    this.updatedAt = props.updatedAt && moment(props.updatedAt) || null
+    this.deletedAt = props.deletedAt && moment(props.deletedAt) || null
   }
 
   getDateString(date: Moment): string {

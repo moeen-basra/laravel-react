@@ -1,12 +1,12 @@
 import jwtDecode from 'jwt-decode'
 import { isEmpty } from 'lodash-es'
-import React, { createContext, useEffect, useReducer } from 'react'
+import React, { createContext, ReducerAction, useEffect, useReducer } from 'react'
 // import Loader from 'src/components/Loader/Loader'
 import Http, { setHeaders } from '../utils/Http'
 import * as authActions from '../modules/auth/service'
-import { AuthObject } from '../types'
+import { AuthObject, AuthState } from '../types'
 
-const initialAuthState = {
+const initialAuthState: AuthState = {
   isAuthenticated: false,
   isInitialised: false,
   auth: null,
@@ -24,8 +24,8 @@ const isValidToken = (accessToken) => {
   return decoded.exp > currentTime
 }
 
-const setSession = (auth) => {
-  if (!isEmpty(auth)) {
+const setSession = (auth?: AuthObject) => {
+  if (auth && !isEmpty(auth)) {
     localStorage.setItem('auth', JSON.stringify(auth))
     setHeaders({
       Authorization: `${auth?.tokenType} ${auth?.accessToken}`,
@@ -38,7 +38,12 @@ const setSession = (auth) => {
   }
 }
 
-const reducer = (state, action) => {
+type Action = {
+  type: string,
+  payload?: any
+}
+
+const reducer = (state: AuthState, action: Action) => {
   switch (action.type) {
     case 'INITIALISE': {
       const { isAuthenticated, auth } = action.payload
@@ -84,9 +89,9 @@ const reducer = (state, action) => {
 const AuthContext = createContext({
   ...initialAuthState,
   method: 'JWT',
-  login: () => Promise.resolve(),
+  login: (params: any) => Promise.resolve(),
   logout: () => Promise.resolve(),
-  register: () => Promise.resolve(),
+  register: (params: any) => Promise.resolve(),
   me: () => Promise.resolve(),
 })
 
@@ -114,7 +119,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await logout()
 
-      setSession(null)
+      setSession()
       dispatch({ type: 'LOGOUT' })
     } catch (error) {
       console.error(error)
@@ -145,10 +150,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const user = await me()
 
-      setHeaders({
-        'Accept-Language': user.locale,
-      })
-
       dispatch({
         type: 'USER_UPDATE',
         payload: {
@@ -163,9 +164,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initialise = async () => {
-      let payload = {
-        isAuthenticated: false,
-        auth: null,
+      let payload: AuthState = {
+        ...initialAuthState
       }
 
       try {
@@ -180,15 +180,16 @@ export const AuthProvider = ({ children }) => {
             await me()
 
             payload = {
+              ...payload,
               isAuthenticated: true,
               auth,
             }
           } else {
-            setSession(null)
+            setSession()
           }
         }
       } catch (error) {
-        setSession(null)
+        setSession()
         console.error(error)
       }
 

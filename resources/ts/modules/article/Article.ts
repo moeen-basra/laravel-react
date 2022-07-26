@@ -15,13 +15,13 @@ type Props = {
 
 class Article extends Model implements ArticleInterface {
 
-  slug: string|undefined
-  title: string|undefined
-  description: string|undefined
-  content: string|undefined
-  publishedAt: Moment|undefined
+  slug: null|string
+  title: null|string
+  description: null|string
+  content: null|string
+  publishedAt: null|Moment
 
-  user?: UserInterface
+  user: null|UserInterface
 
   constructor(props: Props) {
     super(props)
@@ -30,10 +30,10 @@ class Article extends Model implements ArticleInterface {
     this.title = props.title || ''
     this.description = props.description || ''
     this.content = props.content || ''
-    this.publishedAt = props.publishedAt ? moment(props.publishedAt) : undefined
+    this.publishedAt = props.publishedAt ? moment(props.publishedAt) : null
 
     // relate user model
-    this.user = props.user ? new User(props.user) : undefined
+    this.user = props.user ? new User(props.user) : null
   }
 }
 

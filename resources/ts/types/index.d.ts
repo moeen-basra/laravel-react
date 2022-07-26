@@ -3,8 +3,8 @@ import { Moment } from "moment"
 export interface ModelInterface {
     [key: string]: any
     id?: string | number
-    createdAt?: Moment
-    updatedAt?: Moment
+    createdAt?: ?Moment
+    updatedAt?: ?Moment
     deletedAt?: ?Moment
 
     toJs(): {}
@@ -26,7 +26,7 @@ export interface ArticleInterface extends ModelInterface {
     content: ?string,
     publishedAt: ?Moment,
 
-    user?: UserInterface
+    user?: ?UserInterface
 }
 
 export interface PagingationInterface {
@@ -47,8 +47,10 @@ export type ArticlesState = {
 }
 
 export type AuthObject = {
+    tokenType: string,
+    expiresIn: number
     accessToken: string,
-    tokenType: string
+    refershToken: string,
 }
 
 export type AuthState = {
@@ -57,3 +59,5 @@ export type AuthState = {
     auth: ?AuthObject,
     user: ?UserInterface
 }
+
+export type MyCallback = () => void;

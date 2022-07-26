@@ -8,11 +8,11 @@ import { Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
 import PrivateHeader from './PrivateHeader'
 import PublicHeader from './PublicHeader'
-import { UserInterface } from '../../types'
+import { AuthState, UserInterface } from '../../types'
 
 type Props = {
   isAuthenticated: boolean,
-  user: UserInterface | undefined,
+  user: UserInterface | null,
   dispatch: Dispatch
 }
 
@@ -56,7 +56,7 @@ class Navigation extends Component<Props, State> {
         <Link to="/" className="navbar-brand">MOEEN.ME</Link>
         <div className="navbar-toggler d-lg-none" onClick={this.toggleNavbar} />
         {
-          this.props.isAuthenticated
+          this.props.isAuthenticated && this.props.user
             ? <PrivateHeader user={this.props.user}
               showNavigation={this.state.showNavigation}
               toggleDropdown={this.toggleDropdown}
@@ -69,9 +69,9 @@ class Navigation extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: AuthState) => {
   return {
-    isAuthenticated: state.auth.isAuthenticated,
+    isAuthenticated: state.isAuthenticated,
     user: state.user
   }
 }
