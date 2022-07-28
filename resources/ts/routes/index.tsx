@@ -9,13 +9,12 @@ import appRoutes from './routes'
 import PrivateRoute from './Private'
 import PublicRoute from './Public'
 
-import Layout from '../layout'
+import {Layout} from '../layout'
 
 export default function Router() {
   return <BrowserRouter>
     <Routes>
       <Route path="/" element={<Layout/>}>
-        <Route path="/home" element={<div>Home</div>}></Route>
       {
         appRoutes.map((route, i) => {
           if (route.auth, i) {

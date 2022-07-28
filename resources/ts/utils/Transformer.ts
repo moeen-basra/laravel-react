@@ -10,7 +10,7 @@
  * they will be camelCased.
  */
 
-import _ from 'lodash';
+import _ from 'lodash-es';
 
 export default class Transformer {
   /**
@@ -19,7 +19,7 @@ export default class Transformer {
    * @param param
    * @return {*}
    */
-  static fetch(param) {
+  static fetch(param: Record<any, any>): Record<any, any> {
     if (param && Array.isArray(param)) {
       return Transformer.fetchCollection(param);
     } else if (param && typeof param === 'object') {
@@ -34,7 +34,7 @@ export default class Transformer {
    * @param param
    * @return [Array]
    */
-  static fetchCollection(param) {
+  static fetchCollection(param: Record<string, any>[]): Record<string, any>[] {
     return param.map(item => Transformer.fetch(item));
   }
   
@@ -44,7 +44,7 @@ export default class Transformer {
    * @param param
    * @return {{}}
    */
-  static fetchObject(param) {
+  static fetchObject(param: Record<string, any>): Record<string, any> {
     const data = {};
     
     _.forOwn(param, (value, key) => {
@@ -59,7 +59,7 @@ export default class Transformer {
    * @param param
    * @return {*}
    */
-  static send(param) {
+  static send(param: Record<string, any>) {
     if (param && Array.isArray(param)) {
       return Transformer.sendCollection(param);
     } else if (param && typeof param === 'object') {
@@ -74,7 +74,7 @@ export default class Transformer {
    * @param param
    * @return [Array]
    */
-  static sendCollection(param) {
+  static sendCollection(param: Record<string, any>[]) {
     return param.map(item => Transformer.send(item));
   }
   
@@ -84,7 +84,7 @@ export default class Transformer {
    * @param param
    * @returns {{}}
    */
-  static sendObject(param) {
+  static sendObject(param: Record<any, any>) {
     const data = {};
     
     _.forOwn(param, (value, key) => {
@@ -102,7 +102,7 @@ export default class Transformer {
    * @param replaceStr String
    * @returns {{}}
    */
-  static resetValidationFields({ errors, replace = false, searchStr = '', replaceStr = '' }) {
+  static resetValidationFields({ errors, replace = false, searchStr = '', replaceStr = '' }: ValidationFields): Record<string, any> {
     const data = {};
     _.forOwn(errors, (value, key) => {
       let index = '';
@@ -115,4 +115,12 @@ export default class Transformer {
     });
     return data;
   }
+}
+
+
+type ValidationFields = {
+  errors: Record<string, any>,
+  replace?: boolean,
+  searchStr?: string,
+  replaceStr?: string
 }
