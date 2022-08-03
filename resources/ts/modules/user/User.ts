@@ -1,33 +1,21 @@
-import { UserInterface } from '../../types'
+import { UserProps } from '../../types'
 import Model from '../../utils/Model'
-import { ModelProps } from '../../utils/Model'
 
-
-type Props = {
-  name: string
-  email: string
-  phone: string
-  about: string
-} & ModelProps
-
-
-export class User extends Model implements UserInterface {
+export class User extends Model {
 
   name: string
   email: string
   phone: string
-  about: string
+  about?: string
 
 
-  constructor(props: Props) {
+  constructor(props: UserProps) {
     super(props)
 
-    this.initialize(props)
-
-    this.name = props.name || ''
-    this.email = props.email || ''
-    this.phone = props.phone || ''
-    this.about = props.about || ''
+    this.name = props.name
+    this.email = props.email
+    this.phone = props.phone
+    this.about = props.about
   }
 }
 

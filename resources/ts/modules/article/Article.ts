@@ -1,39 +1,34 @@
 import moment, { Moment } from 'moment'
-import { ArticleInterface, UserInterface } from '../../types'
-import Model, { ModelProps } from '../../utils/Model'
+import { ArticleProps } from '../../types'
+import Model from '../../utils/Model'
 import User from '../user/User'
 
-type Props = {
-  id: string,
-  slug: string,
-  title: string,
-  description: string,
-  content: string,
-  publishedAt: string,
-  user: any
-} & ModelProps
+export class Article extends Model {
 
-class Article extends Model implements ArticleInterface {
+  slug: string
+  title: string
+  description: string
+  content: string
+  publishedAt?: Moment
 
-  slug: null|string
-  title: null|string
-  description: null|string
-  content: null|string
-  publishedAt: null|Moment
+  user?: User
 
-  user: null|UserInterface
-
-  constructor(props: Props) {
+  constructor(props: ArticleProps) {
     super(props)
 
-    this.slug = props.slug || ''
-    this.title = props.title || ''
-    this.description = props.description || ''
-    this.content = props.content || ''
-    this.publishedAt = props.publishedAt ? moment(props.publishedAt) : null
+    this.slug = props.slug
+    this.title = props.title
+    this.description = props.description
+    this.content = props.content
+
+    if (props.publishedAt) {
+      this.publishedAt = moment(props.publishedAt)
+    }
 
     // relate user model
-    this.user = props.user ? new User(props.user) : null
+    if (props.user) {
+      this.user = new User(props.user)
+    }
   }
 }
 

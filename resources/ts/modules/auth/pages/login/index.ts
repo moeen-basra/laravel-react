@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 
 // import components
-import Page from './Page'
+import { LoginPage } from './Page'
 
 const mapStateToProps = state => {
   return {
@@ -10,4 +10,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Page)
+export default connect(mapStateToProps)(LoginPage)

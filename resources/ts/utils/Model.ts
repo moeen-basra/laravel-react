@@ -10,31 +10,29 @@
  */
 import moment, { Moment } from 'moment'
 import forOwn from 'lodash-es/forOwn'
-import { ModelInterface } from '../types'
+import { ModelProps } from '../types'
 
-export type ModelProps = {
-  id?: string | number,
-  createdAt?: string,
-  updatedAt?: string,
-  deletedAt?: string
-}
-
-class Model implements ModelInterface {
+class Model {
   [key: string]: any
   id?: string | number
-  createdAt?: null | Moment
-  updatedAt?: null | Moment
-  deletedAt?: null | Moment
+  createdAt?: Moment
+  updatedAt?: Moment
+  deletedAt?: null | Moment = null
 
   constructor(props: ModelProps) {
-    this.initialize(props)
-  }
-
-  initialize(props: ModelProps) {
     this.id = props.id && Number(props.id) || undefined
-    this.createdAt = props.createdAt && moment(props.createdAt) || null
-    this.updatedAt = props.updatedAt && moment(props.updatedAt) || null
-    this.deletedAt = props.deletedAt && moment(props.deletedAt) || null
+
+    if (props.createdAt) {
+      this.createdAt = moment(props.createdAt)
+    }
+
+    if (props.updatedAt) {
+      this.updatedAt = moment(props.updatedAt)
+    }
+
+    if (props.deletedAt) {
+      this.deletedAt = moment(props.deletedAt)
+    }
   }
 
   getDateString(date: Moment): string {

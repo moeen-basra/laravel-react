@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ArticleInterface, ArticlesState } from "../../../types";
+import { ArticlesState } from "../../../types";
+import { Article } from "../Article";
+
 const initialState: ArticlesState = {
     data: [],
     pagination: {
@@ -14,6 +16,7 @@ const initialState: ArticlesState = {
         total: 0,
     }
 };
+
 export const articleSlice = createSlice({
     name: 'articles',
     initialState,
@@ -21,16 +24,16 @@ export const articleSlice = createSlice({
         addArticles: (state: ArticlesState, action: PayloadAction<ArticlesState>) => {
             state = action.payload;
         },
-        addArticle: (state: ArticlesState, action: PayloadAction<ArticleInterface>) => {
+        addArticle: (state: ArticlesState, action: PayloadAction<Article>) => {
             state.data.push(action.payload);
         },
-        updateArticle: (state: ArticlesState, action: PayloadAction<ArticleInterface>) => {
+        updateArticle: (state: ArticlesState, action: PayloadAction<Article>) => {
             const index = state.data.findIndex((article) => article.id === action.payload.id);
             if (index) {
                 state.data[index] = action.payload;
             }
         },
-        deleteArticle: (state: ArticlesState, action: PayloadAction<ArticleInterface>) => {
+        deleteArticle: (state: ArticlesState, action: PayloadAction<Article>) => {
             state.data.filter((article) => article.id !== action.payload.id);
         },
     }

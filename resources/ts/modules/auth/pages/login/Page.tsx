@@ -1,8 +1,6 @@
 // import libs
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash-es'
-import { Navigate } from 'react-router-dom'
-import { login } from '../../service'
 import { useForm } from 'react-hook-form'
 
 type Props = {

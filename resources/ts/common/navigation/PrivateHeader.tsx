@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 // import components
 import { Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
 import NavItem from './NavItem'
-import { MyCallback, UserInterface } from '../../types'
+import { User } from '../../modules/user/User'
 
 type Props = {
-  user: UserInterface,
+  user: User,
   showNavigation: boolean,
   showDropdown: boolean,
   toggleDropdown: ReactEventHandler,
@@ -42,14 +42,4 @@ export default function PrivateHeader({ user, showNavigation, showDropdown, togg
       </ul>
     </Collapse>
   );
-}
-
-// bind properties
-PrivateHeader.displayName = 'PrivateHeader'
-PrivateHeader.propTypes = {
-  user: PropTypes.object.isRequired,
-  showNavigation: PropTypes.bool.isRequired,
-  showDropdown: PropTypes.bool.isRequired,
-  toggleDropdown: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
 }

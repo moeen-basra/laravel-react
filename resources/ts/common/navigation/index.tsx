@@ -8,11 +8,12 @@ import { Dispatch } from '@reduxjs/toolkit'
 import { Link } from 'react-router-dom'
 import PrivateHeader from './PrivateHeader'
 import PublicHeader from './PublicHeader'
-import { AuthState, UserInterface } from '../../types'
+import { AuthState } from '../../types'
+import { User } from '../../modules/user/User'
 
 type Props = {
   isAuthenticated: boolean,
-  user: UserInterface | null,
+  user?: User,
   dispatch: Dispatch
 }
 
